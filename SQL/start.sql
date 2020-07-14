@@ -1,4 +1,4 @@
-﻿-- 刪除已存在的
+-- 刪除已存在的
 use master;
 IF DB_ID(N'SeaTurtleMarket') IS NOT NULL DROP DATABASE SeaTurtleMarket;
 
@@ -49,8 +49,3 @@ CREATE TABLE Member.Member
 );
 
 CREATE NONCLUSTERED INDEX idx_nc_city  ON Member.Member(city);
-
-
-
-
-
