@@ -68,6 +68,20 @@ CREATE NONCLUSTERED INDEX idx_nc_accountTypeId  ON Member.Member(accountTypeId);
 
 
 
+-- Create table Member.AccountLikeList
+CREATE TABLE Member.AccountLikeList
+(
+  getLikeAccount       NCHAR(20)    NOT NULL,
+  giveLikeaccount      NCHAR(20)    NOT NULL,
+  CONSTRAINT FK_AccountLikeList_Member_get FOREIGN KEY(getLikeAccount)  
+    REFERENCES Member.Member(account),
+  CONSTRAINT FK_AccountLikeList_Member_give FOREIGN KEY(giveLikeaccount)  
+    REFERENCES Member.Member(account)
+);
+
+
+
+
 
 
 
