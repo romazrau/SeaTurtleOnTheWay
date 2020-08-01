@@ -1,12 +1,12 @@
 -- 建立固定type 資料用
 ---------------------------------------
-USE SeaTurtleMarket;
+USE SeaTurtleOnTheWay;
 GO
 
--- create Member.AccountType data
-INSERT INTO Member.AccountType ( accountTypeId,accountType, accountAuthority ) 
-VALUES (1,'普通會員', 0), 
-       (2,'認證會員', 1),     --大眾人物類
+-- create Member.tAccountType data
+INSERT INTO Member.tAccountType ( fId,fAccountType, fAccountAuthority ) 
+VALUES (0,'管理員', 3),
+       (1,'普通會員', 0), 
+       (2,'公眾人物', 1),     --大眾人物類
        (3,'白鯨會員', 1),     --贊助大大
-       (4,'白鯨認證會員', 1),
-	   (0,'太陽神', 3);
+       (4,'白鯨公眾人物', 1);
