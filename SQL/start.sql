@@ -18,15 +18,7 @@ GO
 
 CREATE SCHEMA Member AUTHORIZATION dbo;
 GO
-CREATE SCHEMA Production AUTHORIZATION dbo;
-GO
-CREATE SCHEMA Sales AUTHORIZATION dbo;
-GO
-CREATE SCHEMA Activity AUTHORIZATION dbo;
-GO
-CREATE SCHEMA Chat AUTHORIZATION dbo;
-GO
-CREATE SCHEMA Club AUTHORIZATION dbo;
+CREATE SCHEMA Community AUTHORIZATION dbo;
 GO
 
 
@@ -73,7 +65,6 @@ CREATE NONCLUSTERED INDEX idx_nc_account        ON Member.tMember(fAccount);
 
 
 
-
 -- Create table Member.tAccountLikeList
 CREATE TABLE Member.tAccountLikeList
 (
@@ -88,7 +79,106 @@ CREATE TABLE Member.tAccountLikeList
 
 
 
+-------Community-----------------------------------------------------------------------------------------------------------------------------------
+--社團狀態
+CREATE TABLE Community.tStatus
+(
+ fId     INT             NOT NULL,
+ fName   NVARCHAR(50)    NOT NULL,
+ CONSTRAINT PK_Status     PRIMARY KEY(fId),
+ CONSTRAINT AK_statusname UNIQUE(fName)
+)
 
+--社團
+CREATE TABLE Community.tCommunity
+(
+ fId         INT               NOT NULL IDENTITY(1,1),
+ fName       NVARCHAR(50)      NOT NULL,
+ fDate       DATE              NOT NULL,
+ fInfo       NVARCHAR(MAX)     NOT NULL,
+ fStatusId   INT               NOT NULL,
+ fImgPath    NCHAR(200)        NOT NULL,
+ CONSTRAINT PK_Community PRIMARY KEY(fId),
+ CONSTRAINT FK_Community_Status FOREIGN KEY(fStatusId)
+   REFERENCES Community.tStatus(fId),
+ CONSTRAINT AK_name UNIQUE(fName)
+);
+
+
+--社團成員權限
+CREATE TABLE Community.tAccessRight
+(
+ fId     INT             NOT NULL,
+ fName   NVARCHAR(50)    NOT NULL,
+ CONSTRAINT PK_AccessRight      PRIMARY KEY(fId),
+ CONSTRAINT AK_accessrightname  UNIQUE(fName)
+)
+
+--社團成員
+CREATE TABLE Community.tMemberList
+(
+ fId               INT               NOT NULL IDENTITY(1,1),
+ fCommunityId      INT               NOT NULL,
+ fMemberId         INT               NOT NULL,
+ fJoinDate         SMALLDATETIME     NOT NULL,
+ fAccessRightId    INT               NOT NULL,
+ PRIMARY KEY(fId),
+ CONSTRAINT FK_Community_Community_Member FOREIGN KEY(fCommunityId)
+   REFERENCES Community.tCommunity(fId), --取得社團id為fk
+ FOREIGN KEY(fMemberId)
+   REFERENCES Member.tMember(fId), --還沒連結Member Table，取得會員帳號為fk
+ CONSTRAINT FK_Community_AccessRight FOREIGN KEY(fAccessRightId)
+   REFERENCES Community.tAccessRight(fId), --取得權限id為fk
+);
+
+
+
+--社團文章
+CREATE TABLE Community.tPost
+(
+ fId             INT             NOT NULL IDENTITY(1,1),
+ fMemberId       INT             NOT NULL,  --or null決定會員是否能在非社團內PO文 (非在社團的人發文前就擋下)
+ fCommunityId    INT             NOT NULL, 
+ fPostTime       SMALLDATETIME   NOT NULL,
+ fContent        NVARCHAR(MAX)   NULL,
+ fImgPath        NCHAR(200)      NULL,
+ CONSTRAINT PK_Post PRIMARY KEY(fId),
+ FOREIGN KEY(fMemberId)
+   REFERENCES Member.tMember(fId),   --取得(社團成員帳號or會員帳號)讓發文帳號為fk
+ CONSTRAINT FK_Community_Community_Post FOREIGN KEY(fCommunityId)
+   REFERENCES Community.tCommunity(fId) --取得社團名稱為fk
+)
+
+
+--文章留言
+CREATE TABLE Community.tReply
+(
+ fId              INT             NOT NULL IDENTITY(1,1),
+ fPostId          INT             NOT NULL,
+ fReplyMemberId  INT             NOT NULL,
+ fReplyTime       SMALLDATETIME   NOT NULL,
+ fContent         NVARCHAR(MAX)   NOT NULL,
+ CONSTRAINT PK_Reply PRIMARY KEY(fId),
+ CONSTRAINT FK_Community_Post FOREIGN KEY(fPostId)
+   REFERENCES Community.tPost(fId), --取得主文ID為fK
+ FOREIGN KEY(fReplyMemberId)
+   REFERENCES Member.tMember(fId), --取得(社團成員帳號or會員帳號)讓發文帳號為fk
+)
+
+--新增回覆留言的資料表
+CREATE TABLE Community.tFeedback
+(
+ fId                 INT             NOT NULL IDENTITY(1,1),
+ fReplyId            INT             NOT NULL,
+ fFeedbackMemberId   INT             NOT NULL,
+ fFeedbackTime       SMALLDATETIME   NOT NULL,
+ fContent            NVARCHAR(MAX)   NOT NULL,
+ CONSTRAINT PK_Feedback PRIMARY KEY(fId),
+ FOREIGN KEY(fReplyId)
+   REFERENCES Community.tReply(fId), 
+ FOREIGN KEY(fFeedbackMemberId)
+   REFERENCES Member.tMember(fId), --取得(社團成員帳號or會員帳號)讓發文帳號為fk
+)
 
 
 
