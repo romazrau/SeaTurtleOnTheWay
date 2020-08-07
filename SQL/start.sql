@@ -20,7 +20,8 @@ CREATE SCHEMA Member AUTHORIZATION dbo;
 GO
 CREATE SCHEMA Community AUTHORIZATION dbo;
 GO
-
+CREATE SCHEMA Activity AUTHORIZATION dbo;
+GO
 
 ---------------------------------------------------------------------
 -- Create empty tables
@@ -183,12 +184,133 @@ CREATE TABLE Community.tFeedback
 
 
 
+-------Activity-----------------------------------------------------------------------------------------------------------------------------------
+-- 活動參與者狀態
+CREATE TABLE Activity.tJoinType
+(
+  fId               INT              NOT NULL, 
+  fJoinName         NVARCHAR(50)     NOT NULL,
+  CONSTRAINT PK_JoinType    PRIMARY KEY(fId),
+  CONSTRAINT AK_joinname    UNIQUE(fJoinName),
+);
+
+-- 活動認證狀態
+CREATE TABLE Activity.tAttestType
+(
+  fId               INT              NOT NULL ,
+  fAttestName       NVARCHAR(50)     NOT NULL,
+  CONSTRAINT PK_AttestType  PRIMARY KEY(fId),
+  CONSTRAINT AK_attestname  UNIQUE(fAttestName),
+);
 
 
+-- 活動狀態
+CREATE TABLE Activity.tActivityType
+(
+  fId               INT              NOT NULL,
+  fStatusName       NVARCHAR(50)     NOT NULL,
+  CONSTRAINT PK_ActivityType  PRIMARY KEY(fId),
+  CONSTRAINT AK_statusname    UNIQUE(fStatusName ),
+);
 
 
+-- 活動標籤
+CREATE TABLE Activity.tActivityLabel
+(
+  fId               INT              NOT NULL    IDENTITY(1,1),
+  fLabelName        NVARCHAR(50)     NOT NULL,
+  CONSTRAINT PK_ActivityLabel PRIMARY KEY(fId),
+  CONSTRAINT AK_labelname     UNIQUE(fLabelName ),
+);
+
+-- 活動
+CREATE TABLE Activity.tActivity
+(
+  fId               INT           NOT NULL  IDENTITY(1,1),
+  fActName          NVARCHAR(50)  NOT NULL,
+  fCreatDate        SMALLDATETIME NOT NULL,
+  fActivityDate     SMALLDATETIME NOT NULL,
+  fCommunityId      INT           NULL,
+  fMemberId        INT           NOT NULL,
+  fIntroduction     NVARCHAR(MAX) NOT NULL,
+  fLimit            INT           NULL,
+  fActAttestId      INT           NOT NULL, 
+  fActTypeId        INT           NOT NULL,
+  fActLocation      NVARCHAR(100) NOT NULL,
+  fCoordinate       NVARCHAR(100) NOT NULL,
+  fActLabelID1      INT           NOT NULL,
+  fActLabelID2      INT           NULL,
+  fActLabelID3      INT           NULL,
+  fActLabelID4      INT           NULL,
+  fActLabelID5      INT           NULL,
+  CONSTRAINT PK_Activity PRIMARY KEY(fId),
+  CONSTRAINT FK_Activity_AttestType FOREIGN KEY(fActAttestId)  --設定Foreign Key
+    REFERENCES Activity.tAttestType(fId),
+  CONSTRAINT FK_Activity_ActivityType FOREIGN KEY(fActTypeId)  --設定Foreign Key
+    REFERENCES Activity.tActivityType(fId),
+  FOREIGN KEY(fCommunityId)  
+    REFERENCES Community.tCommunity(fId),
+  FOREIGN KEY(fMemberId)  
+    REFERENCES Member.tMember(fId),
+ FOREIGN KEY(fActLabelID1)  
+    REFERENCES Activity.tActivityLabel(fId),
+ FOREIGN KEY(fActLabelID2)  
+    REFERENCES Activity.tActivityLabel(fId),
+ FOREIGN KEY(fActLabelID3)  
+    REFERENCES Activity.tActivityLabel(fId),
+ FOREIGN KEY(fActLabelID4)  
+    REFERENCES Activity.tActivityLabel(fId),
+ FOREIGN KEY(fActLabelID5)  
+    REFERENCES Activity.tActivityLabel(fId),
+  CONSTRAINT AK_actname    UNIQUE(fActName),
+);
 
 
+-- 活動參加者
+CREATE TABLE Activity.tJoinList
+(
+  fId               INT           NOT NULL  IDENTITY(1,1),
+  fActivityId       INT           NOT NULL,
+  fMemberId         INT           NOT NULL,
+  fJoinTime         DATETIME      NOT NULL,
+  fJoinTypeId       INT           NOT NULL
+  PRIMARY KEY(fId),
+  CONSTRAINT FK_JoinList_Activity FOREIGN KEY(fActivityId)  --設定Foreign Key
+    REFERENCES Activity.tActivity(fId),
+  CONSTRAINT FK_JoinList_JoinType FOREIGN KEY(fJoinTypeId)  --設定Foreign Key
+    REFERENCES Activity.tJoinType(fId),
+  FOREIGN KEY(fMemberId)  
+    REFERENCES Member.tMember(fId),
+);
+
+
+-- 活動留言
+CREATE TABLE Activity.tActivityMessage
+(
+  fId               INT           NOT NULL  IDENTITY(1,1),
+  fActivityId       INT           NOT NULL,
+  fMemberId         INT           NOT NULL,
+  fContent          NVARCHAR(MAX) NOT NULL,
+  fTime             DATETIME      NOT NULL,
+  fReplyerId        INT           NULL
+  CONSTRAINT PK_ActivityMessage PRIMARY KEY(fId),
+  CONSTRAINT FK_ActivityMessage_AttestType FOREIGN KEY(fActivityId)  --設定Foreign Key
+    REFERENCES Activity.tAttestType(fId),
+  FOREIGN KEY(fMemberId)  
+    REFERENCES Member.tMember(fId),
+  FOREIGN KEY(fReplyerId)  
+    REFERENCES Activity.tActivityMessage(fId),
+);
+
+
+CREATE TABLE Activity.tSearchList
+(
+  fId               INT           NOT NULL,
+  fMemberId         INT           NOT NULL,
+  fSearchTime       DATETIME      NOT NULL,
+  --CONSTRAINT FK_SearchList_Activity FOREIGN KEY(fId)  --設定Foreign Key
+  --  REFERENCES Activity.tActivity(fId),
+);
 
 
 
