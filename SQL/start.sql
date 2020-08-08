@@ -72,6 +72,7 @@ CREATE TABLE Member.tAccountLikeList
   fId                 INT   NOT NULL  IDENTITY(1,1),
   fGetLikeMemberId    INT   NOT NULL,
   fGiveLikeMemberId   INT   NOT NULL,
+  PRIMARY KEY(fId),
   CONSTRAINT FK_AccountLikeList_Member_get  FOREIGN KEY(fGetLikeMemberId)  
     REFERENCES Member.tMember(fID),
   CONSTRAINT FK_AccountLikeList_Member_give FOREIGN KEY(fGiveLikeMemberId)  
