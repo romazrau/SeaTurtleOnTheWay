@@ -22,6 +22,10 @@ CREATE SCHEMA Community AUTHORIZATION dbo;
 GO
 CREATE SCHEMA Activity AUTHORIZATION dbo;
 GO
+CREATE SCHEMA Product AUTHORIZATION dbo;
+GO
+CREATE SCHEMA Sales AUTHORIZATION dbo;
+GO
 
 ---------------------------------------------------------------------
 -- Create empty tables
@@ -216,13 +220,23 @@ CREATE TABLE Activity.tActivityType
 );
 
 
--- 活動標籤
+-- 活動主標籤
+CREATE TABLE Activity.tActivityMainLabel
+(
+  fId               INT              NOT NULL,
+  fLabelName        NVARCHAR(50)     NOT NULL,
+  CONSTRAINT PK_ActivityMainLabel PRIMARY KEY(fId),
+  UNIQUE(fLabelName ),
+);
+
+
+-- 活動小標籤
 CREATE TABLE Activity.tActivityLabel
 (
   fId               INT              NOT NULL    IDENTITY(1,1),
   fLabelName        NVARCHAR(50)     NOT NULL,
   CONSTRAINT PK_ActivityLabel PRIMARY KEY(fId),
-  CONSTRAINT AK_labelname     UNIQUE(fLabelName ),
+  UNIQUE(fLabelName ),
 );
 
 -- 活動
@@ -241,31 +255,16 @@ CREATE TABLE Activity.tActivity
   fActLocation      NVARCHAR(100) NOT NULL,
   fCoordinateX      NCHAR(100)    NOT NULL,
   fCoordinateY      NCHAR(100)    NOT NULL,
-  fActLabelID1      INT           NULL,  ---另外存一個表
-  fActLabelID2      INT           NULL,
-  fActLabelID3      INT           NULL,
-  fActLabelID4      INT           NULL,
-  fActLabelID5      INT           NULL,
+  fActLabelId       INT           NOT NULL,
   CONSTRAINT PK_Activity PRIMARY KEY(fId),
-  CONSTRAINT FK_Activity_AttestType FOREIGN KEY(fActAttestId)  --設定Foreign Key
+  CONSTRAINT FK_Activity_AttestType FOREIGN KEY(fActAttestId)  
     REFERENCES Activity.tAttestType(fId),
-  CONSTRAINT FK_Activity_ActivityType FOREIGN KEY(fActTypeId)  --設定Foreign Key
+  CONSTRAINT FK_Activity_ActivityType FOREIGN KEY(fActTypeId)  
     REFERENCES Activity.tActivityType(fId),
-  --FOREIGN KEY(fCommunityId)  
-  --  REFERENCES Community.tCommunity(fId),
   FOREIGN KEY(fMemberId)  
-    REFERENCES Member.tMember(fId)
- --FOREIGN KEY(fActLabelID1)  
- --   REFERENCES Activity.tActivityLabel(fId),
- --FOREIGN KEY(fActLabelID2)  
- --   REFERENCES Activity.tActivityLabel(fId),
- --FOREIGN KEY(fActLabelID3)  
- --   REFERENCES Activity.tActivityLabel(fId),
- --FOREIGN KEY(fActLabelID4)  
- --   REFERENCES Activity.tActivityLabel(fId),
- --FOREIGN KEY(fActLabelID5)  
- --   REFERENCES Activity.tActivityLabel(fId),
- -- CONSTRAINT AK_actname    UNIQUE(fActName),
+    REFERENCES Member.tMember(fId),
+  FOREIGN KEY(fActLabelId)  
+    REFERENCES Activity.tActivityMainLabel(fId),
 );
 
 
@@ -285,6 +284,24 @@ CREATE TABLE Activity.tJoinList
   FOREIGN KEY(fMemberId)  
     REFERENCES Member.tMember(fId),
 );
+
+
+
+-- 活動小標籤列表
+CREATE TABLE Activity.tActivityHadLabel
+(
+  fId               INT           NOT NULL,
+  fActivityId       INT           NOT NULL,
+  tActivityLabelId         INT           NOT NULL,
+  PRIMARY KEY(fId),
+  FOREIGN KEY(fActivityId) 
+    REFERENCES Activity.tActivity(fId),
+  FOREIGN KEY(tActivityLabelId) 
+    REFERENCES Activity.tActivityLabel(fId),
+);
+
+
+
 
 
 -- 活動留言
@@ -334,6 +351,28 @@ CREATE TABLE Activity.tScore
   FOREIGN KEY(fActivityId) 
     REFERENCES Activity.tActivity(fId),
 );
+
+
+
+---------------------------------------------------------------------
+-- 商品標籤
+Create Table tProductTag
+(
+  fId               INT            NOT NULL     IDENTITY(1,1),--IDENTITY 自動填值
+  fName             nvarchar(50)   NOT NULL,
+  PRIMARY KEY(fId),
+  UNIQUE(fName), 
+);
+
+
+
+-- 商品
+
+
+
+
+---------------------------------------------------------------------
+-- 訂單
 
 
 
