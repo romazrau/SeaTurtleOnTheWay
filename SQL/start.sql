@@ -186,7 +186,7 @@ CREATE TABLE Community.tFeedback
 
 
 -------Activity-----------------------------------------------------------------------------------------------------------------------------------
--- 活動參與者狀態
+-- 活動參與者狀態標籤
 CREATE TABLE Activity.tJoinType
 (
   fId               INT              NOT NULL, 
@@ -195,17 +195,18 @@ CREATE TABLE Activity.tJoinType
   CONSTRAINT AK_joinname    UNIQUE(fJoinName),
 );
 
--- 活動認證狀態
+-- 活動認證狀態標籤標籤
 CREATE TABLE Activity.tAttestType
 (
-  fId               INT              NOT NULL ,
+  fId               INT              NOT NULL,
   fAttestName       NVARCHAR(50)     NOT NULL,
+  fPayCoin          INT              NOT NULL,
   CONSTRAINT PK_AttestType  PRIMARY KEY(fId),
   CONSTRAINT AK_attestname  UNIQUE(fAttestName),
 );
 
 
--- 活動狀態
+-- 活動狀態標籤
 CREATE TABLE Activity.tActivityType
 (
   fId               INT              NOT NULL,
@@ -231,15 +232,16 @@ CREATE TABLE Activity.tActivity
   fActName          NVARCHAR(50)  NOT NULL,
   fCreatDate        SMALLDATETIME NOT NULL,
   fActivityDate     SMALLDATETIME NOT NULL,
-  fCommunityId      INT           NULL,
-  fMemberId        INT           NOT NULL,
+ -- fCommunityId      INT           NOT NULL,
+  fMemberId         INT           NOT NULL,
   fIntroduction     NVARCHAR(MAX) NOT NULL,
   fLimit            INT           NULL,
   fActAttestId      INT           NOT NULL, 
   fActTypeId        INT           NOT NULL,
   fActLocation      NVARCHAR(100) NOT NULL,
-  fCoordinate       NVARCHAR(100) NOT NULL,
-  fActLabelID1      INT           NOT NULL,
+  fCoordinateX      NCHAR(100)    NOT NULL,
+  fCoordinateY      NCHAR(100)    NOT NULL,
+  fActLabelID1      INT           NULL,  ---另外存一個表
   fActLabelID2      INT           NULL,
   fActLabelID3      INT           NULL,
   fActLabelID4      INT           NULL,
@@ -249,21 +251,21 @@ CREATE TABLE Activity.tActivity
     REFERENCES Activity.tAttestType(fId),
   CONSTRAINT FK_Activity_ActivityType FOREIGN KEY(fActTypeId)  --設定Foreign Key
     REFERENCES Activity.tActivityType(fId),
-  FOREIGN KEY(fCommunityId)  
-    REFERENCES Community.tCommunity(fId),
+  --FOREIGN KEY(fCommunityId)  
+  --  REFERENCES Community.tCommunity(fId),
   FOREIGN KEY(fMemberId)  
-    REFERENCES Member.tMember(fId),
- FOREIGN KEY(fActLabelID1)  
-    REFERENCES Activity.tActivityLabel(fId),
- FOREIGN KEY(fActLabelID2)  
-    REFERENCES Activity.tActivityLabel(fId),
- FOREIGN KEY(fActLabelID3)  
-    REFERENCES Activity.tActivityLabel(fId),
- FOREIGN KEY(fActLabelID4)  
-    REFERENCES Activity.tActivityLabel(fId),
- FOREIGN KEY(fActLabelID5)  
-    REFERENCES Activity.tActivityLabel(fId),
-  CONSTRAINT AK_actname    UNIQUE(fActName),
+    REFERENCES Member.tMember(fId)
+ --FOREIGN KEY(fActLabelID1)  
+ --   REFERENCES Activity.tActivityLabel(fId),
+ --FOREIGN KEY(fActLabelID2)  
+ --   REFERENCES Activity.tActivityLabel(fId),
+ --FOREIGN KEY(fActLabelID3)  
+ --   REFERENCES Activity.tActivityLabel(fId),
+ --FOREIGN KEY(fActLabelID4)  
+ --   REFERENCES Activity.tActivityLabel(fId),
+ --FOREIGN KEY(fActLabelID5)  
+ --   REFERENCES Activity.tActivityLabel(fId),
+ -- CONSTRAINT AK_actname    UNIQUE(fActName),
 );
 
 
@@ -304,14 +306,35 @@ CREATE TABLE Activity.tActivityMessage
 );
 
 
+--活動搜尋紀錄
 CREATE TABLE Activity.tSearchList
 (
   fId               INT           NOT NULL,
+  fActivityId       INT           NOT NULL,
   fMemberId         INT           NOT NULL,
   fSearchTime       DATETIME      NOT NULL,
-  --CONSTRAINT FK_SearchList_Activity FOREIGN KEY(fId)  --設定Foreign Key
-  --  REFERENCES Activity.tActivity(fId),
+  PRIMARY KEY(fId),
+  FOREIGN KEY(fMemberId)  
+    REFERENCES Member.tMember(fId),
+  FOREIGN KEY(fActivityId) 
+    REFERENCES Activity.tActivity(fId),
 );
+
+
+--活動評分
+CREATE TABLE Activity.tScore
+(
+  fId               INT           NOT NULL,
+  fMemberID         INT           NOT NULL,
+  fActivityId       INT           NOT NULL,
+  fScoreLevel       TINYINT       NOT NULL,
+  PRIMARY KEY(fId),
+  FOREIGN KEY(fMemberId)  
+    REFERENCES Member.tMember(fId),
+  FOREIGN KEY(fActivityId) 
+    REFERENCES Activity.tActivity(fId),
+);
+
 
 
 
