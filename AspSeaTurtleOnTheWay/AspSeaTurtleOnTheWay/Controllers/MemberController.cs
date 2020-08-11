@@ -2,27 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace AspSeaTurtleOnTheWay.Controllers
 {
-    public class MemberController : Controller
+    public class MemberController : ApiController
     {
-
-        // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-
-        public string Member()
+        // GET: api/ApiMember
+        public string Get()
         {
             SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
             var s = from t in db.tMember
                     select t;
-            List<tMember> outlist = s.ToList();
+
 
             try
             {
@@ -31,7 +25,6 @@ namespace AspSeaTurtleOnTheWay.Controllers
                                {
                                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
                                });
-
 
                 return jsonData;
             }
@@ -42,24 +35,27 @@ namespace AspSeaTurtleOnTheWay.Controllers
         }
 
 
-        [HttpPost]
-        public string Transcripts(FormCollection post)
+
+
+        // GET: api/ApiMember/5
+        public string Get(int id)
         {
-            string account = post["account"];
-            string password = post["password"];
-           
-            return $"{account} , {password}";
+            return "value";
         }
 
+        // POST: api/ApiMember
+        public void Post([FromBody]string value)
+        {
+        }
 
+        // PUT: api/ApiMember/5
+        public void Put(int id, [FromBody]string value)
+        {
+        }
 
-
-
-
-
-
-
-
-
+        // DELETE: api/ApiMember/5
+        public void Delete(int id)
+        {
+        }
     }
 }

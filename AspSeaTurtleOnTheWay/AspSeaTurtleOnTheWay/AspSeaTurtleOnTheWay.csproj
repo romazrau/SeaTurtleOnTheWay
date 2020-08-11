@@ -126,7 +126,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MemberController.cs" />
-    <Compile Include="Controllers\ApiMemberController.cs" />
     <Compile Include="dbSeaTurtleOnTheWay.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
