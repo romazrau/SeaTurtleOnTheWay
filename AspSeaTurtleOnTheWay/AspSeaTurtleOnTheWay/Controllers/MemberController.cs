@@ -5,33 +5,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.SqlClient;
+using System.Data;
+using AspSeaTurtleOnTheWay.Models;
 
 namespace AspSeaTurtleOnTheWay.Controllers
 {
     public class MemberController : ApiController
     {
+
+
         // GET: api/Member
         public string Get()
         {
-
-            SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
-            var t = from ele in db.tMember
-                    select ele;
-
-            try
-            {
-                string jsonData = JsonConvert.SerializeObject(t, Formatting.Indented,
-                               new JsonSerializerSettings
-                               {
-                                   PreserveReferencesHandling = PreserveReferencesHandling.Objects
-                               });
-
-                return jsonData;
-            }
-            catch (Exception e)
-            {
-                return $"['錯誤訊息': '{e.Message}']";
-            }
+            string s = @"select M.*, T.fAccountType as 'account type', T.fAccountAuthority as 'account authority'
+                            from Member.tMember as M
+                             LEFT join Member.tAccountType as T
+                            on M.fAccountTypeId = T.fId; ";
+            return ClsSqlQuery.SqlQuery(s);          
         }
 
         // GET: api/Member/5

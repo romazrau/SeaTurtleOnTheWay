@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="024b90bbdc4b4d3fac6594f234e9a3f3" Name="Diagram1">
+      <Diagram DiagramId="024b90bbdc4b4d3fac6594f234e9a3f3" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivity" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityHadLabel" Width="1.5" PointX="10.5" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityLabel" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
@@ -23,8 +23,8 @@
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tPost" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tReply" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tStatus" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tProductTag" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAccountLikeList" Width="1.5" PointX="5.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tProductTag" Width="1.5" PointX="0.875" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAccountLikeList" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAccountType" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tMember" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
         <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__fActi__07C12930" ManuallyRouted="false" />
