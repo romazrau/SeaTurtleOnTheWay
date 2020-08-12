@@ -1,0 +1,1725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SeaTurtleOnTheWayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tActivity">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fActName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fCreatDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="fActivityDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="fMemberId" Type="int" Nullable="false" />
+          <Property Name="fIntroduction" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fLimit" Type="int" />
+          <Property Name="fActAttestId" Type="int" Nullable="false" />
+          <Property Name="fActTypeId" Type="int" Nullable="false" />
+          <Property Name="fActLocation" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fCoordinateX" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="fCoordinateY" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="fActLabelId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tActivityHadLabel">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fActivityId" Type="int" Nullable="false" />
+          <Property Name="tActivityLabelId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tActivityLabel">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fLabelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tActivityMainLabel">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fLabelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tActivityMessage">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fActivityId" Type="int" Nullable="false" />
+          <Property Name="fMemberId" Type="int" Nullable="false" />
+          <Property Name="fContent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fTime" Type="datetime" Nullable="false" />
+          <Property Name="fReplyerId" Type="int" />
+        </EntityType>
+        <EntityType Name="tActivityType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tAttestType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fAttestName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPayCoin" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tJoinList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fActivityId" Type="int" Nullable="false" />
+          <Property Name="fMemberId" Type="int" Nullable="false" />
+          <Property Name="fJoinTime" Type="datetime" Nullable="false" />
+          <Property Name="fJoinTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tJoinType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fJoinName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tScore">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+          <Property Name="fActivityId" Type="int" Nullable="false" />
+          <Property Name="fScoreLevel" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tSearchList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fActivityId" Type="int" Nullable="false" />
+          <Property Name="fMemberId" Type="int" Nullable="false" />
+          <Property Name="fSearchTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tAccessRight">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tCommunity">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fDate" Type="date" Nullable="false" />
+          <Property Name="fInfo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fStatusId" Type="int" Nullable="false" />
+          <Property Name="fImgPath" Type="nchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tFeedback">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fReplyId" Type="int" Nullable="false" />
+          <Property Name="fFeedbackMemberId" Type="int" Nullable="false" />
+          <Property Name="fFeedbackTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="fContent" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tMemberList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fCommunityId" Type="int" Nullable="false" />
+          <Property Name="fMemberId" Type="int" Nullable="false" />
+          <Property Name="fJoinDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="fAccessRightId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPost">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberId" Type="int" Nullable="false" />
+          <Property Name="fCommunityId" Type="int" Nullable="false" />
+          <Property Name="fPostTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="fContent" Type="nvarchar(max)" />
+          <Property Name="fImgPath" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tReply">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fPostId" Type="int" Nullable="false" />
+          <Property Name="fReplyMemberId" Type="int" Nullable="false" />
+          <Property Name="fReplyTime" Type="smalldatetime" Nullable="false" />
+          <Property Name="fContent" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tStatus">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tProductTag">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tAccountLikeList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fGetLikeMemberId" Type="int" Nullable="false" />
+          <Property Name="fGiveLikeMemberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tAccountType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" Nullable="false" />
+          <Property Name="fAccountType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="fAccountAuthority" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fAccount" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPassword" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fBirthdate" Type="date" Nullable="false" />
+          <Property Name="fIdentifyId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="fAddress" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="fCity" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="fCeilphoneNumber" Type="int" Nullable="false" />
+          <Property Name="fCoins" Type="int" Nullable="false" />
+          <Property Name="fGender" Type="nvarchar" MaxLength="10" />
+          <Property Name="fIntroduction" Type="nvarchar(max)" />
+          <Property Name="fAccountTypeId" Type="int" Nullable="false" />
+          <Property Name="fPhotoPath" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__tActivity__fActi__07C12930">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tActivityHadLabel" Type="Self.tActivityHadLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityHadLabel">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fActL__00200768">
+          <End Role="tActivityMainLabel" Type="Self.tActivityMainLabel" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityMainLabel">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fActLabelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fMemb__0C85DE4D">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tActivityMessage" Type="Self.tActivityMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityMessage">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fMemb__7F2BE32F">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fRepl__0D7A0286">
+          <End Role="tActivityMessage" Type="Self.tActivityMessage" Multiplicity="0..1" />
+          <End Role="tActivityMessage1" Type="Self.tActivityMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityMessage">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityMessage1">
+              <PropertyRef Name="fReplyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__tActi__08B54D69">
+          <End Role="tActivityLabel" Type="Self.tActivityLabel" Multiplicity="1" />
+          <End Role="tActivityHadLabel" Type="Self.tActivityHadLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityLabel">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityHadLabel">
+              <PropertyRef Name="tActivityLabelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tFeedback__fFeed__6C190EBB">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tFeedback" Type="Self.tFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tFeedback">
+              <PropertyRef Name="fFeedbackMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tFeedback__fRepl__6B24EA82">
+          <End Role="tReply" Type="Self.tReply" Multiplicity="1" />
+          <End Role="tFeedback" Type="Self.tFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tReply">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tFeedback">
+              <PropertyRef Name="fReplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tJoinList__fMemb__04E4BC85">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tJoinList" Type="Self.tJoinList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tJoinList">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tMemberLi__fMemb__5FB337D6">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tMemberList" Type="Self.tMemberList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMemberList">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tPost__fMemberId__6383C8BA">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tPost" Type="Self.tPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tPost">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tReply__fReplyMe__68487DD7">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tReply" Type="Self.tReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tReply">
+              <PropertyRef Name="fReplyMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tScore__fActivit__151B244E">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tScore" Type="Self.tScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tScore">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tScore__fMemberI__14270015">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tScore" Type="Self.tScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tScore">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSearchLi__fActi__114A936A">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tSearchList" Type="Self.tSearchList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tSearchList">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSearchLi__fMemb__10566F31">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tSearchList" Type="Self.tSearchList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tSearchList">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountLikeList_Member_get">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tAccountLikeList" Type="Self.tAccountLikeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tAccountLikeList">
+              <PropertyRef Name="fGetLikeMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountLikeList_Member_give">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tAccountLikeList" Type="Self.tAccountLikeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tAccountLikeList">
+              <PropertyRef Name="fGiveLikeMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_ActivityType">
+          <End Role="tActivityType" Type="Self.tActivityType" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fActTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_AttestType">
+          <End Role="tAttestType" Type="Self.tAttestType" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAttestType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fActAttestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityMessage_AttestType">
+          <End Role="tAttestType" Type="Self.tAttestType" Multiplicity="1" />
+          <End Role="tActivityMessage" Type="Self.tActivityMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAttestType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityMessage">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_AccessRight">
+          <End Role="tAccessRight" Type="Self.tAccessRight" Multiplicity="1" />
+          <End Role="tMemberList" Type="Self.tMemberList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAccessRight">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMemberList">
+              <PropertyRef Name="fAccessRightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Community_Member">
+          <End Role="tCommunity" Type="Self.tCommunity" Multiplicity="1" />
+          <End Role="tMemberList" Type="Self.tMemberList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCommunity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMemberList">
+              <PropertyRef Name="fCommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Community_Post">
+          <End Role="tCommunity" Type="Self.tCommunity" Multiplicity="1" />
+          <End Role="tPost" Type="Self.tPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCommunity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tPost">
+              <PropertyRef Name="fCommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Post">
+          <End Role="tPost" Type="Self.tPost" Multiplicity="1" />
+          <End Role="tReply" Type="Self.tReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPost">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tReply">
+              <PropertyRef Name="fPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Status">
+          <End Role="tStatus" Type="Self.tStatus" Multiplicity="1" />
+          <End Role="tCommunity" Type="Self.tCommunity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStatus">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tCommunity">
+              <PropertyRef Name="fStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinList_Activity">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tJoinList" Type="Self.tJoinList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tJoinList">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinList_JoinType">
+          <End Role="tJoinType" Type="Self.tJoinType" Multiplicity="1" />
+          <End Role="tJoinList" Type="Self.tJoinList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tJoinType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tJoinList">
+              <PropertyRef Name="fJoinTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_AccountTypeId">
+          <End Role="tAccountType" Type="Self.tAccountType" Multiplicity="1" />
+          <End Role="tMember" Type="Self.tMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAccountType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMember">
+              <PropertyRef Name="fAccountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SeaTurtleOnTheWayModelStoreContainer">
+          <EntitySet Name="tActivity" EntityType="Self.tActivity" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tActivityHadLabel" EntityType="Self.tActivityHadLabel" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tActivityLabel" EntityType="Self.tActivityLabel" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tActivityMainLabel" EntityType="Self.tActivityMainLabel" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tActivityMessage" EntityType="Self.tActivityMessage" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tActivityType" EntityType="Self.tActivityType" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tAttestType" EntityType="Self.tAttestType" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tJoinList" EntityType="Self.tJoinList" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tJoinType" EntityType="Self.tJoinType" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tScore" EntityType="Self.tScore" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tSearchList" EntityType="Self.tSearchList" Schema="Activity" store:Type="Tables" />
+          <EntitySet Name="tAccessRight" EntityType="Self.tAccessRight" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tCommunity" EntityType="Self.tCommunity" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tFeedback" EntityType="Self.tFeedback" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tMemberList" EntityType="Self.tMemberList" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tPost" EntityType="Self.tPost" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tReply" EntityType="Self.tReply" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tStatus" EntityType="Self.tStatus" Schema="Community" store:Type="Tables" />
+          <EntitySet Name="tProductTag" EntityType="Self.tProductTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tAccountLikeList" EntityType="Self.tAccountLikeList" Schema="Member" store:Type="Tables" />
+          <EntitySet Name="tAccountType" EntityType="Self.tAccountType" Schema="Member" store:Type="Tables" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" Schema="Member" store:Type="Tables" />
+          <AssociationSet Name="FK__tActivity__fActi__07C12930" Association="Self.FK__tActivity__fActi__07C12930">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tActivityHadLabel" EntitySet="tActivityHadLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fActL__00200768" Association="Self.FK__tActivity__fActL__00200768">
+            <End Role="tActivityMainLabel" EntitySet="tActivityMainLabel" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fMemb__0C85DE4D" Association="Self.FK__tActivity__fMemb__0C85DE4D">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tActivityMessage" EntitySet="tActivityMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fMemb__7F2BE32F" Association="Self.FK__tActivity__fMemb__7F2BE32F">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fRepl__0D7A0286" Association="Self.FK__tActivity__fRepl__0D7A0286">
+            <End Role="tActivityMessage" EntitySet="tActivityMessage" />
+            <End Role="tActivityMessage1" EntitySet="tActivityMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__tActi__08B54D69" Association="Self.FK__tActivity__tActi__08B54D69">
+            <End Role="tActivityLabel" EntitySet="tActivityLabel" />
+            <End Role="tActivityHadLabel" EntitySet="tActivityHadLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tFeedback__fFeed__6C190EBB" Association="Self.FK__tFeedback__fFeed__6C190EBB">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tFeedback" EntitySet="tFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tFeedback__fRepl__6B24EA82" Association="Self.FK__tFeedback__fRepl__6B24EA82">
+            <End Role="tReply" EntitySet="tReply" />
+            <End Role="tFeedback" EntitySet="tFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tJoinList__fMemb__04E4BC85" Association="Self.FK__tJoinList__fMemb__04E4BC85">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tJoinList" EntitySet="tJoinList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tMemberLi__fMemb__5FB337D6" Association="Self.FK__tMemberLi__fMemb__5FB337D6">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tMemberList" EntitySet="tMemberList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tPost__fMemberId__6383C8BA" Association="Self.FK__tPost__fMemberId__6383C8BA">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tPost" EntitySet="tPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tReply__fReplyMe__68487DD7" Association="Self.FK__tReply__fReplyMe__68487DD7">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tReply" EntitySet="tReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tScore__fActivit__151B244E" Association="Self.FK__tScore__fActivit__151B244E">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tScore" EntitySet="tScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tScore__fMemberI__14270015" Association="Self.FK__tScore__fMemberI__14270015">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tScore" EntitySet="tScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSearchLi__fActi__114A936A" Association="Self.FK__tSearchLi__fActi__114A936A">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tSearchList" EntitySet="tSearchList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSearchLi__fMemb__10566F31" Association="Self.FK__tSearchLi__fMemb__10566F31">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tSearchList" EntitySet="tSearchList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountLikeList_Member_get" Association="Self.FK_AccountLikeList_Member_get">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tAccountLikeList" EntitySet="tAccountLikeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountLikeList_Member_give" Association="Self.FK_AccountLikeList_Member_give">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tAccountLikeList" EntitySet="tAccountLikeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_ActivityType" Association="Self.FK_Activity_ActivityType">
+            <End Role="tActivityType" EntitySet="tActivityType" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_AttestType" Association="Self.FK_Activity_AttestType">
+            <End Role="tAttestType" EntitySet="tAttestType" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityMessage_AttestType" Association="Self.FK_ActivityMessage_AttestType">
+            <End Role="tAttestType" EntitySet="tAttestType" />
+            <End Role="tActivityMessage" EntitySet="tActivityMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_AccessRight" Association="Self.FK_Community_AccessRight">
+            <End Role="tAccessRight" EntitySet="tAccessRight" />
+            <End Role="tMemberList" EntitySet="tMemberList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Community_Member" Association="Self.FK_Community_Community_Member">
+            <End Role="tCommunity" EntitySet="tCommunity" />
+            <End Role="tMemberList" EntitySet="tMemberList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Community_Post" Association="Self.FK_Community_Community_Post">
+            <End Role="tCommunity" EntitySet="tCommunity" />
+            <End Role="tPost" EntitySet="tPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Post" Association="Self.FK_Community_Post">
+            <End Role="tPost" EntitySet="tPost" />
+            <End Role="tReply" EntitySet="tReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Status" Association="Self.FK_Community_Status">
+            <End Role="tStatus" EntitySet="tStatus" />
+            <End Role="tCommunity" EntitySet="tCommunity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinList_Activity" Association="Self.FK_JoinList_Activity">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tJoinList" EntitySet="tJoinList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinList_JoinType" Association="Self.FK_JoinList_JoinType">
+            <End Role="tJoinType" EntitySet="tJoinType" />
+            <End Role="tJoinList" EntitySet="tJoinList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_AccountTypeId" Association="Self.FK_Member_AccountTypeId">
+            <End Role="tAccountType" EntitySet="tAccountType" />
+            <End Role="tMember" EntitySet="tMember" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SeaTurtleOnTheWayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tActivity">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fActName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fCreatDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fActivityDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fIntroduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fLimit" Type="Int32" />
+          <Property Name="fActAttestId" Type="Int32" Nullable="false" />
+          <Property Name="fActTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fActLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fCoordinateX" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fCoordinateY" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fActLabelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tActivityHadLabel" Relationship="Self.FK__tActivity__fActi__07C12930" FromRole="tActivity" ToRole="tActivityHadLabel" />
+          <NavigationProperty Name="tActivityMainLabel" Relationship="Self.FK__tActivity__fActL__00200768" FromRole="tActivity" ToRole="tActivityMainLabel" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tActivity__fMemb__7F2BE32F" FromRole="tActivity" ToRole="tMember" />
+          <NavigationProperty Name="tScore" Relationship="Self.FK__tScore__fActivit__151B244E" FromRole="tActivity" ToRole="tScore" />
+          <NavigationProperty Name="tSearchList" Relationship="Self.FK__tSearchLi__fActi__114A936A" FromRole="tActivity" ToRole="tSearchList" />
+          <NavigationProperty Name="tActivityType" Relationship="Self.FK_Activity_ActivityType" FromRole="tActivity" ToRole="tActivityType" />
+          <NavigationProperty Name="tAttestType" Relationship="Self.FK_Activity_AttestType" FromRole="tActivity" ToRole="tAttestType" />
+          <NavigationProperty Name="tJoinList" Relationship="Self.FK_JoinList_Activity" FromRole="tActivity" ToRole="tJoinList" />
+        </EntityType>
+        <EntityType Name="tActivityHadLabel">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fActivityId" Type="Int32" Nullable="false" />
+          <Property Name="tActivityLabelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK__tActivity__fActi__07C12930" FromRole="tActivityHadLabel" ToRole="tActivity" />
+          <NavigationProperty Name="tActivityLabel" Relationship="Self.FK__tActivity__tActi__08B54D69" FromRole="tActivityHadLabel" ToRole="tActivityLabel" />
+        </EntityType>
+        <EntityType Name="tActivityLabel">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fLabelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tActivityHadLabel" Relationship="Self.FK__tActivity__tActi__08B54D69" FromRole="tActivityLabel" ToRole="tActivityHadLabel" />
+        </EntityType>
+        <EntityType Name="tActivityMainLabel">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fLabelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK__tActivity__fActL__00200768" FromRole="tActivityMainLabel" ToRole="tActivity" />
+        </EntityType>
+        <EntityType Name="tActivityMessage">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fActivityId" Type="Int32" Nullable="false" />
+          <Property Name="fMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fReplyerId" Type="Int32" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tActivity__fMemb__0C85DE4D" FromRole="tActivityMessage" ToRole="tMember" />
+          <NavigationProperty Name="tActivityMessage1" Relationship="Self.FK__tActivity__fRepl__0D7A0286" FromRole="tActivityMessage" ToRole="tActivityMessage1" />
+          <NavigationProperty Name="tActivityMessage2" Relationship="Self.FK__tActivity__fRepl__0D7A0286" FromRole="tActivityMessage1" ToRole="tActivityMessage" />
+          <NavigationProperty Name="tAttestType" Relationship="Self.FK_ActivityMessage_AttestType" FromRole="tActivityMessage" ToRole="tAttestType" />
+        </EntityType>
+        <EntityType Name="tActivityType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK_Activity_ActivityType" FromRole="tActivityType" ToRole="tActivity" />
+        </EntityType>
+        <EntityType Name="tAttestType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fAttestName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fPayCoin" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK_Activity_AttestType" FromRole="tAttestType" ToRole="tActivity" />
+          <NavigationProperty Name="tActivityMessage" Relationship="Self.FK_ActivityMessage_AttestType" FromRole="tAttestType" ToRole="tActivityMessage" />
+        </EntityType>
+        <EntityType Name="tJoinList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fActivityId" Type="Int32" Nullable="false" />
+          <Property Name="fMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fJoinTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fJoinTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK_JoinList_Activity" FromRole="tJoinList" ToRole="tActivity" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tJoinList__fMemb__04E4BC85" FromRole="tJoinList" ToRole="tMember" />
+          <NavigationProperty Name="tJoinType" Relationship="Self.FK_JoinList_JoinType" FromRole="tJoinList" ToRole="tJoinType" />
+        </EntityType>
+        <EntityType Name="tJoinType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fJoinName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tJoinList" Relationship="Self.FK_JoinList_JoinType" FromRole="tJoinType" ToRole="tJoinList" />
+        </EntityType>
+        <EntityType Name="tScore">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+          <Property Name="fActivityId" Type="Int32" Nullable="false" />
+          <Property Name="fScoreLevel" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK__tScore__fActivit__151B244E" FromRole="tScore" ToRole="tActivity" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tScore__fMemberI__14270015" FromRole="tScore" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tSearchList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fActivityId" Type="Int32" Nullable="false" />
+          <Property Name="fMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fSearchTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK__tSearchLi__fActi__114A936A" FromRole="tSearchList" ToRole="tActivity" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tSearchLi__fMemb__10566F31" FromRole="tSearchList" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tAccessRight">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tMemberList" Relationship="Self.FK_Community_AccessRight" FromRole="tAccessRight" ToRole="tMemberList" />
+        </EntityType>
+        <EntityType Name="tCommunity">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fStatusId" Type="Int32" Nullable="false" />
+          <Property Name="fImgPath" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tMemberList" Relationship="Self.FK_Community_Community_Member" FromRole="tCommunity" ToRole="tMemberList" />
+          <NavigationProperty Name="tPost" Relationship="Self.FK_Community_Community_Post" FromRole="tCommunity" ToRole="tPost" />
+          <NavigationProperty Name="tStatus" Relationship="Self.FK_Community_Status" FromRole="tCommunity" ToRole="tStatus" />
+        </EntityType>
+        <EntityType Name="tFeedback">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fReplyId" Type="Int32" Nullable="false" />
+          <Property Name="fFeedbackMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fFeedbackTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tFeedback__fFeed__6C190EBB" FromRole="tFeedback" ToRole="tMember" />
+          <NavigationProperty Name="tReply" Relationship="Self.FK__tFeedback__fRepl__6B24EA82" FromRole="tFeedback" ToRole="tReply" />
+        </EntityType>
+        <EntityType Name="tMemberList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fCommunityId" Type="Int32" Nullable="false" />
+          <Property Name="fMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fJoinDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fAccessRightId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tAccessRight" Relationship="Self.FK_Community_AccessRight" FromRole="tMemberList" ToRole="tAccessRight" />
+          <NavigationProperty Name="tCommunity" Relationship="Self.FK_Community_Community_Member" FromRole="tMemberList" ToRole="tCommunity" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tMemberLi__fMemb__5FB337D6" FromRole="tMemberList" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tPost">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fCommunityId" Type="Int32" Nullable="false" />
+          <Property Name="fPostTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fImgPath" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tCommunity" Relationship="Self.FK_Community_Community_Post" FromRole="tPost" ToRole="tCommunity" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tPost__fMemberId__6383C8BA" FromRole="tPost" ToRole="tMember" />
+          <NavigationProperty Name="tReply" Relationship="Self.FK_Community_Post" FromRole="tPost" ToRole="tReply" />
+        </EntityType>
+        <EntityType Name="tReply">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fPostId" Type="Int32" Nullable="false" />
+          <Property Name="fReplyMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fReplyTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tFeedback" Relationship="Self.FK__tFeedback__fRepl__6B24EA82" FromRole="tReply" ToRole="tFeedback" />
+          <NavigationProperty Name="tPost" Relationship="Self.FK_Community_Post" FromRole="tReply" ToRole="tPost" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK__tReply__fReplyMe__68487DD7" FromRole="tReply" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tStatus">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tCommunity" Relationship="Self.FK_Community_Status" FromRole="tStatus" ToRole="tCommunity" />
+        </EntityType>
+        <EntityType Name="tProductTag">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tAccountLikeList">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fGetLikeMemberId" Type="Int32" Nullable="false" />
+          <Property Name="fGiveLikeMemberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK_AccountLikeList_Member_get" FromRole="tAccountLikeList" ToRole="tMember" />
+          <NavigationProperty Name="tMember1" Relationship="Self.FK_AccountLikeList_Member_give" FromRole="tAccountLikeList" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tAccountType">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" />
+          <Property Name="fAccountType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fAccountAuthority" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK_Member_AccountTypeId" FromRole="tAccountType" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fAccount" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fPassword" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fBirthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fIdentifyId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fCity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fCeilphoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="fCoins" Type="Int32" Nullable="false" />
+          <Property Name="fGender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fIntroduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fAccountTypeId" Type="Int32" Nullable="false" />
+          <Property Name="fPhotoPath" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tActivity" Relationship="Self.FK__tActivity__fMemb__7F2BE32F" FromRole="tMember" ToRole="tActivity" />
+          <NavigationProperty Name="tActivityMessage" Relationship="Self.FK__tActivity__fMemb__0C85DE4D" FromRole="tMember" ToRole="tActivityMessage" />
+          <NavigationProperty Name="tJoinList" Relationship="Self.FK__tJoinList__fMemb__04E4BC85" FromRole="tMember" ToRole="tJoinList" />
+          <NavigationProperty Name="tScore" Relationship="Self.FK__tScore__fMemberI__14270015" FromRole="tMember" ToRole="tScore" />
+          <NavigationProperty Name="tSearchList" Relationship="Self.FK__tSearchLi__fMemb__10566F31" FromRole="tMember" ToRole="tSearchList" />
+          <NavigationProperty Name="tFeedback" Relationship="Self.FK__tFeedback__fFeed__6C190EBB" FromRole="tMember" ToRole="tFeedback" />
+          <NavigationProperty Name="tMemberList" Relationship="Self.FK__tMemberLi__fMemb__5FB337D6" FromRole="tMember" ToRole="tMemberList" />
+          <NavigationProperty Name="tPost" Relationship="Self.FK__tPost__fMemberId__6383C8BA" FromRole="tMember" ToRole="tPost" />
+          <NavigationProperty Name="tReply" Relationship="Self.FK__tReply__fReplyMe__68487DD7" FromRole="tMember" ToRole="tReply" />
+          <NavigationProperty Name="tAccountLikeList" Relationship="Self.FK_AccountLikeList_Member_get" FromRole="tMember" ToRole="tAccountLikeList" />
+          <NavigationProperty Name="tAccountLikeList1" Relationship="Self.FK_AccountLikeList_Member_give" FromRole="tMember" ToRole="tAccountLikeList" />
+          <NavigationProperty Name="tAccountType" Relationship="Self.FK_Member_AccountTypeId" FromRole="tMember" ToRole="tAccountType" />
+        </EntityType>
+        <Association Name="FK__tActivity__fActi__07C12930">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tActivityHadLabel" Type="Self.tActivityHadLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityHadLabel">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fActL__00200768">
+          <End Role="tActivityMainLabel" Type="Self.tActivityMainLabel" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityMainLabel">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fActLabelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fMemb__7F2BE32F">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tScore__fActivit__151B244E">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tScore" Type="Self.tScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tScore">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSearchLi__fActi__114A936A">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tSearchList" Type="Self.tSearchList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tSearchList">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_ActivityType">
+          <End Role="tActivityType" Type="Self.tActivityType" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fActTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_AttestType">
+          <End Role="tAttestType" Type="Self.tAttestType" Multiplicity="1" />
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAttestType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivity">
+              <PropertyRef Name="fActAttestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinList_Activity">
+          <End Role="tActivity" Type="Self.tActivity" Multiplicity="1" />
+          <End Role="tJoinList" Type="Self.tJoinList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tJoinList">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__tActi__08B54D69">
+          <End Role="tActivityLabel" Type="Self.tActivityLabel" Multiplicity="1" />
+          <End Role="tActivityHadLabel" Type="Self.tActivityHadLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityLabel">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityHadLabel">
+              <PropertyRef Name="tActivityLabelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fMemb__0C85DE4D">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tActivityMessage" Type="Self.tActivityMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityMessage">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tActivity__fRepl__0D7A0286">
+          <End Role="tActivityMessage" Type="Self.tActivityMessage" Multiplicity="0..1" />
+          <End Role="tActivityMessage1" Type="Self.tActivityMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActivityMessage">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityMessage1">
+              <PropertyRef Name="fReplyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityMessage_AttestType">
+          <End Role="tAttestType" Type="Self.tAttestType" Multiplicity="1" />
+          <End Role="tActivityMessage" Type="Self.tActivityMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAttestType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tActivityMessage">
+              <PropertyRef Name="fActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tJoinList__fMemb__04E4BC85">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tJoinList" Type="Self.tJoinList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tJoinList">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinList_JoinType">
+          <End Role="tJoinType" Type="Self.tJoinType" Multiplicity="1" />
+          <End Role="tJoinList" Type="Self.tJoinList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tJoinType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tJoinList">
+              <PropertyRef Name="fJoinTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tScore__fMemberI__14270015">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tScore" Type="Self.tScore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tScore">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSearchLi__fMemb__10566F31">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tSearchList" Type="Self.tSearchList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tSearchList">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_AccessRight">
+          <End Role="tAccessRight" Type="Self.tAccessRight" Multiplicity="1" />
+          <End Role="tMemberList" Type="Self.tMemberList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAccessRight">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMemberList">
+              <PropertyRef Name="fAccessRightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Community_Member">
+          <End Role="tCommunity" Type="Self.tCommunity" Multiplicity="1" />
+          <End Role="tMemberList" Type="Self.tMemberList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCommunity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMemberList">
+              <PropertyRef Name="fCommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Community_Post">
+          <End Role="tCommunity" Type="Self.tCommunity" Multiplicity="1" />
+          <End Role="tPost" Type="Self.tPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCommunity">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tPost">
+              <PropertyRef Name="fCommunityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Status">
+          <End Role="tStatus" Type="Self.tStatus" Multiplicity="1" />
+          <End Role="tCommunity" Type="Self.tCommunity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStatus">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tCommunity">
+              <PropertyRef Name="fStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tFeedback__fFeed__6C190EBB">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tFeedback" Type="Self.tFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tFeedback">
+              <PropertyRef Name="fFeedbackMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tFeedback__fRepl__6B24EA82">
+          <End Role="tReply" Type="Self.tReply" Multiplicity="1" />
+          <End Role="tFeedback" Type="Self.tFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tReply">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tFeedback">
+              <PropertyRef Name="fReplyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tMemberLi__fMemb__5FB337D6">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tMemberList" Type="Self.tMemberList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMemberList">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tPost__fMemberId__6383C8BA">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tPost" Type="Self.tPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tPost">
+              <PropertyRef Name="fMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Community_Post">
+          <End Role="tPost" Type="Self.tPost" Multiplicity="1" />
+          <End Role="tReply" Type="Self.tReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPost">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tReply">
+              <PropertyRef Name="fPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tReply__fReplyMe__68487DD7">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tReply" Type="Self.tReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tReply">
+              <PropertyRef Name="fReplyMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountLikeList_Member_get">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tAccountLikeList" Type="Self.tAccountLikeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tAccountLikeList">
+              <PropertyRef Name="fGetLikeMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountLikeList_Member_give">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+          <End Role="tAccountLikeList" Type="Self.tAccountLikeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tAccountLikeList">
+              <PropertyRef Name="fGiveLikeMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_AccountTypeId">
+          <End Role="tAccountType" Type="Self.tAccountType" Multiplicity="1" />
+          <End Role="tMember" Type="Self.tMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAccountType">
+              <PropertyRef Name="fId" />
+            </Principal>
+            <Dependent Role="tMember">
+              <PropertyRef Name="fAccountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SeaTurtleOnTheWayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tActivity" EntityType="Self.tActivity" />
+          <EntitySet Name="tActivityHadLabel" EntityType="Self.tActivityHadLabel" />
+          <EntitySet Name="tActivityLabel" EntityType="Self.tActivityLabel" />
+          <EntitySet Name="tActivityMainLabel" EntityType="Self.tActivityMainLabel" />
+          <EntitySet Name="tActivityMessage" EntityType="Self.tActivityMessage" />
+          <EntitySet Name="tActivityType" EntityType="Self.tActivityType" />
+          <EntitySet Name="tAttestType" EntityType="Self.tAttestType" />
+          <EntitySet Name="tJoinList" EntityType="Self.tJoinList" />
+          <EntitySet Name="tJoinType" EntityType="Self.tJoinType" />
+          <EntitySet Name="tScore" EntityType="Self.tScore" />
+          <EntitySet Name="tSearchList" EntityType="Self.tSearchList" />
+          <EntitySet Name="tAccessRight" EntityType="Self.tAccessRight" />
+          <EntitySet Name="tCommunity" EntityType="Self.tCommunity" />
+          <EntitySet Name="tFeedback" EntityType="Self.tFeedback" />
+          <EntitySet Name="tMemberList" EntityType="Self.tMemberList" />
+          <EntitySet Name="tPost" EntityType="Self.tPost" />
+          <EntitySet Name="tReply" EntityType="Self.tReply" />
+          <EntitySet Name="tStatus" EntityType="Self.tStatus" />
+          <EntitySet Name="tProductTag" EntityType="Self.tProductTag" />
+          <EntitySet Name="tAccountLikeList" EntityType="Self.tAccountLikeList" />
+          <EntitySet Name="tAccountType" EntityType="Self.tAccountType" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" />
+          <AssociationSet Name="FK__tActivity__fActi__07C12930" Association="Self.FK__tActivity__fActi__07C12930">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tActivityHadLabel" EntitySet="tActivityHadLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fActL__00200768" Association="Self.FK__tActivity__fActL__00200768">
+            <End Role="tActivityMainLabel" EntitySet="tActivityMainLabel" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fMemb__7F2BE32F" Association="Self.FK__tActivity__fMemb__7F2BE32F">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tScore__fActivit__151B244E" Association="Self.FK__tScore__fActivit__151B244E">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tScore" EntitySet="tScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSearchLi__fActi__114A936A" Association="Self.FK__tSearchLi__fActi__114A936A">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tSearchList" EntitySet="tSearchList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_ActivityType" Association="Self.FK_Activity_ActivityType">
+            <End Role="tActivityType" EntitySet="tActivityType" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Activity_AttestType" Association="Self.FK_Activity_AttestType">
+            <End Role="tAttestType" EntitySet="tAttestType" />
+            <End Role="tActivity" EntitySet="tActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinList_Activity" Association="Self.FK_JoinList_Activity">
+            <End Role="tActivity" EntitySet="tActivity" />
+            <End Role="tJoinList" EntitySet="tJoinList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__tActi__08B54D69" Association="Self.FK__tActivity__tActi__08B54D69">
+            <End Role="tActivityLabel" EntitySet="tActivityLabel" />
+            <End Role="tActivityHadLabel" EntitySet="tActivityHadLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fMemb__0C85DE4D" Association="Self.FK__tActivity__fMemb__0C85DE4D">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tActivityMessage" EntitySet="tActivityMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tActivity__fRepl__0D7A0286" Association="Self.FK__tActivity__fRepl__0D7A0286">
+            <End Role="tActivityMessage" EntitySet="tActivityMessage" />
+            <End Role="tActivityMessage1" EntitySet="tActivityMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityMessage_AttestType" Association="Self.FK_ActivityMessage_AttestType">
+            <End Role="tAttestType" EntitySet="tAttestType" />
+            <End Role="tActivityMessage" EntitySet="tActivityMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tJoinList__fMemb__04E4BC85" Association="Self.FK__tJoinList__fMemb__04E4BC85">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tJoinList" EntitySet="tJoinList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinList_JoinType" Association="Self.FK_JoinList_JoinType">
+            <End Role="tJoinType" EntitySet="tJoinType" />
+            <End Role="tJoinList" EntitySet="tJoinList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tScore__fMemberI__14270015" Association="Self.FK__tScore__fMemberI__14270015">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tScore" EntitySet="tScore" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSearchLi__fMemb__10566F31" Association="Self.FK__tSearchLi__fMemb__10566F31">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tSearchList" EntitySet="tSearchList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_AccessRight" Association="Self.FK_Community_AccessRight">
+            <End Role="tAccessRight" EntitySet="tAccessRight" />
+            <End Role="tMemberList" EntitySet="tMemberList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Community_Member" Association="Self.FK_Community_Community_Member">
+            <End Role="tCommunity" EntitySet="tCommunity" />
+            <End Role="tMemberList" EntitySet="tMemberList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Community_Post" Association="Self.FK_Community_Community_Post">
+            <End Role="tCommunity" EntitySet="tCommunity" />
+            <End Role="tPost" EntitySet="tPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Status" Association="Self.FK_Community_Status">
+            <End Role="tStatus" EntitySet="tStatus" />
+            <End Role="tCommunity" EntitySet="tCommunity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tFeedback__fFeed__6C190EBB" Association="Self.FK__tFeedback__fFeed__6C190EBB">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tFeedback" EntitySet="tFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tFeedback__fRepl__6B24EA82" Association="Self.FK__tFeedback__fRepl__6B24EA82">
+            <End Role="tReply" EntitySet="tReply" />
+            <End Role="tFeedback" EntitySet="tFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tMemberLi__fMemb__5FB337D6" Association="Self.FK__tMemberLi__fMemb__5FB337D6">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tMemberList" EntitySet="tMemberList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tPost__fMemberId__6383C8BA" Association="Self.FK__tPost__fMemberId__6383C8BA">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tPost" EntitySet="tPost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Community_Post" Association="Self.FK_Community_Post">
+            <End Role="tPost" EntitySet="tPost" />
+            <End Role="tReply" EntitySet="tReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tReply__fReplyMe__68487DD7" Association="Self.FK__tReply__fReplyMe__68487DD7">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tReply" EntitySet="tReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountLikeList_Member_get" Association="Self.FK_AccountLikeList_Member_get">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tAccountLikeList" EntitySet="tAccountLikeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountLikeList_Member_give" Association="Self.FK_AccountLikeList_Member_give">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tAccountLikeList" EntitySet="tAccountLikeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_AccountTypeId" Association="Self.FK_Member_AccountTypeId">
+            <End Role="tAccountType" EntitySet="tAccountType" />
+            <End Role="tMember" EntitySet="tMember" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SeaTurtleOnTheWayModelStoreContainer" CdmEntityContainer="SeaTurtleOnTheWayEntities">
+          <EntitySetMapping Name="tActivity">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tActivity">
+              <MappingFragment StoreEntitySet="tActivity">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fActName" ColumnName="fActName" />
+                <ScalarProperty Name="fCreatDate" ColumnName="fCreatDate" />
+                <ScalarProperty Name="fActivityDate" ColumnName="fActivityDate" />
+                <ScalarProperty Name="fMemberId" ColumnName="fMemberId" />
+                <ScalarProperty Name="fIntroduction" ColumnName="fIntroduction" />
+                <ScalarProperty Name="fLimit" ColumnName="fLimit" />
+                <ScalarProperty Name="fActAttestId" ColumnName="fActAttestId" />
+                <ScalarProperty Name="fActTypeId" ColumnName="fActTypeId" />
+                <ScalarProperty Name="fActLocation" ColumnName="fActLocation" />
+                <ScalarProperty Name="fCoordinateX" ColumnName="fCoordinateX" />
+                <ScalarProperty Name="fCoordinateY" ColumnName="fCoordinateY" />
+                <ScalarProperty Name="fActLabelId" ColumnName="fActLabelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActivityHadLabel">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tActivityHadLabel">
+              <MappingFragment StoreEntitySet="tActivityHadLabel">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fActivityId" ColumnName="fActivityId" />
+                <ScalarProperty Name="tActivityLabelId" ColumnName="tActivityLabelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActivityLabel">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tActivityLabel">
+              <MappingFragment StoreEntitySet="tActivityLabel">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fLabelName" ColumnName="fLabelName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActivityMainLabel">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tActivityMainLabel">
+              <MappingFragment StoreEntitySet="tActivityMainLabel">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fLabelName" ColumnName="fLabelName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActivityMessage">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tActivityMessage">
+              <MappingFragment StoreEntitySet="tActivityMessage">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fActivityId" ColumnName="fActivityId" />
+                <ScalarProperty Name="fMemberId" ColumnName="fMemberId" />
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+                <ScalarProperty Name="fTime" ColumnName="fTime" />
+                <ScalarProperty Name="fReplyerId" ColumnName="fReplyerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActivityType">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tActivityType">
+              <MappingFragment StoreEntitySet="tActivityType">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fStatusName" ColumnName="fStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAttestType">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tAttestType">
+              <MappingFragment StoreEntitySet="tAttestType">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fAttestName" ColumnName="fAttestName" />
+                <ScalarProperty Name="fPayCoin" ColumnName="fPayCoin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tJoinList">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tJoinList">
+              <MappingFragment StoreEntitySet="tJoinList">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fActivityId" ColumnName="fActivityId" />
+                <ScalarProperty Name="fMemberId" ColumnName="fMemberId" />
+                <ScalarProperty Name="fJoinTime" ColumnName="fJoinTime" />
+                <ScalarProperty Name="fJoinTypeId" ColumnName="fJoinTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tJoinType">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tJoinType">
+              <MappingFragment StoreEntitySet="tJoinType">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fJoinName" ColumnName="fJoinName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tScore">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tScore">
+              <MappingFragment StoreEntitySet="tScore">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fActivityId" ColumnName="fActivityId" />
+                <ScalarProperty Name="fScoreLevel" ColumnName="fScoreLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSearchList">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tSearchList">
+              <MappingFragment StoreEntitySet="tSearchList">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fActivityId" ColumnName="fActivityId" />
+                <ScalarProperty Name="fMemberId" ColumnName="fMemberId" />
+                <ScalarProperty Name="fSearchTime" ColumnName="fSearchTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAccessRight">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tAccessRight">
+              <MappingFragment StoreEntitySet="tAccessRight">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCommunity">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tCommunity">
+              <MappingFragment StoreEntitySet="tCommunity">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fDate" ColumnName="fDate" />
+                <ScalarProperty Name="fInfo" ColumnName="fInfo" />
+                <ScalarProperty Name="fStatusId" ColumnName="fStatusId" />
+                <ScalarProperty Name="fImgPath" ColumnName="fImgPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFeedback">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tFeedback">
+              <MappingFragment StoreEntitySet="tFeedback">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fReplyId" ColumnName="fReplyId" />
+                <ScalarProperty Name="fFeedbackMemberId" ColumnName="fFeedbackMemberId" />
+                <ScalarProperty Name="fFeedbackTime" ColumnName="fFeedbackTime" />
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMemberList">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tMemberList">
+              <MappingFragment StoreEntitySet="tMemberList">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fCommunityId" ColumnName="fCommunityId" />
+                <ScalarProperty Name="fMemberId" ColumnName="fMemberId" />
+                <ScalarProperty Name="fJoinDate" ColumnName="fJoinDate" />
+                <ScalarProperty Name="fAccessRightId" ColumnName="fAccessRightId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPost">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tPost">
+              <MappingFragment StoreEntitySet="tPost">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fMemberId" ColumnName="fMemberId" />
+                <ScalarProperty Name="fCommunityId" ColumnName="fCommunityId" />
+                <ScalarProperty Name="fPostTime" ColumnName="fPostTime" />
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+                <ScalarProperty Name="fImgPath" ColumnName="fImgPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tReply">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tReply">
+              <MappingFragment StoreEntitySet="tReply">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fPostId" ColumnName="fPostId" />
+                <ScalarProperty Name="fReplyMemberId" ColumnName="fReplyMemberId" />
+                <ScalarProperty Name="fReplyTime" ColumnName="fReplyTime" />
+                <ScalarProperty Name="fContent" ColumnName="fContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tStatus">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tStatus">
+              <MappingFragment StoreEntitySet="tStatus">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProductTag">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tProductTag">
+              <MappingFragment StoreEntitySet="tProductTag">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAccountLikeList">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tAccountLikeList">
+              <MappingFragment StoreEntitySet="tAccountLikeList">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fGetLikeMemberId" ColumnName="fGetLikeMemberId" />
+                <ScalarProperty Name="fGiveLikeMemberId" ColumnName="fGiveLikeMemberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tAccountType">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tAccountType">
+              <MappingFragment StoreEntitySet="tAccountType">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fAccountType" ColumnName="fAccountType" />
+                <ScalarProperty Name="fAccountAuthority" ColumnName="fAccountAuthority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMember">
+            <EntityTypeMapping TypeName="SeaTurtleOnTheWayModel.tMember">
+              <MappingFragment StoreEntitySet="tMember">
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+                <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fBirthdate" ColumnName="fBirthdate" />
+                <ScalarProperty Name="fIdentifyId" ColumnName="fIdentifyId" />
+                <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+                <ScalarProperty Name="fCity" ColumnName="fCity" />
+                <ScalarProperty Name="fCeilphoneNumber" ColumnName="fCeilphoneNumber" />
+                <ScalarProperty Name="fCoins" ColumnName="fCoins" />
+                <ScalarProperty Name="fGender" ColumnName="fGender" />
+                <ScalarProperty Name="fIntroduction" ColumnName="fIntroduction" />
+                <ScalarProperty Name="fAccountTypeId" ColumnName="fAccountTypeId" />
+                <ScalarProperty Name="fPhotoPath" ColumnName="fPhotoPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
