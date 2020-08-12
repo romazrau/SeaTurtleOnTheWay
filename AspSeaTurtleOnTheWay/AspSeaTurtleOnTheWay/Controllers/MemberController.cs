@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Data.SqlClient;
 using System.Data;
 using AspSeaTurtleOnTheWay.Models;
+using System.Web.Http.Cors;
 
 namespace AspSeaTurtleOnTheWay.Controllers
 {
@@ -16,6 +17,7 @@ namespace AspSeaTurtleOnTheWay.Controllers
 
 
         // GET: api/Member
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public string Get()
         {
             string s = @"select M.*, T.fAccountType as 'account type', T.fAccountAuthority as 'account authority'

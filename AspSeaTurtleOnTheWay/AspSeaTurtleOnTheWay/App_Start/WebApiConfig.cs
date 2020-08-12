@@ -10,6 +10,8 @@ namespace AspSeaTurtleOnTheWay
         public static void Register(HttpConfiguration config)
         {
             // Web API 設定和服務
+            // New code
+            config.EnableCors();
 
             // Web API 路由
             config.MapHttpAttributeRoutes();
