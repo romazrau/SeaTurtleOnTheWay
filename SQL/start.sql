@@ -354,9 +354,10 @@ CREATE TABLE Activity.tScore
 
 
 
----------------------------------------------------------------------
+-------Product-----------------------------------------------------------------------------------------------------------------------------------
+
 -- 商品標籤
-Create Table tProductTag
+Create Table Product.tProductTag
 (
   fId               INT            NOT NULL     IDENTITY(1,1),--IDENTITY 自動填值
   fName             nvarchar(50)   NOT NULL,
@@ -365,15 +366,142 @@ Create Table tProductTag
 );
 
 
-
 -- 商品
+CREATE TABLE Product.tProduct
+(
+  fId               INT               NOT NULL      IDENTITY(1,1),--IDENTITY 自動填值
+  fName             NVARCHAR(100)     NOT NULL,
+  fPrice            INT               NOT NULL,
+  fDate             smalldatetime     NOT NULL,
+  fDetail           nvarchar(max)     NOT NULL,
+  fPath             nvarchar(200)     NOT NULL,
+  fMemberId         int               NOT NULL,
+  fDelivery         int               NOT NULL,
+  PRIMARY KEY(fId), 
+  UNIQUE(fPath),
+  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId),
+  FOREIGN KEY (fDelivery)  REFERENCES Sales.tDelivery(fId)
+);
 
 
+-- 面交地點
+CREATE TABLE Product.tFaceToFace
+(
+  fId               INT                         NOT NULL      IDENTITY(1,1),--IDENTITY 自動填值
+  fProductId	    int                         NOT NULL,
+  fDelivery      	nvarchar(50)                NOT NULL,
+  fCoordinateX	    nvarchar(50),
+  fCoordinateY	    nvarchar(50)
+  PRIMARY KEY(fId),
+  FOREIGN KEY (fProductId) REFERENCES Product.tProduct(fId)
+);
 
 
----------------------------------------------------------------------
+-- 商品搜索列表
+Create Table Product.tSearchingRecord 
+(
+  fId	         int                         NOT NULL        IDENTITY(1,1),--IDENTITY 自動填值
+  fProductId     int                         NOT NULL,
+  fMemberId      int                         NOT NULL,
+  fTime          smalldatetime               NOT NULL,
+  PRIMARY KEY(fId),
+  FOREIGN KEY (fProductID) REFERENCES Product.tProduct(fId),
+  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId)
+);
+
+-- 商品留言
+Create Table Product.tQnA 
+(
+  fId               int                         NOT NULL     IDENTITY(1,1),--IDENTITY 自動填值
+  fProductId        int                         NOT NULL,
+  fMemberId         int                         NOT NULL,
+  fTime             smalldatetime               NOT NULL,
+  fMessage          nvarchar(max)               NOT NULL,
+  PRIMARY KEY(fId),
+  FOREIGN KEY (fProductId) REFERENCES Product.tProduct(fId), 
+  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId)
+);
+
+-- 留言回覆
+Create Table Product.tReply 
+(
+  fId               int                         NOT NULL     IDENTITY(1,1),--IDENTITY 自動填值
+  fQnAId	        int                         NOT NULL,
+  fMemberId         int                         NOT NULL,
+  fTime             smalldatetime               NOT NULL,
+  fMessage          nvarchar(max)               NOT NULL,
+  PRIMARY KEY(fId), 
+  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId), 
+  FOREIGN KEY (fQnAId) REFERENCES Product.tQnA(fId)
+);
+
+-- 商品5個標籤
+Create Table Product.tProduct5Tag
+(
+  fId	            INT       NOT NULL        IDENTITY(1,1),  --IDENTITY 自動填值
+  fProductId        INT       NOT NULL,
+  fProductTagId     INT,
+  PRIMARY KEY(fId),
+  FOREIGN KEY (fProductId) REFERENCES Product.tProduct(fId), 
+  FOREIGN KEY (fProductTagId) REFERENCES Product.tProductTag(fId)
+);
+
+
+-------Orders-----------------------------------------------------------------------------------------------------------------------------------
+
+-- 訂單狀態
+CREATE TABLE Sales.tOrdersStatus
+(
+  fId     int           NOT NULL,
+  fStatus nvarchar(50),
+  CONSTRAINT PK_tOrdersStatus PRIMARY KEY(fId),
+  CONSTRAINT AK_tOrdersStatus UNIQUE(fStatus)
+);
+
+-- 訂單評分
+CREATE TABLE Sales.tRate
+(
+  fId       int           NOT NULL IDENTITY,
+  fRating   int           NOT NULL,
+  fRateDate smalldatetime NOT NULL,
+  fRateText nvarchar(300),
+  CONSTRAINT PK_tRate PRIMARY KEY(fId),
+  CONSTRAINT AK_tRate UNIQUE(fRating)
+);
+
+
+-- 交貨方式
+CREATE TABLE Sales.tDelivery
+(
+  fId       int          NOT NULL IDENTITY,
+  fDelivery nvarchar(50) NOT NULL,
+  CONSTRAINT PK_tDelivery PRIMARY KEY(fId),
+  CONSTRAINT AK_tDelivery UNIQUE(fDelivery)
+);
+
 -- 訂單
+CREATE TABLE Sales.tOrders
+(
+  fId               int           NOT NULL IDENTITY,
+  fDate             smalldatetime NOT NULL,
+  fProductId        int           NOT NULL,
+  fMemberId         int           NOT NULL,
+  fOrdersStatusId   int           NOT NULL,
+  fDeliveryId       int           NOT NULL,
+  tShippingLocation nvarchar(50),
+  tShippingNumber   int,
+  tFaceToFaceId     int,
+  tRateId           int,
 
-
-
-
+  CONSTRAINT PK_tOrders PRIMARY KEY(fId),
+  CONSTRAINT FK_tOrders_tProduct FOREIGN KEY(fProductId)
+    REFERENCES Product.tProduct(fId),
+  CONSTRAINT FK_tOrders_tOrdersStatus FOREIGN KEY(fOrdersStatusId)
+    REFERENCES Sales.tOrdersStatus(fId),
+  CONSTRAINT FK_tOrders_tMember FOREIGN KEY(fMemberId)
+    REFERENCES Member.tMember(fId),
+  CONSTRAINT FK_tOrders_tDelivery FOREIGN KEY(fDeliveryId)
+    REFERENCES Sales.tDelivery(fId),
+  CONSTRAINT FK_tOrders_tRate FOREIGN KEY(tRateId)
+    REFERENCES Sales.tRate(fId),
+);
