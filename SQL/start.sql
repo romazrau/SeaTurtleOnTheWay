@@ -365,7 +365,14 @@ Create Table Product.tProductTag
   UNIQUE(fName), 
 );
 
-
+-- 交貨方式
+CREATE TABLE Product.tDelivery
+(
+  fId       int          NOT NULL,
+  fDelivery nvarchar(50) NOT NULL,
+  CONSTRAINT PK_tDelivery PRIMARY KEY(fId),
+  CONSTRAINT AK_tDelivery UNIQUE(fDelivery)
+);
 -- 商品
 CREATE TABLE Product.tProduct
 (
@@ -380,7 +387,7 @@ CREATE TABLE Product.tProduct
   PRIMARY KEY(fId), 
   UNIQUE(fPath),
   FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId),
-  FOREIGN KEY (fDelivery)  REFERENCES Sales.tDelivery(fId)
+  FOREIGN KEY (fDelivery)  REFERENCES Product.tDelivery(fId)
 );
 
 
@@ -470,14 +477,7 @@ CREATE TABLE Sales.tRate
 );
 
 
--- 交貨方式
-CREATE TABLE Sales.tDelivery
-(
-  fId       int          NOT NULL IDENTITY,
-  fDelivery nvarchar(50) NOT NULL,
-  CONSTRAINT PK_tDelivery PRIMARY KEY(fId),
-  CONSTRAINT AK_tDelivery UNIQUE(fDelivery)
-);
+
 
 -- 訂單
 CREATE TABLE Sales.tOrders
@@ -501,7 +501,7 @@ CREATE TABLE Sales.tOrders
   CONSTRAINT FK_tOrders_tMember FOREIGN KEY(fMemberId)
     REFERENCES Member.tMember(fId),
   CONSTRAINT FK_tOrders_tDelivery FOREIGN KEY(fDeliveryId)
-    REFERENCES Sales.tDelivery(fId),
+    REFERENCES Product.tDelivery(fId),
   CONSTRAINT FK_tOrders_tRate FOREIGN KEY(tRateId)
     REFERENCES Sales.tRate(fId),
 );

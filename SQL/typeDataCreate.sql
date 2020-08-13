@@ -66,7 +66,7 @@ Values (1,'訂單成立'),
        (6,'訂單已結算');
 
 -- 交貨方式
-Insert Into Sales.tDelivery (fId,fDelivery) 
+Insert Into Product.tDelivery (fId,fDelivery) 
 Values (1,'面交'),
        (2,'郵寄'),
        (3,'宅配'),
