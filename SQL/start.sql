@@ -1,12 +1,3 @@
--- Âà™Èô§Â∑≤Â≠òÂú®ÁöÑ
-use master;
-GO
-IF DB_ID(N'SeaTurtleMarket') IS NOT NULL DROP DATABASE SeaTurtleOnTheWay;
-GO
---Â§±ÊïóË´ãÊâãÂãïÂà™Èô§ÔºåSeaTurtleMarketË≥áÊñôÂ∫´Âè≥Èçµ > Âà™Èô§ > ÂãæÈÅ∏ÂèñÊ∂àÂ∑≤Â≠òÂú®ÈÄ£Á∑ö > Á¢∫Ë™ç
-
----------------------------------------------------------------------
--- Create empty database SeaTurtleMarket
 CREATE DATABASE SeaTurtleOnTheWay;
 GO
 
@@ -22,9 +13,7 @@ CREATE SCHEMA Community AUTHORIZATION dbo;
 GO
 CREATE SCHEMA Activity AUTHORIZATION dbo;
 GO
-CREATE SCHEMA Product AUTHORIZATION dbo;
-GO
-CREATE SCHEMA Sales AUTHORIZATION dbo;
+CREATE SCHEMA sMessage AUTHORIZATION dbo;
 GO
 
 ---------------------------------------------------------------------
@@ -37,16 +26,16 @@ CREATE TABLE Member.tAccountType
   fAccountType      NVARCHAR(10)  NOT NULL,
   fAccountAuthority TINYINT       NOT NULL,
   CONSTRAINT PK_AccountType PRIMARY KEY(fId),
-  CONSTRAINT AK_accountType UNIQUE(fAccountType)  --Ë®≠ÂÆöÂîØ‰∏ÄË≥áÊñôË°å
+  CONSTRAINT AK_accountType UNIQUE(fAccountType)  --≥]©w∞ﬂ§@∏ÍÆ∆¶Ê
 );
 
 
 -- Create table Member.tMember
 CREATE TABLE Member.tMember
 (
-  fId              INT           NOT NULL  IDENTITY(1,1),  --IDENTITY Ëá™ÂãïÂ°´ÂÄº
+  fId              INT           NOT NULL  IDENTITY(1,1),  --IDENTITY ¶€∞ ∂Ò≠»
   fAccount         NCHAR(50)     NOT NULL,
-  fPassword        CHAR(50)      NOT NULL,            --Ë¶ñÂä†ÂØÜÊäÄË°ìË™øÊï¥
+  fPassword        CHAR(50)      NOT NULL,            --µ¯•[±Kßﬁ≥NΩ’æ„
   fName            NVARCHAR(50)  NOT NULL,
   fBirthdate       DATE          NOT NULL,
   fIdentifyId      CHAR(10)      NOT NULL,
@@ -58,13 +47,13 @@ CREATE TABLE Member.tMember
   fIntroduction    NVARCHAR(MAX) NULL,
   fAccountTypeId   INT           NOT NULL,
   fPhotoPath       NCHAR(200)    NULL,
-  CONSTRAINT PK_Member PRIMARY KEY(fId),   --Ë®≠ÂÆöÁÇ∫Primary Key
-  CONSTRAINT FK_Member_AccountTypeId FOREIGN KEY(fAccountTypeId)  --Ë®≠ÂÆöForeign Key
+  CONSTRAINT PK_Member PRIMARY KEY(fId),   --≥]©w¨∞Primary Key
+  CONSTRAINT FK_Member_AccountTypeId FOREIGN KEY(fAccountTypeId)  --≥]©wForeign Key
     REFERENCES Member.tAccountType(fId),
   CONSTRAINT CHK_birthdate CHECK(fBirthdate <= CAST(SYSDATETIME() AS DATE)),
-  CONSTRAINT AK_account    UNIQUE(fAccount)  --Ë®≠ÂÆöÂîØ‰∏ÄË≥áÊñôË°å
+  CONSTRAINT AK_account    UNIQUE(fAccount)  --≥]©w∞ﬂ§@∏ÍÆ∆¶Ê
 );
-CREATE NONCLUSTERED INDEX idx_nc_city           ON Member.tMember(fCity);   --ÈùûÂè¢ÈõÜÂª∫Á´ã
+CREATE NONCLUSTERED INDEX idx_nc_city           ON Member.tMember(fCity);   --´D¬O∂∞´ÿ•ﬂ
 CREATE NONCLUSTERED INDEX idx_nc_accountTypeId  ON Member.tMember(fAccountTypeId);
 CREATE NONCLUSTERED INDEX idx_nc_account        ON Member.tMember(fAccount);
 
@@ -86,7 +75,7 @@ CREATE TABLE Member.tAccountLikeList
 
 
 -------Community-----------------------------------------------------------------------------------------------------------------------------------
---Á§æÂúòÁãÄÊÖã
+--™¿πŒ™¨∫A
 CREATE TABLE Community.tStatus
 (
  fId     INT             NOT NULL,
@@ -95,7 +84,7 @@ CREATE TABLE Community.tStatus
  CONSTRAINT AK_statusname UNIQUE(fName)
 )
 
---Á§æÂúò
+--™¿πŒ
 CREATE TABLE Community.tCommunity
 (
  fId         INT               NOT NULL IDENTITY(1,1),
@@ -111,7 +100,7 @@ CREATE TABLE Community.tCommunity
 );
 
 
---Á§æÂúòÊàêÂì°Ê¨äÈôê
+--™¿πŒ¶®≠˚≈v≠≠
 CREATE TABLE Community.tAccessRight
 (
  fId     INT             NOT NULL,
@@ -120,7 +109,7 @@ CREATE TABLE Community.tAccessRight
  CONSTRAINT AK_accessrightname  UNIQUE(fName)
 )
 
---Á§æÂúòÊàêÂì°
+--™¿πŒ¶®≠˚
 CREATE TABLE Community.tMemberList
 (
  fId               INT               NOT NULL IDENTITY(1,1),
@@ -130,33 +119,33 @@ CREATE TABLE Community.tMemberList
  fAccessRightId    INT               NOT NULL,
  PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Community_Member FOREIGN KEY(fCommunityId)
-   REFERENCES Community.tCommunity(fId), --ÂèñÂæóÁ§æÂúòidÁÇ∫fk
+   REFERENCES Community.tCommunity(fId), --®˙±o™¿πŒid¨∞fk
  FOREIGN KEY(fMemberId)
-   REFERENCES Member.tMember(fId), --ÈÇÑÊ≤íÈÄ£ÁµêMember TableÔºåÂèñÂæóÊúÉÂì°Â∏≥ËôüÁÇ∫fk
+   REFERENCES Member.tMember(fId), --¡Ÿ®S≥sµ≤Member Table°A®˙±o∑|≠˚±b∏π¨∞fk
  CONSTRAINT FK_Community_AccessRight FOREIGN KEY(fAccessRightId)
-   REFERENCES Community.tAccessRight(fId), --ÂèñÂæóÊ¨äÈôêidÁÇ∫fk
+   REFERENCES Community.tAccessRight(fId), --®˙±o≈v≠≠id¨∞fk
 );
 
 
 
---Á§æÂúòÊñáÁ´†
+--™¿πŒ§Â≥π
 CREATE TABLE Community.tPost
 (
  fId             INT             NOT NULL IDENTITY(1,1),
- fMemberId       INT             NOT NULL,  --or nullÊ±∫ÂÆöÊúÉÂì°ÊòØÂê¶ËÉΩÂú®ÈùûÁ§æÂúòÂÖßPOÊñá (ÈùûÂú®Á§æÂúòÁöÑ‰∫∫ÁôºÊñáÂâçÂ∞±Êìã‰∏ã)
+ fMemberId       INT             NOT NULL,  --or null®M©w∑|≠˚¨Oß_Ø‡¶b´D™¿πŒ§∫PO§Â (´D¶b™¿πŒ™∫§Hµo§Â´e¥Næ◊§U)
  fCommunityId    INT             NOT NULL, 
  fPostTime       SMALLDATETIME   NOT NULL,
  fContent        NVARCHAR(MAX)   NULL,
  fImgPath        NCHAR(200)      NULL,
  CONSTRAINT PK_Post PRIMARY KEY(fId),
  FOREIGN KEY(fMemberId)
-   REFERENCES Member.tMember(fId),   --ÂèñÂæó(Á§æÂúòÊàêÂì°Â∏≥ËôüorÊúÉÂì°Â∏≥Ëôü)ËÆìÁôºÊñáÂ∏≥ËôüÁÇ∫fk
+   REFERENCES Member.tMember(fId),   --®˙±o(™¿πŒ¶®≠˚±b∏πor∑|≠˚±b∏π)≈˝µo§Â±b∏π¨∞fk
  CONSTRAINT FK_Community_Community_Post FOREIGN KEY(fCommunityId)
-   REFERENCES Community.tCommunity(fId) --ÂèñÂæóÁ§æÂúòÂêçÁ®±ÁÇ∫fk
+   REFERENCES Community.tCommunity(fId) --®˙±o™¿πŒ¶W∫Ÿ¨∞fk
 )
 
 
---ÊñáÁ´†ÁïôË®Ä
+--§Â≥πØd®•
 CREATE TABLE Community.tReply
 (
  fId              INT             NOT NULL IDENTITY(1,1),
@@ -166,12 +155,12 @@ CREATE TABLE Community.tReply
  fContent         NVARCHAR(MAX)   NOT NULL,
  CONSTRAINT PK_Reply PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Post FOREIGN KEY(fPostId)
-   REFERENCES Community.tPost(fId), --ÂèñÂæó‰∏ªÊñáIDÁÇ∫fK
+   REFERENCES Community.tPost(fId), --®˙±o•D§ÂID¨∞fK
  FOREIGN KEY(fReplyMemberId)
-   REFERENCES Member.tMember(fId), --ÂèñÂæó(Á§æÂúòÊàêÂì°Â∏≥ËôüorÊúÉÂì°Â∏≥Ëôü)ËÆìÁôºÊñáÂ∏≥ËôüÁÇ∫fk
+   REFERENCES Member.tMember(fId), --®˙±o(™¿πŒ¶®≠˚±b∏πor∑|≠˚±b∏π)≈˝µo§Â±b∏π¨∞fk
 )
 
---Êñ∞Â¢ûÂõûË¶ÜÁïôË®ÄÁöÑË≥áÊñôË°®
+--∑sºW¶^¬–Ød®•™∫∏ÍÆ∆™Ì
 CREATE TABLE Community.tFeedback
 (
  fId                 INT             NOT NULL IDENTITY(1,1),
@@ -183,14 +172,14 @@ CREATE TABLE Community.tFeedback
  FOREIGN KEY(fReplyId)
    REFERENCES Community.tReply(fId), 
  FOREIGN KEY(fFeedbackMemberId)
-   REFERENCES Member.tMember(fId), --ÂèñÂæó(Á§æÂúòÊàêÂì°Â∏≥ËôüorÊúÉÂì°Â∏≥Ëôü)ËÆìÁôºÊñáÂ∏≥ËôüÁÇ∫fk
+   REFERENCES Member.tMember(fId), --®˙±o(™¿πŒ¶®≠˚±b∏πor∑|≠˚±b∏π)≈˝µo§Â±b∏π¨∞fk
 )
 
 
 
 
 -------Activity-----------------------------------------------------------------------------------------------------------------------------------
--- Ê¥ªÂãïÂèÉËàáËÄÖÁãÄÊÖãÊ®ôÁ±§
+-- ¨°∞ ∞—ªP™Ã™¨∫Aº–≈“
 CREATE TABLE Activity.tJoinType
 (
   fId               INT              NOT NULL, 
@@ -199,7 +188,7 @@ CREATE TABLE Activity.tJoinType
   CONSTRAINT AK_joinname    UNIQUE(fJoinName),
 );
 
--- Ê¥ªÂãïË™çË≠âÁãÄÊÖãÊ®ôÁ±§Ê®ôÁ±§
+-- ¨°∞ ª{√“™¨∫Aº–≈“º–≈“
 CREATE TABLE Activity.tAttestType
 (
   fId               INT              NOT NULL,
@@ -210,7 +199,7 @@ CREATE TABLE Activity.tAttestType
 );
 
 
--- Ê¥ªÂãïÁãÄÊÖãÊ®ôÁ±§
+-- ¨°∞ ™¨∫Aº–≈“
 CREATE TABLE Activity.tActivityType
 (
   fId               INT              NOT NULL,
@@ -220,7 +209,7 @@ CREATE TABLE Activity.tActivityType
 );
 
 
--- Ê¥ªÂãï‰∏ªÊ®ôÁ±§
+-- ¨°∞ •Dº–≈“
 CREATE TABLE Activity.tActivityMainLabel
 (
   fId               INT              NOT NULL,
@@ -230,7 +219,7 @@ CREATE TABLE Activity.tActivityMainLabel
 );
 
 
--- Ê¥ªÂãïÂ∞èÊ®ôÁ±§
+-- ¨°∞ §pº–≈“
 CREATE TABLE Activity.tActivityLabel
 (
   fId               INT              NOT NULL    IDENTITY(1,1),
@@ -239,15 +228,17 @@ CREATE TABLE Activity.tActivityLabel
   UNIQUE(fLabelName ),
 );
 
--- Ê¥ªÂãï
+-- ¨°∞ 
 CREATE TABLE Activity.tActivity
 (
   fId               INT           NOT NULL  IDENTITY(1,1),
   fActName          NVARCHAR(50)  NOT NULL,
   fCreatDate        SMALLDATETIME NOT NULL,
   fActivityDate     SMALLDATETIME NOT NULL,
+  fActivityEndDate  SMALLDATETIME NOT NULL,
  -- fCommunityId      INT           NOT NULL,
   fMemberId         INT           NOT NULL,
+
   fIntroduction     NVARCHAR(MAX) NOT NULL,
   fLimit            INT           NULL,
   fActAttestId      INT           NOT NULL, 
@@ -268,7 +259,7 @@ CREATE TABLE Activity.tActivity
 );
 
 
--- Ê¥ªÂãïÂèÉÂä†ËÄÖ
+-- ¨°∞ ∞—•[™Ã
 CREATE TABLE Activity.tJoinList
 (
   fId               INT           NOT NULL  IDENTITY(1,1),
@@ -277,9 +268,9 @@ CREATE TABLE Activity.tJoinList
   fJoinTime         DATETIME      NOT NULL,
   fJoinTypeId       INT           NOT NULL
   PRIMARY KEY(fId),
-  CONSTRAINT FK_JoinList_Activity FOREIGN KEY(fActivityId)  --Ë®≠ÂÆöForeign Key
+  CONSTRAINT FK_JoinList_Activity FOREIGN KEY(fActivityId)  --≥]©wForeign Key
     REFERENCES Activity.tActivity(fId),
-  CONSTRAINT FK_JoinList_JoinType FOREIGN KEY(fJoinTypeId)  --Ë®≠ÂÆöForeign Key
+  CONSTRAINT FK_JoinList_JoinType FOREIGN KEY(fJoinTypeId)  --≥]©wForeign Key
     REFERENCES Activity.tJoinType(fId),
   FOREIGN KEY(fMemberId)  
     REFERENCES Member.tMember(fId),
@@ -287,7 +278,7 @@ CREATE TABLE Activity.tJoinList
 
 
 
--- Ê¥ªÂãïÂ∞èÊ®ôÁ±§ÂàóË°®
+-- ¨°∞ §pº–≈“¶C™Ì
 CREATE TABLE Activity.tActivityHadLabel
 (
   fId               INT           NOT NULL,
@@ -304,7 +295,7 @@ CREATE TABLE Activity.tActivityHadLabel
 
 
 
--- Ê¥ªÂãïÁïôË®Ä
+-- ¨°∞ Ød®•
 CREATE TABLE Activity.tActivityMessage
 (
   fId               INT           NOT NULL  IDENTITY(1,1),
@@ -314,7 +305,7 @@ CREATE TABLE Activity.tActivityMessage
   fTime             DATETIME      NOT NULL,
   fReplyerId        INT           NULL
   CONSTRAINT PK_ActivityMessage PRIMARY KEY(fId),
-  CONSTRAINT FK_ActivityMessage_AttestType FOREIGN KEY(fActivityId)  --Ë®≠ÂÆöForeign Key
+  CONSTRAINT FK_ActivityMessage_AttestType FOREIGN KEY(fActivityId)  --≥]©wForeign Key
     REFERENCES Activity.tAttestType(fId),
   FOREIGN KEY(fMemberId)  
     REFERENCES Member.tMember(fId),
@@ -323,7 +314,7 @@ CREATE TABLE Activity.tActivityMessage
 );
 
 
---Ê¥ªÂãïÊêúÂ∞ãÁ¥ÄÈåÑ
+--¨°∞ ∑j¥M¨ˆø˝
 CREATE TABLE Activity.tSearchList
 (
   fId               INT           NOT NULL,
@@ -338,7 +329,7 @@ CREATE TABLE Activity.tSearchList
 );
 
 
---Ê¥ªÂãïË©ïÂàÜ
+--¨°∞ µ˚§¿
 CREATE TABLE Activity.tScore
 (
   fId               INT           NOT NULL,
@@ -352,156 +343,13 @@ CREATE TABLE Activity.tScore
     REFERENCES Activity.tActivity(fId),
 );
 
-
-
--------Product-----------------------------------------------------------------------------------------------------------------------------------
-
--- ÂïÜÂìÅÊ®ôÁ±§
-Create Table Product.tProductTag
+CREATE TABLE sMessage.tMessage
 (
-  fId               INT            NOT NULL     IDENTITY(1,1),--IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fName             nvarchar(50)   NOT NULL,
+  fId               INT             NOT NULL IDENTITY(1,1),
+  fMemberID         INT             NOT NULL,
+  fContent          NVARCHAR(MAX)   NOT NULL,
   PRIMARY KEY(fId),
-  UNIQUE(fName), 
-);
-
--- ‰∫§Ë≤®ÊñπÂºè
-CREATE TABLE Product.tDelivery
-(
-  fId       int          NOT NULL,
-  fDelivery nvarchar(50) NOT NULL,
-  CONSTRAINT PK_tDelivery PRIMARY KEY(fId),
-  CONSTRAINT AK_tDelivery UNIQUE(fDelivery)
-);
--- ÂïÜÂìÅ
-CREATE TABLE Product.tProduct
-(
-  fId               INT               NOT NULL      IDENTITY(1,1),--IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fName             NVARCHAR(100)     NOT NULL,
-  fPrice            INT               NOT NULL,
-  fDate             smalldatetime     NOT NULL,
-  fDetail           nvarchar(max)     NOT NULL,
-  fPath             nvarchar(200)     NOT NULL,
-  fMemberId         int               NOT NULL,
-  fDelivery         int               NOT NULL,
-  PRIMARY KEY(fId), 
-  UNIQUE(fPath),
-  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId),
-  FOREIGN KEY (fDelivery)  REFERENCES Product.tDelivery(fId)
-);
-
-
--- Èù¢‰∫§Âú∞Èªû
-CREATE TABLE Product.tFaceToFace
-(
-  fId               INT                         NOT NULL      IDENTITY(1,1),--IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fProductId	    int                         NOT NULL,
-  fDelivery      	nvarchar(50)                NOT NULL,
-  fCoordinateX	    nvarchar(50),
-  fCoordinateY	    nvarchar(50)
-  PRIMARY KEY(fId),
-  FOREIGN KEY (fProductId) REFERENCES Product.tProduct(fId)
-);
-
-
--- ÂïÜÂìÅÊêúÁ¥¢ÂàóË°®
-Create Table Product.tSearchingRecord 
-(
-  fId	         int                         NOT NULL        IDENTITY(1,1),--IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fProductId     int                         NOT NULL,
-  fMemberId      int                         NOT NULL,
-  fTime          smalldatetime               NOT NULL,
-  PRIMARY KEY(fId),
-  FOREIGN KEY (fProductID) REFERENCES Product.tProduct(fId),
-  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId)
-);
-
--- ÂïÜÂìÅÁïôË®Ä
-Create Table Product.tQnA 
-(
-  fId               int                         NOT NULL     IDENTITY(1,1),--IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fProductId        int                         NOT NULL,
-  fMemberId         int                         NOT NULL,
-  fTime             smalldatetime               NOT NULL,
-  fMessage          nvarchar(max)               NOT NULL,
-  PRIMARY KEY(fId),
-  FOREIGN KEY (fProductId) REFERENCES Product.tProduct(fId), 
-  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId)
-);
-
--- ÁïôË®ÄÂõûË¶Ü
-Create Table Product.tReply 
-(
-  fId               int                         NOT NULL     IDENTITY(1,1),--IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fQnAId	        int                         NOT NULL,
-  fMemberId         int                         NOT NULL,
-  fTime             smalldatetime               NOT NULL,
-  fMessage          nvarchar(max)               NOT NULL,
-  PRIMARY KEY(fId), 
-  FOREIGN KEY (fMemberId) REFERENCES Member.tMember(fId), 
-  FOREIGN KEY (fQnAId) REFERENCES Product.tQnA(fId)
-);
-
--- ÂïÜÂìÅ5ÂÄãÊ®ôÁ±§
-Create Table Product.tProduct5Tag
-(
-  fId	            INT       NOT NULL        IDENTITY(1,1),  --IDENTITY Ëá™ÂãïÂ°´ÂÄº
-  fProductId        INT       NOT NULL,
-  fProductTagId     INT,
-  PRIMARY KEY(fId),
-  FOREIGN KEY (fProductId) REFERENCES Product.tProduct(fId), 
-  FOREIGN KEY (fProductTagId) REFERENCES Product.tProductTag(fId)
-);
-
-
--------Orders-----------------------------------------------------------------------------------------------------------------------------------
-
--- Ë®ÇÂñÆÁãÄÊÖã
-CREATE TABLE Sales.tOrdersStatus
-(
-  fId     int           NOT NULL,
-  fStatus nvarchar(50),
-  CONSTRAINT PK_tOrdersStatus PRIMARY KEY(fId),
-  CONSTRAINT AK_tOrdersStatus UNIQUE(fStatus)
-);
-
--- Ë®ÇÂñÆË©ïÂàÜ
-CREATE TABLE Sales.tRate
-(
-  fId       int           NOT NULL IDENTITY,
-  fRating   int           NOT NULL,
-  fRateDate smalldatetime NOT NULL,
-  fRateText nvarchar(300),
-  CONSTRAINT PK_tRate PRIMARY KEY(fId),
-  CONSTRAINT AK_tRate UNIQUE(fRating)
-);
-
-
-
-
--- Ë®ÇÂñÆ
-CREATE TABLE Sales.tOrders
-(
-  fId               int           NOT NULL IDENTITY,
-  fDate             smalldatetime NOT NULL,
-  fProductId        int           NOT NULL,
-  fMemberId         int           NOT NULL,
-  fOrdersStatusId   int           NOT NULL,
-  fDeliveryId       int           NOT NULL,
-  tShippingLocation nvarchar(50),
-  tShippingNumber   int,
-  tFaceToFaceId     int,
-  tRateId           int,
-
-  CONSTRAINT PK_tOrders PRIMARY KEY(fId),
-  CONSTRAINT FK_tOrders_tProduct FOREIGN KEY(fProductId)
-    REFERENCES Product.tProduct(fId),
-  CONSTRAINT FK_tOrders_tOrdersStatus FOREIGN KEY(fOrdersStatusId)
-    REFERENCES Sales.tOrdersStatus(fId),
-  CONSTRAINT FK_tOrders_tMember FOREIGN KEY(fMemberId)
+  FOREIGN KEY(fMemberId)  
     REFERENCES Member.tMember(fId),
-  CONSTRAINT FK_tOrders_tDelivery FOREIGN KEY(fDeliveryId)
-    REFERENCES Product.tDelivery(fId),
-  CONSTRAINT FK_tOrders_tRate FOREIGN KEY(tRateId)
-    REFERENCES Sales.tRate(fId),
 );
+
