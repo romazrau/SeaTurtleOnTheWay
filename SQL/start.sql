@@ -1,3 +1,5 @@
+
+
 CREATE DATABASE SeaTurtleOnTheWay;
 GO
 
@@ -236,11 +238,11 @@ CREATE TABLE Activity.tActivity
   fCreatDate        SMALLDATETIME NOT NULL,
   fActivityDate     SMALLDATETIME NOT NULL,
   fActivityEndDate  SMALLDATETIME NOT NULL,
- -- fCommunityId      INT           NOT NULL,
+ -- fCommunityId    INT         NOT NULL,
   fMemberId         INT           NOT NULL,
-
   fIntroduction     NVARCHAR(MAX) NOT NULL,
-  fLimit            INT           NULL,
+  fMaxLimit		    INT           NULL,
+  fMinLimit         INT           NULL,
   fActAttestId      INT           NOT NULL, 
   fActTypeId        INT           NOT NULL,
   fActLocation      NVARCHAR(100) NOT NULL,
