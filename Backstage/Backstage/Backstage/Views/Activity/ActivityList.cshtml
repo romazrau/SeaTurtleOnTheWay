@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Backstage.Models.ActivityListDetail>
+
+@{
+    ViewBag.Title = "ActivitiyList";
+}
+
+<h2>活動清單</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form_container">
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+        <span>排序:</span><select id="Dropdownlist">
+            <option>依ID順序</option>
+            <option>依ID倒序</option>
+            <option>最久日期</option>
+            <option>最近日期</option>
+            <option>最多人數限制</option>
+            <option>最少人數限制</option>
+        </select>
+    </div>
+
+}
+
+<table class="table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCreatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActivityDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fMinLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fLabelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAttestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fStatusName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fActName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCreatDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fActivityDate)
+            </td>
+            @if (item.fMinLimit == null)
+            {
+                <td>無限制</td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMinLimit)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.fLabelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAttestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fStatusName)
+            </td>
+
+            <td>
+                @Html.ActionLink("狀態修改", "ActivityStatusEdit", "Activity", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("詳細修改", "ActivityDetailsEdit", "Activity", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("刪除", "ActivityDelete", "Activity", new { id = item.fId }, new
+           {
+               OnClick = "return confirm('確定要刪除嗎')",
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Create New", "Create")
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+
+    $("body").on("change", "#Dropdownlist", ch)
+
+    function ch() {
+        $.post('/Activity/ActivityList',
+            { ch: $("#Dropdownlist option:selected").index() },
+            (e) => {
+                document.body.innerHTML = e;
+
+
+            }
+        )
+        console.log($("#Dropdownlist option:selected").index())
+
+    }
+</script>
