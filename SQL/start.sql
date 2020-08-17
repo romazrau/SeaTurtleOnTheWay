@@ -40,7 +40,7 @@ CREATE TABLE Member.tMember
   fPassword        CHAR(50)      NOT NULL,            --視加密技術調整
   fName            NVARCHAR(50)  NOT NULL,
   fBirthdate       DATE          NOT NULL,
-  fIdentifyId      CHAR(10)      NOT NULL,
+  fMail            NVARCHAR(50)  NOT NULL,
   fAddress         NVARCHAR(60)  NOT NULL,
   fCity            NVARCHAR(20)  NOT NULL,
   fCeilphoneNumber INT           NOT NULL,
