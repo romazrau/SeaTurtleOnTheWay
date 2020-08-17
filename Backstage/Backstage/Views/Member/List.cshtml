@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Backstage.Models.MemberList>
+
+@{
+    ViewBag.Title = "成員列表";
+}
+
+<h2>成員列表</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+    </div>
+    <select id="Dropdownlist" >
+        <option>依金額順序</option>
+        <option>依金額倒序</option>
+        <option>依ID順序</option>
+        <option>依ID倒序</option>
+    </select>
+}
+
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCoins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAccountType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fPhotoPath)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccountType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPhotoPath)
+            </td>
+            <td>
+                @Html.ActionLink("修改狀態", "MemberTypeEdit", "Member", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("詳細修改", "MemberDetailEdit", "Member", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("刪除", "MemberDelete", "Member", new { id = item.fId }, new
+           {
+               OnClick = "return confirm('確定要刪除嗎')",
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $("#Dropdownlist").change(function ch() {
+        $.post('/Member/List',
+            { changeNumber: $("#Dropdownlist option:selected").index() }
+        )
+        console.log($("#Dropdownlist option:selected").index())
+       
+    })
+   
+
+
+</script>

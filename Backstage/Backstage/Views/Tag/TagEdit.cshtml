@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Backstage.tActivityLabel>
+
+@{
+    ViewBag.Title = "TagEdit";
+}
+
+<h2>TagEdit</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fLabelName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+
+            @if (ViewBag.fId == item.fId)
+            {
+                <td>
+                    <input type="text" value="@item.fLabelName" id="TagEdit" />
+
+                </td>
+                <td>
+                    <input type="button" value="修改" onclick="EditTag()"class="btn-secondary"/>
+                </td>
+            }
+            else { 
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.fLabelName)
+            </td>
+            <td>
+            </td>
+            }
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    function EditTag() {
+        $.post('/Tag/TagEdit',
+            { fName: $("#TagEdit").val(), fId: @ViewBag.fId }
+        )
+        console.log($("#TagEdit").val());
+        window.location.href = "/Tag/TagList"
+    }
+
+
+</script>
