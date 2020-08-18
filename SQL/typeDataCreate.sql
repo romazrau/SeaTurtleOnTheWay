@@ -16,8 +16,8 @@ VALUES (1,'審核中'),
 
 --社團狀態
 INSERT INTO Community.tStatus(fId,fName)
-VALUES(0,'開放'),
-      (1,'半開放'),
+VALUES(0,'封閉'),
+      (1,'開放'),
 	  (2,'私密');
 
 
