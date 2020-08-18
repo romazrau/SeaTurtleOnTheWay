@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Backstage.Models.ActivityListDetail>
+
+@{
+    ViewBag.Title = "CheckList";
+}
+
+<h2>CheckList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCreatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActivityDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fMinLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAttestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fStatusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fLabelName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fActName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fCreatDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fActivityDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fMinLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fAttestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fStatusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fLabelName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

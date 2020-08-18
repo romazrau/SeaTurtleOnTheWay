@@ -147,6 +147,7 @@
     <Compile Include="Controllers\CommunityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PointController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,7 @@
     </Content>
     <Content Include="Views\Member\MemberDetailsList.cshtml" />
     <Content Include="Views\Member\MemberCreate.cshtml" />
+    <Content Include="Views\Point\CheckList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

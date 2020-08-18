@@ -4,7 +4,20 @@
     ViewBag.Title = "CommunityList";
 }
 
-<h2>CommunityList</h2>
+<h2>社區清單</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form_container">
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+        <span>排序:</span>
+        <select id="Dropdownlist">
+            
+        </select>
+    </div>
+
+}
 
 
 <table class="table table-borderless">
@@ -22,12 +35,12 @@
             @Html.DisplayNameFor(model => model.fInfo)
         </th>
         <th>
-    @Html.DisplayNameFor(model => model.fImgPath)
-</th>
+            @Html.DisplayNameFor(model => model.fImgPath)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.fStatusName)
         </th>
-        
+
         <th></th>
     </tr>
 
@@ -47,23 +60,23 @@
                 @Html.DisplayFor(modelItem => item.fInfo)
             </td>
             <td>
-    @Html.DisplayFor(modelItem => item.fImgPath)
-</td>
+                @Html.DisplayFor(modelItem => item.fImgPath)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fStatusName)
             </td>
-            
+
             <td>
-                @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id=item.fId }, new
+                @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id = item.fId }, new
            {
 
                Class = "btn btn-info"
-           }) 
+           })
                 @Html.ActionLink("詳細修改", "CommunityDetailsEdit", "Community", new { id = item.fId }, new
            {
 
                Class = "btn btn-info"
-           }) 
+           })
 
                 @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
            {
@@ -75,3 +88,21 @@
     }
     @Html.ActionLink("新增", "Details", "Community") |
 </table>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+
+    $("body").on("change", "#Dropdownlist", ch)
+
+    function ch() {
+        $.post('/Community/CommunityList',
+            { ch: $("#Dropdownlist option:selected").index() },
+            (e) => {
+                document.body.innerHTML = e;
+
+
+            }
+        )
+        console.log($("#Dropdownlist option:selected").index())
+
+    }
+</script>

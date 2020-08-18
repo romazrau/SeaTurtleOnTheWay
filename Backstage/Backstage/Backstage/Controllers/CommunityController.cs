@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Backstage.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -13,7 +14,26 @@ namespace Backstage.Controllers
         // GET: Community
         public ActionResult CommunityList()
         {
-            var t = from c in db.tCommunity
+            IQueryable<CommunityListDetail> t = null;
+            string keyword = Request.Form["txtKeyword"];
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                t = from c in db.tCommunity
+                        select new Models.CommunityListDetail
+                        {
+                            fId = c.fId,
+                            fName = c.fName,
+                            fDate = c.fDate,
+                            fInfo = c.fInfo,
+                            fStatusName = c.tStatus.fName,
+                            fImgPath = c.fImgPath,
+                        };
+            }
+            else
+            {
+                t = from c in db.tCommunity
+                    where c.fName.Contains(keyword)
                     select new Models.CommunityListDetail
                     {
                         fId = c.fId,
@@ -23,6 +43,13 @@ namespace Backstage.Controllers
                         fStatusName = c.tStatus.fName,
                         fImgPath = c.fImgPath,
                     };
+            }
+
+
+
+
+
+
             return View(t);
         }
 
@@ -108,8 +135,10 @@ namespace Backstage.Controllers
             tCommunity c = db.tCommunity.FirstOrDefault(f => f.fId == id);
             if (c == null)
                 return RedirectToAction("CommunityList");
+
             db.tCommunity.Remove(c);
             db.SaveChanges();
+
             return RedirectToAction("CommunityList");
         }
     }

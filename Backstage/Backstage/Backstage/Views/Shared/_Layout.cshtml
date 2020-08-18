@@ -76,16 +76,17 @@
     </div>
 
     <nav>
-        <div>@Html.ActionLink("會員", "List", "Member", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-        <div>@Html.ActionLink("活動", "ActivityList", "Activity", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-        <div>@Html.ActionLink("標籤", "TagList", "Tag", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-        <div>@Html.ActionLink("社團", "CommunityList", "Community", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+        <div class="BackStage_ManageBox">
+            <div>@Html.ActionLink("會員", "List", "Member", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+            <div>@Html.ActionLink("活動", "ActivityList", "Activity", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+            <div>@Html.ActionLink("標籤", "TagList", "Tag", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+            <div>@Html.ActionLink("社團", "CommunityList", "Community", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+        </div>
+        
 
-        
-        
-       
-        
-    </nav>
+
+
+</nav>
 
 
     <div class="container body-content">

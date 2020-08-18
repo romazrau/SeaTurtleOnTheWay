@@ -17,8 +17,8 @@ namespace Backstage.Controllers
             string keyword = Request.Form["txtKeyword"];
 
             if (string.IsNullOrEmpty(keyword))
-            { 
-                    t = from a in db.tActivity
+            {
+                t = from a in db.tActivity
                     select new Models.ActivityListDetail
                     {
                         fId = a.fId,
@@ -34,7 +34,7 @@ namespace Backstage.Controllers
             else
             {
                 t = from a in db.tActivity
-                    where a.fActName.Contains(keyword)
+                    where a.fActName.Contains(keyword) 
                     select new Models.ActivityListDetail
                     {
                         fId = a.fId,

@@ -8,19 +8,21 @@
 
 @using (Html.BeginForm())
 {
-    <div class="form_container">
-        <input class="" type="text" name="txtKeyword" />
-        <input class="btn-primary" value="查詢" type="submit" />
-        <span>排序:</span><select id="Dropdownlist">
-            <option>依ID順序</option>
-            <option>依ID倒序</option>
-            <option>最久日期</option>
-            <option>最近日期</option>
-            <option>最多人數限制</option>
-            <option>最少人數限制</option>
-        </select>
-    </div>
+<div class="form_container d-flex">
+    <input class="" type="text" name="txtKeyword" />
+    <input class="btn-primary" value="查詢" type="submit" />
+    <span>排序:</span>
+    <select id="Dropdownlist">
+        <option>依ID順序</option>
+        <option>依ID倒序</option>
+        <option>最久日期</option>
+        <option>最近日期</option>
+        <option>最多人數限制</option>
+        <option>最少人數限制</option>
+    </select>
 
+    <div>@Html.ActionLink("審核", "List", "Point", new { area = "" }, new { @class = "" })</div>
+</div>
 }
 
 <table class="table-responsive">

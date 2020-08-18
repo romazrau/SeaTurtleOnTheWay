@@ -11,7 +11,8 @@ namespace Backstage
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tActivityLabel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,10 @@ namespace Backstage
         {
             this.tActivityHadLabel = new HashSet<tActivityHadLabel>();
         }
-    
+        
+        [DisplayName("編號")]
         public int fId { get; set; }
+        [DisplayName("標籤名稱")]
         public string fLabelName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
