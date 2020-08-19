@@ -8,7 +8,7 @@ namespace Backstage.Models
 {
     public class ActivityListDetail
     {
-        
+        [DisplayName("序號")]
         public int fId { get; set; }
         [DisplayName("活動名稱")]
         public string fActName { get; set; }

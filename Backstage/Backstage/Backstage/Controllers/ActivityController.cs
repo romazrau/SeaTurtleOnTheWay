@@ -119,6 +119,7 @@ namespace Backstage.Controllers
             }
             ViewBag.ActDrop = itemsAct;
             ViewBag.AttDrop = itemsAtt;
+
             ViewBag.fId = id;
             return View(t);
         }
@@ -139,6 +140,41 @@ namespace Backstage.Controllers
             if (id == null)
                 return RedirectToAction("ActivityList");
             tActivity t = db.tActivity.FirstOrDefault(m => m.fId == id);
+            var cActivityType = db.tActivityType.ToDictionary(x => x.fId, y => y.fStatusName);
+            var cAttestType = db.tAttestType.ToDictionary(x => x.fId, y => y.fAttestName);
+            List<SelectListItem> itemsAct = new List<SelectListItem>();
+            List<SelectListItem> itemsAtt = new List<SelectListItem>();
+            List<SelectListItem> itemsMem = new List<SelectListItem>();
+            var cMember = db.tMember.ToDictionary(x => x.fId, y => y.fName);
+            foreach (var cm in cMember)
+            {
+                itemsMem.Add(new SelectListItem()
+                {
+                    Text = cm.Value,
+                    Value = cm.Key.ToString()
+                });
+            }
+            foreach (var a in cActivityType)
+            {
+                itemsAct.Add(new SelectListItem()
+                {
+                    Text = a.Value,
+                    Value = a.Key.ToString()
+                });
+            }
+            foreach (var a in cAttestType)
+            {
+                itemsAtt.Add(new SelectListItem()
+                {
+                    Text = a.Value,
+                    Value = a.Key.ToString()
+                });
+            }
+            ViewBag.ActDrop = itemsAct;
+            ViewBag.AttDrop = itemsAtt;
+            ViewBag.MemDrop = itemsMem;
+
+
 
             return View(t);
         }
@@ -158,9 +194,13 @@ namespace Backstage.Controllers
                 A.fCoordinateX = t.fCoordinateX;
                 A.fCoordinateY = t.fCoordinateY;
                 A.fActLabelId = t.fActLabelId;
-                A.fMemberId = t.fMemberId;
+                A.fActAttestId = int.Parse(Request.Form["AttDrop"]);
+                A.fActTypeId = int.Parse(Request.Form["ActDrop"]);
+                A.fMemberId = int.Parse(Request.Form["MemDrop"]);
                 db.SaveChanges();
             }
+
+
             return RedirectToAction("ActivityList");
 
         }
@@ -180,7 +220,46 @@ namespace Backstage.Controllers
             db.SaveChanges();
             return RedirectToAction("ActivityList");
         }
+        public ActionResult ActivityCreate()
+        { 
+            var cMember = db.tMember.ToDictionary(x => x.fId, y => y.fName);
+            var cLabel = db.tActivityLabel.ToDictionary(x => x.fId, y => y.fLabelName);
+            List<SelectListItem> itemsMem = new List<SelectListItem>();
+            List<SelectListItem> itemsLab = new List<SelectListItem>();
+            foreach (var cm in cMember)
+            {
+                itemsMem.Add(new SelectListItem()
+                {
+                    Text = cm.Value,
+                    Value = cm.Key.ToString()
+                });
+            }
+            foreach (var cl in cLabel)
+            {
+                itemsLab.Add(new SelectListItem()
+                {
+                    Text = cl.Value,
+                    Value = cl.Key.ToString()
+                });
+            }
+            ViewBag.MemDrop = itemsMem;
+            ViewBag.LabDrop = itemsLab;
 
 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ActivityCreate(tActivity a)
+        {
+            a.fMemberId = int.Parse(Request["MemDrop"]);
+            a.fActLabelId = int.Parse(Request["LabDrop"]);
+            db.tActivity.Add(a);
+            db.SaveChanges();
+
+
+            return RedirectToAction("ActivityList");
+        }
     }
+
+        
 }

@@ -8,7 +8,7 @@ namespace Backstage.Models
 {
     public class CommunityListDetail
     {
-
+        [DisplayName("序號")]
         public int fId { get; set; }
         [DisplayName("社團名稱")]
         public string fName { get; set; }

@@ -133,7 +133,6 @@
     <Content Include="Views\Member\MemberDetailEdit.cshtml" />
     <Content Include="Views\Activity\ActivityList.cshtml" />
     <Content Include="Views\Activity\ActivityStatusEdit.cshtml" />
-    <Content Include="Views\Activity\ActivityDetailsEdit.cshtml" />
     <Content Include="Views\Tag\TagList.cshtml" />
     <Content Include="Views\Tag\TagAdd.cshtml" />
     <Content Include="Views\Tag\TagEdit.cshtml" />
@@ -264,6 +263,9 @@
     <Content Include="Views\Member\MemberDetailsList.cshtml" />
     <Content Include="Views\Member\MemberCreate.cshtml" />
     <Content Include="Views\Point\CheckList.cshtml" />
+    <Content Include="Views\Activity\ActivityCreate.cshtml" />
+    <Content Include="Views\Community\CommunityCreate.cshtml" />
+    <Content Include="Views\Activity\ActivityDetailsEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

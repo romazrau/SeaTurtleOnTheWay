@@ -11,7 +11,9 @@ namespace Backstage
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tActivity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,21 +24,35 @@ namespace Backstage
             this.tSearchList = new HashSet<tSearchList>();
             this.tJoinList = new HashSet<tJoinList>();
         }
-    
+        [DisplayName("序號")]
         public int fId { get; set; }
+        [DisplayName("活動名稱")]
         public string fActName { get; set; }
+        [DisplayName("申請時間")]
         public System.DateTime fCreatDate { get; set; }
+        [DisplayName("活動起始時間")]
         public System.DateTime fActivityDate { get; set; }
+        [DisplayName("活動起結束時間")]
         public System.DateTime fActivityEndDate { get; set; }
+        [DisplayName("發起人")]
         public int fMemberId { get; set; }
+        [DisplayName("介紹")]
         public string fIntroduction { get; set; }
+        [DisplayName("最大人數")]
         public Nullable<int> fMaxLimit { get; set; }
+        [DisplayName("最小人數")]
         public Nullable<int> fMinLimit { get; set; }
+        [DisplayName("認證狀態")]
         public int fActAttestId { get; set; }
+        [DisplayName("活動狀態")]
         public int fActTypeId { get; set; }
+        [DisplayName("城市")]
         public string fActLocation { get; set; }
+        [DisplayName("x座標")]
         public string fCoordinateX { get; set; }
+        [DisplayName("y座標")]
         public string fCoordinateY { get; set; }
+        [DisplayName("主要類別")]
         public int fActLabelId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

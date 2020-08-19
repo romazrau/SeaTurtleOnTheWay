@@ -12,6 +12,7 @@ namespace Backstage
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Web;
 
     public partial class tMember
     {
@@ -31,7 +32,7 @@ namespace Backstage
             this.tAccountLikeList1 = new HashSet<tAccountLikeList>();
             this.tMessage = new HashSet<tMessage>();
         }
-    
+        [DisplayName("序號")]
         public int fId { get; set; }
         [DisplayName("帳號")]
         public string fAccount { get; set; }
@@ -58,7 +59,8 @@ namespace Backstage
         public int fAccountTypeId { get; set; }
         [DisplayName("圖片")]
         public string fPhotoPath { get; set; }
-    
+        public HttpPostedFileBase fImage { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tActivity> tActivity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

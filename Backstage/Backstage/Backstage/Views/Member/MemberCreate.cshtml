@@ -7,7 +7,7 @@
 <h2>新增成員</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("MemberCreate", "Member", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -104,7 +104,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fPhotoPath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fPhotoPath, new { htmlAttributes = new { @class = "form-control" } })
+                <input name="fImage" type="file" />
                 @Html.ValidationMessageFor(model => model.fPhotoPath, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -118,7 +118,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回列表", "List","Member",null,null)
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>

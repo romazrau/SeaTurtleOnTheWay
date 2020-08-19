@@ -4,7 +4,7 @@
     ViewBag.Title = "TagList";
 }
 
-<h2>TagList</h2>
+<h2>新增標籤</h2>
 
 @using (Html.BeginForm())
 {
@@ -59,6 +59,8 @@
         $.post('/Tag/TagAdd',
             { NewTag: $("#txtNewTag").val() }
         )
+        
+        location.reload();
         window.location.href = "/Tag/TagList"
     }
 

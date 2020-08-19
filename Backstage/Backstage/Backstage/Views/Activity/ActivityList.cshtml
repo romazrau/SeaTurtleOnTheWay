@@ -16,9 +16,9 @@
         <option>依ID順序</option>
         <option>依ID倒序</option>
         <option>最久日期</option>
-        <option>最近日期</option>
-        <option>最多人數限制</option>
-        <option>最少人數限制</option>
+        <option>最新日期</option>
+        <option>人數限制(多到少)</option>
+        <option>人數限制(少到多)</option>
     </select>
 
     <div>@Html.ActionLink("審核", "List", "Point", new { area = "" }, new { @class = "" })</div>
@@ -111,7 +111,10 @@
     }
 
 </table>
-@Html.ActionLink("Create New", "Create")
+@Html.ActionLink("新增", "ActivityCreate", "Activity", null, new
+{
+    Class = "btn btn-danger"
+})
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 
@@ -126,7 +129,7 @@
 
             }
         )
-        console.log($("#Dropdownlist option:selected").index())
+       
 
     }
 </script>

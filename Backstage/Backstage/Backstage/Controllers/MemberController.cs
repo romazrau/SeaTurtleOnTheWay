@@ -1,6 +1,7 @@
 ﻿using Backstage.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -54,10 +55,11 @@ namespace Backstage.Controllers
                     t = t.OrderByDescending(s => s.fId);
                     break;
                 case 2:
-                    t = t.OrderBy(s => s.fCoins);
+                    t = t.OrderByDescending(s => s.fCoins);
+                    
                     break;
                 case 3:
-                    t = t.OrderByDescending(s => s.fCoins);
+                    t = t.OrderBy(s => s.fCoins);
                     break;
                 case 4:
                     t = t.OrderByDescending(s => s.fAccountType);
@@ -198,7 +200,16 @@ namespace Backstage.Controllers
             if (check == null)
             {
                 x.fCoins = 100;
-                x.fAccountTypeId = 1;
+                x.fAccountTypeId = 1; 
+                if (x.fImage != null)
+            {
+                string photoName = Guid.NewGuid().ToString() + Path.GetExtension(x.fImage.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/"), photoName);
+                x.fImage.SaveAs(path);
+                x.fPhotoPath = "../Content/" + photoName;
+            }
+
+
                 db.tMember.Add(x);
                 db.SaveChanges();
             }
@@ -206,6 +217,9 @@ namespace Backstage.Controllers
                 MessageBox.Show("帳號已存在");
                 return View();
             }
+
+           
+
 
 
             return RedirectToAction("List");

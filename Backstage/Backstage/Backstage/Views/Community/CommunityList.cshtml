@@ -4,7 +4,7 @@
     ViewBag.Title = "CommunityList";
 }
 
-<h2>社區清單</h2>
+<h2>社團清單</h2>
 
 @using (Html.BeginForm())
 {
@@ -13,7 +13,10 @@
         <input class="btn-primary" value="查詢" type="submit" />
         <span>排序:</span>
         <select id="Dropdownlist">
-            
+            <option>依id</option>
+            <option>依創建日期排序</option>
+            <option>依創建日期倒序</option>
+            <option>依狀態</option>
         </select>
     </div>
 
@@ -86,8 +89,13 @@
             </td>
         </tr>
     }
-    @Html.ActionLink("新增", "Details", "Community") |
-</table>
+
+</table> 
+@Html.ActionLink("新增", "CommunityCreate", "Community",null, new
+{
+
+    Class = "btn btn-danger"
+}) 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 

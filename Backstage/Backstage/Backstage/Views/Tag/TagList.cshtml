@@ -4,13 +4,13 @@
     ViewBag.Title = "TagList";
 }
 
-<h2>TagList</h2>
+<h2>標籤清單</h2>
 
 @using (Html.BeginForm())
 {
     <input type="text" id="txtKeyword" name="txtKeyword" />
 
-    <input type="submit" value="查詢"/>
+    <input type="submit" value="查詢" class="btn btn-primary"/>
 }
 
 
@@ -54,7 +54,11 @@
     }
 <tr>
     <td></td>
-    <td>@Html.ActionLink("新增", "TagAdd", "Tag")</td>
+    <td>@Html.ActionLink("新增", "TagAdd", "Tag",null, new
+   {
+       
+       Class = "btn btn-danger"
+   })</td>
 </tr>
 
 </table>

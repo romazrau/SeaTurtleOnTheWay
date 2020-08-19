@@ -114,5 +114,19 @@ namespace Backstage.Controllers
 
             return RedirectToAction("TagList");
         }
+
+        public ActionResult TagDelete(int? id)
+        {
+            tActivityLabel x = db.tActivityLabel.FirstOrDefault(f => f.fId==id);
+
+            db.tActivityLabel.Remove(x);
+            db.SaveChanges();
+            return RedirectToAction("TagList");
+
+        }
+
+
+
+
     }
 }
