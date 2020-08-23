@@ -39,11 +39,11 @@ CREATE TABLE Member.tMember
   fAccount         NCHAR(50)     NOT NULL,
   fPassword        CHAR(50)      NOT NULL,            --視加密技術調整
   fName            NVARCHAR(50)  NOT NULL,
-  fBirthdate       DATE          NOT NULL,
-  fMail            NVARCHAR(50)  NOT NULL,
+  fBirthdate       NCHAR(50)     NOT NULL,
+  fMail            NVARCHAR(100) NOT NULL,
   fAddress         NVARCHAR(60)  NOT NULL,
   fCity            NVARCHAR(20)  NOT NULL,
-  fCeilphoneNumber INT           NOT NULL,
+  fCeilphoneNumber NCHAR(50)     NOT NULL,
   fCoins           INT           NOT NULL,
   fGender          NVARCHAR(10)  NULL,  --fEducation       NVARCHAR(50)  NULL,
   fIntroduction    NVARCHAR(MAX) NULL,
@@ -52,7 +52,6 @@ CREATE TABLE Member.tMember
   CONSTRAINT PK_Member PRIMARY KEY(fId),   --設定為Primary Key
   CONSTRAINT FK_Member_AccountTypeId FOREIGN KEY(fAccountTypeId)  --設定Foreign Key
     REFERENCES Member.tAccountType(fId),
-  CONSTRAINT CHK_birthdate CHECK(fBirthdate <= CAST(SYSDATETIME() AS DATE)),
   CONSTRAINT AK_account    UNIQUE(fAccount)  --設定唯一資料行
 );
 CREATE NONCLUSTERED INDEX idx_nc_city           ON Member.tMember(fCity);   --非叢集建立
@@ -60,19 +59,6 @@ CREATE NONCLUSTERED INDEX idx_nc_accountTypeId  ON Member.tMember(fAccountTypeId
 CREATE NONCLUSTERED INDEX idx_nc_account        ON Member.tMember(fAccount);
 
 
-
--- Create table Member.tAccountLikeList
-CREATE TABLE Member.tAccountLikeList
-(
-  fId                 INT   NOT NULL  IDENTITY(1,1),
-  fGetLikeMemberId    INT   NOT NULL,
-  fGiveLikeMemberId   INT   NOT NULL,
-  PRIMARY KEY(fId),
-  CONSTRAINT FK_AccountLikeList_Member_get  FOREIGN KEY(fGetLikeMemberId)  
-    REFERENCES Member.tMember(fID),
-  CONSTRAINT FK_AccountLikeList_Member_give FOREIGN KEY(fGiveLikeMemberId)  
-    REFERENCES Member.tMember(fID)
-);
 
 
 
@@ -86,19 +72,36 @@ CREATE TABLE Community.tStatus
  CONSTRAINT AK_statusname UNIQUE(fName)
 )
 
+
+--社團分類
+CREATE TABLE Community.tCommunityClass
+(
+  fId          INT              NOT NULL,
+  fName        NVARCHAR(50)     NOT NULL,
+  CONSTRAINT PK_ActivityMainLabel PRIMARY KEY(fId),
+  UNIQUE(fName),
+);
+
+
+
+
+
 --社團
 CREATE TABLE Community.tCommunity
 (
  fId         INT               NOT NULL IDENTITY(1,1),
  fName       NVARCHAR(50)      NOT NULL,
- fDate       DATE              NOT NULL,
+ fDate       NCHAR(50)         NOT NULL,
  fInfo       NVARCHAR(MAX)     NOT NULL,
  fStatusId   INT               NOT NULL,
  fImgPath    NCHAR(200)        NOT NULL,
+ fClassId    INT               NOT NULL,
  CONSTRAINT PK_Community PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Status FOREIGN KEY(fStatusId)
    REFERENCES Community.tStatus(fId),
- CONSTRAINT AK_name UNIQUE(fName)
+ CONSTRAINT AK_name UNIQUE(fName),
+ FOREIGN KEY(fClassId)
+   REFERENCES Community.tCommunityClass(fId),
 );
 
 
@@ -117,7 +120,7 @@ CREATE TABLE Community.tMemberList
  fId               INT               NOT NULL IDENTITY(1,1),
  fCommunityId      INT               NOT NULL,
  fMemberId         INT               NOT NULL,
- fJoinDate         SMALLDATETIME     NOT NULL,
+ fJoinDate         NCHAR(50)         NOT NULL,
  fAccessRightId    INT               NOT NULL,
  PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Community_Member FOREIGN KEY(fCommunityId)
@@ -136,9 +139,9 @@ CREATE TABLE Community.tPost
  fId             INT             NOT NULL IDENTITY(1,1),
  fMemberId       INT             NOT NULL,  --or null決定會員是否能在非社團內PO文 (非在社團的人發文前就擋下)
  fCommunityId    INT             NOT NULL, 
- fPostTime       SMALLDATETIME   NOT NULL,
+ fPostTime       NCHAR(50)       NOT NULL,
  fContent        NVARCHAR(MAX)   NULL,
- fImgPath        NCHAR(200)      NULL,
+ fImgPaths       NCHAR(2040)      NULL,
  CONSTRAINT PK_Post PRIMARY KEY(fId),
  FOREIGN KEY(fMemberId)
    REFERENCES Member.tMember(fId),   --取得(社團成員帳號or會員帳號)讓發文帳號為fk
@@ -152,8 +155,8 @@ CREATE TABLE Community.tReply
 (
  fId              INT             NOT NULL IDENTITY(1,1),
  fPostId          INT             NOT NULL,
- fReplyMemberId  INT             NOT NULL,
- fReplyTime       SMALLDATETIME   NOT NULL,
+ fReplyMemberId   INT             NOT NULL,
+ fReplyTime       NCHAR(50)       NOT NULL,
  fContent         NVARCHAR(MAX)   NOT NULL,
  CONSTRAINT PK_Reply PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Post FOREIGN KEY(fPostId)
@@ -168,7 +171,7 @@ CREATE TABLE Community.tFeedback
  fId                 INT             NOT NULL IDENTITY(1,1),
  fReplyId            INT             NOT NULL,
  fFeedbackMemberId   INT             NOT NULL,
- fFeedbackTime       SMALLDATETIME   NOT NULL,
+ fFeedbackTime       NCHAR(50)       NOT NULL,
  fContent            NVARCHAR(MAX)   NOT NULL,
  CONSTRAINT PK_Feedback PRIMARY KEY(fId),
  FOREIGN KEY(fReplyId)
@@ -230,15 +233,16 @@ CREATE TABLE Activity.tActivityLabel
   UNIQUE(fLabelName ),
 );
 
+
 -- 活動
 CREATE TABLE Activity.tActivity
 (
   fId               INT           NOT NULL  IDENTITY(1,1),
   fActName          NVARCHAR(50)  NOT NULL,
-  fCreatDate        SMALLDATETIME NOT NULL,
-  fActivityDate     SMALLDATETIME NOT NULL,
-  fActivityEndDate  SMALLDATETIME NOT NULL,
- -- fCommunityId    INT         NOT NULL,
+  fCreatDate        NCHAR(50)     NOT NULL,
+  fActivityDate     NCHAR(50)     NOT NULL,
+  fActivityEndDate  NCHAR(50)     NOT NULL,
+  fCommunityId      INT           NULL,
   fMemberId         INT           NOT NULL,
   fIntroduction     NVARCHAR(MAX) NOT NULL,
   fMaxLimit		    INT           NULL,
@@ -249,6 +253,7 @@ CREATE TABLE Activity.tActivity
   fCoordinateX      NCHAR(100)    NOT NULL,
   fCoordinateY      NCHAR(100)    NOT NULL,
   fActLabelId       INT           NOT NULL,
+  fImgPath          NCHAR(200)    NOT NULL,
   CONSTRAINT PK_Activity PRIMARY KEY(fId),
   CONSTRAINT FK_Activity_AttestType FOREIGN KEY(fActAttestId)  
     REFERENCES Activity.tAttestType(fId),
@@ -267,7 +272,7 @@ CREATE TABLE Activity.tJoinList
   fId               INT           NOT NULL  IDENTITY(1,1),
   fActivityId       INT           NOT NULL,
   fMemberId         INT           NOT NULL,
-  fJoinTime         DATETIME      NOT NULL,
+  fJoinTime         NCHAR(50)     NOT NULL,
   fJoinTypeId       INT           NOT NULL
   PRIMARY KEY(fId),
   CONSTRAINT FK_JoinList_Activity FOREIGN KEY(fActivityId)  --設定Foreign Key
@@ -304,7 +309,7 @@ CREATE TABLE Activity.tActivityMessage
   fActivityId       INT           NOT NULL,
   fMemberId         INT           NOT NULL,
   fContent          NVARCHAR(MAX) NOT NULL,
-  fTime             DATETIME      NOT NULL,
+  fTime             NCHAR(50)     NOT NULL,
   fReplyerId        INT           NULL
   CONSTRAINT PK_ActivityMessage PRIMARY KEY(fId),
   CONSTRAINT FK_ActivityMessage_AttestType FOREIGN KEY(fActivityId)  --設定Foreign Key
@@ -322,7 +327,7 @@ CREATE TABLE Activity.tSearchList
   fId               INT           NOT NULL,
   fActivityId       INT           NOT NULL,
   fMemberId         INT           NOT NULL,
-  fSearchTime       DATETIME      NOT NULL,
+  fSearchTime       NCHAR(50)     NOT NULL,
   PRIMARY KEY(fId),
   FOREIGN KEY(fMemberId)  
     REFERENCES Member.tMember(fId),
