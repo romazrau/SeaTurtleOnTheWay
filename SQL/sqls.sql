@@ -26,3 +26,13 @@ WITH member AS (  -- 帳號資料與權限結
   from member as mm
   left join likemun as L
   on mm.fId = L.fGetLikeMemberId;
+
+
+
+  --login
+  select M.fId, M.fName , T.fAccountType as 'account type' , T.fAccountAuthority as 'account authority'
+  from Member.tMember as M
+  LEFT join Member.tAccountType as T
+  on M.fAccountTypeId = T.fId
+  where fAccount = 'guest' AND fPassword = 'badiii7777';
+

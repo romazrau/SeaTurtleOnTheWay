@@ -45,7 +45,6 @@ CREATE TABLE Member.tMember
   fCity            NVARCHAR(20)  NOT NULL,
   fCeilphoneNumber NCHAR(50)     NOT NULL,
   fCoins           INT           NOT NULL,
-  fGender          NVARCHAR(10)  NULL,  --fEducation       NVARCHAR(50)  NULL,
   fIntroduction    NVARCHAR(MAX) NULL,
   fAccountTypeId   INT           NOT NULL,
   fPhotoPath       NCHAR(200)    NULL,
