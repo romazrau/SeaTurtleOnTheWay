@@ -72,14 +72,7 @@ CREATE TABLE Community.tStatus
 )
 
 
---社團分類
-CREATE TABLE Community.tCommunityClass
-(
-  fId          INT              NOT NULL,
-  fName        NVARCHAR(50)     NOT NULL,
-  CONSTRAINT PK_ActivityMainLabel PRIMARY KEY(fId),
-  UNIQUE(fName),
-);
+
 
 
 

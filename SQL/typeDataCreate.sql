@@ -30,13 +30,6 @@ VALUES(0,'停權'),
 
 
 
--- 社團分類
-insert into Community.tCommunityClass(fId, fName)
-values (0, '其他'),
-       (1 , '淨灘'), 
-	   (2, '路跑'), 
-	   (3, '環境教育'), 
-	   (4, '二手市集');
 
 
 
