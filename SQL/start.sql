@@ -87,13 +87,10 @@ CREATE TABLE Community.tCommunity
  fInfo       NVARCHAR(MAX)     NOT NULL,
  fStatusId   INT               NOT NULL,
  fImgPath    NCHAR(200)        NOT NULL,
- fClassId    INT               NOT NULL,
  CONSTRAINT PK_Community PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Status FOREIGN KEY(fStatusId)
    REFERENCES Community.tStatus(fId),
  CONSTRAINT AK_name UNIQUE(fName),
- FOREIGN KEY(fClassId)
-   REFERENCES Community.tCommunityClass(fId),
 );
 
 
