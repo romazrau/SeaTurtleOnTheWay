@@ -329,7 +329,7 @@ CREATE TABLE Activity.tSearchList
 CREATE TABLE Activity.tScore
 (
   fId               INT           NOT NULL,
-  fMemberID         INT           NOT NULL,
+  fMemberId         INT           NOT NULL,
   fActivityId       INT           NOT NULL,
   fScoreLevel       TINYINT       NOT NULL,
   PRIMARY KEY(fId),
@@ -342,7 +342,7 @@ CREATE TABLE Activity.tScore
 CREATE TABLE sMessage.tMessage
 (
   fId               INT             NOT NULL IDENTITY(1,1),
-  fMemberID         INT             NOT NULL,
+  fMemberId         INT             NOT NULL,
   fContent          NVARCHAR(MAX)   NOT NULL,
   PRIMARY KEY(fId),
   FOREIGN KEY(fMemberId)  
