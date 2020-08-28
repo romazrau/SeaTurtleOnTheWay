@@ -1,4 +1,4 @@
-
+USE  master;
 
 CREATE DATABASE SeaTurtleOnTheWay;
 GO
