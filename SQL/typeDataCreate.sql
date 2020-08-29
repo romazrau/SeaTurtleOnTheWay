@@ -74,8 +74,4 @@ values (0, '其他'),
 	   (6,'線上活動');
 
 
--- 活動標籤
-insert into Activity.tActivityLabel(fLabelName)
-values ('潛水'), ('世界地球日'), ('淨街'), ('環保');
-
 
