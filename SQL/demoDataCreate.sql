@@ -80,8 +80,17 @@ VALUES ('root', 'FAlonDAfaISgood666', '管理員', '2000/02/20', 'cycle2link@gmail.
 		('Jaime333','Jaime123456','Jaime','1969/12/23','Jaime1969@gmail.com',
 		'大安區臨江街40巷1弄','台北市',0985652525,300,
 		'member/id14.jpg',2,'詹姆·蘭尼斯特（Jaime Lannister）是美國作家喬治·R·R·馬丁（George R. R. Martin）創作的《冰與火之歌》系列奇幻小說中的虛構角色，其電視改編本是《權力遊戲》。'
-		)
-		;
+		),
+		('lijingchan222', 'lijingchan222', '李進陳', '2001/02/22', 'lijingchan222@gmail.com',       
+        '板橋區中山路一段223號4樓', '新北市', 0987555666, 850,'member/id15.jpg', 1, '板橋在地人'),
+		('fancisheng565', 'fancisheng565', '梵希聖', '1998/05/15', 'fancisheng565@gmail.com',       
+        '信義區基隆路一段200號2樓', '台北市', 0933665156, 450,'member/id16.jpg', 2, '健身達人'),
+		('yl1211', 'yl1211', '陳韻任', '1991/12/11', 'yl1211@gmail.com',       
+        '蘆洲區長榮路778號', '新北市', 0936552236, 250,'member/id17.jpg', 2, '聊天達人'),
+		('leostar1002', 'leostar1002', '羅折剛', '1991/10/05', 'leostar1002@gmail.com',       
+        '三重區集賢路175號', '新北市', 0912336885, 350,'member/id18.jpg', 2, '咖啡達人'),
+		('superstar0829', 'superstar0829', '李子維', '1992/08/29', 'superstar0829@gmail.com',       
+        '內湖區成功路二段325號8樓', '台北市', 0933336885, 650,'member/id18.jpg', 2, '超級大帥哥');
 
 
 
