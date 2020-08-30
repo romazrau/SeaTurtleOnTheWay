@@ -86,7 +86,6 @@ CREATE TABLE Community.tCommunity
  fDate       NCHAR(50)         NOT NULL,
  fInfo       NVARCHAR(MAX)     NOT NULL,
  fStatusId   INT               NOT NULL,
- fIconPath   NCHAR(200)        NOT NULL,
  fImgPath    NCHAR(200)        NOT NULL,
  CONSTRAINT PK_Community PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Status FOREIGN KEY(fStatusId)
