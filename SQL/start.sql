@@ -48,6 +48,7 @@ CREATE TABLE Member.tMember
   fIntroduction    NVARCHAR(MAX) NULL,
   fAccountTypeId   INT           NOT NULL,
   fPhotoPath       NCHAR(200)    NULL,
+  fLastTime        NCHAR(50)     NULL,
   CONSTRAINT PK_Member PRIMARY KEY(fId),   --設定為Primary Key
   CONSTRAINT FK_Member_AccountTypeId FOREIGN KEY(fAccountTypeId)  --設定Foreign Key
     REFERENCES Member.tAccountType(fId),
@@ -130,7 +131,7 @@ CREATE TABLE Community.tPost
  fCommunityId    INT             NOT NULL, 
  fPostTime       NCHAR(50)       NOT NULL,
  fContent        NVARCHAR(MAX)   NULL,
- fImgPaths       NCHAR(2040)      NULL,
+ fImgPaths       NCHAR(2040)      NULL,   -- 多個照片用 ,,分隔 ex: 23.png,,img/123.jpg
  CONSTRAINT PK_Post PRIMARY KEY(fId),
  FOREIGN KEY(fMemberId)
    REFERENCES Member.tMember(fId),   --取得(社團成員帳號or會員帳號)讓發文帳號為fk
