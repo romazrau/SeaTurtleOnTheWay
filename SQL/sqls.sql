@@ -4,6 +4,31 @@ USE SeaTurtleOnTheWay;
 GO
 	
 
+
+---    刪除資料表用
+
+DELETE FROM  Member.tMember;
+
+DELETE FROM  Activity.tActivity;
+
+DELETE FROM  Community.tCommunity;
+
+DELETE FROM  Community.tMemberList;
+
+DELETE FROM  Community.tPost;
+
+DELETE FROM  Activity.tActivity;
+
+DELETE FROM Activity.tActivityLabel
+
+
+
+
+
+
+
+
+
 -- 帳號資料與權限結合
 select M.*, T.fAccountType as 'account type', T.fAccountAuthority as 'account authority'
 from Member.tMember as M
@@ -11,7 +36,7 @@ LEFT join Member.tAccountType as T
 on M.fAccountTypeId = T.fId;
 
 
--- 帳號資料與權限結合 + 獲讚
+-- 帳號資料與權限結合 + 獲讚    ---  已失效
 WITH member AS (  -- 帳號資料與權限結
  select M.*, T.fAccountType as 'account type', T.fAccountAuthority as 'account authority'
  from Member.tMember as M
