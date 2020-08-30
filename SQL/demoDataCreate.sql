@@ -1,4 +1,4 @@
-﻿USE SeaTurtleOnTheWay;
+USE SeaTurtleOnTheWay;
 GO
 
 --會員
