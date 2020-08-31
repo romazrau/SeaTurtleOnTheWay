@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Backstage.Models.MemberList>
+﻿@model IPagedList<Backstage.Models.MemberList>
 
 @{
     ViewBag.Title = "MemberTypeEdit";
@@ -24,50 +24,54 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.fId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fAccount)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fCoins)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.fPhotoPath)
-    </td>
-    @if (item.fId == ViewBag.fId)
+    @foreach (var item in Model)
     {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoins)
+            </td>
 
-        <td>
-            @Html.DropDownList("AccountTypeDDL", (IEnumerable<SelectListItem>)ViewBag.cAccountType, new { @class = "dropdown-toggle-split" })
-        </td>
-        <td>
-            <input type="button" onclick="AccountTypeEdit()" value="確認" class="btn btn-secondary"/>
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPhotoPath)
+            </td>
+            @if (item.fId == ViewBag.fId)
+            {
+
+                <td>
+                    @Html.DropDownList("AccountTypeDDL", (IEnumerable<SelectListItem>)ViewBag.cAccountType, new { @class = "dropdown-toggle-split" })
+                </td>
+                <td>
+                    <input type="button" onclick="AccountTypeEdit()" value="確認" class="btn btn-secondary" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAccountType)
+                </td>
+                <td>
+                </td>
+            }
+
+
+
+        </tr>
     }
-    else
-    {
-        <td>
-            @Html.DisplayFor(modelItem => item.fAccountType)
-        </td>
-        <td>
-        </td>
-    }
-
-
-
-</tr>
-}
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("MemberTypeEdit", new { page }))
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     function AccountTypeEdit()

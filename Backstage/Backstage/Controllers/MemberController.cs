@@ -83,6 +83,7 @@ namespace Backstage.Controllers
             int currentPage = page < 1 ? 1 : page;
             if (id == null) return RedirectToAction("List");
             var t = from m in db.tMember
+                    orderby m.fId
                     select new Models.MemberList
                     {
                         fId = m.fId,
