@@ -19,6 +19,8 @@
             <option>依照會員等級排序</option>
             <option>依照會員等級倒序</option>
         </select>
+
+
     </div>
 
 }
@@ -36,12 +38,12 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
         </th>
         <th>
-    @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
-</th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
         </th>
-        
+
         <th></th>
     </tr>
 
@@ -57,24 +59,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.fCoins)
             </td>
-            
+
             <td>
                 @Html.DisplayFor(modelItem => item.fPhotoPath)
             </td>
             <td>
-    @Html.DisplayFor(modelItem => item.fAccountType)
-</td>
+                @Html.DisplayFor(modelItem => item.fAccountType)
+            </td>
             <td>
                 @Html.ActionLink("修改等級", "MemberTypeEdit", "Member", new { id = item.fId }, new
            {
 
                Class = "btn btn-info"
            })
-                @Html.ActionLink("詳細資料", "MemberDetailsList", "Member", new { id = item.fId }, new
-           {
 
-               Class = "btn btn-info"
-           })
                 @Html.ActionLink("刪除", "MemberDelete", "Member", new { id = item.fId }, new
            {
                OnClick = "return confirm('確定要刪除嗎')",
@@ -85,10 +83,14 @@
     }
 
 </table>
-@Html.ActionLink("新增", "MemberCreate", "Member", new {  }, new
+@Html.ActionLink("新增", "MemberCreate", "Member", new { }, new
          {
            Class = "btn btn-danger"
          })
+@Html.ActionLink("詳細資料", "MemberDetailsList", "Member", null, new
+{
+Class = "btn btn-info"
+})
 
 @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

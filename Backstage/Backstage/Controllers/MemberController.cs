@@ -78,8 +78,9 @@ namespace Backstage.Controllers
 
             return View(result);
         }
-        public ActionResult MemberTypeEdit(int? id)
+        public ActionResult MemberTypeEdit(int? id,int page=1)
         {
+            int currentPage = page < 1 ? 1 : page;
             if (id == null) return RedirectToAction("List");
             var t = from m in db.tMember
                     select new Models.MemberList
@@ -106,10 +107,10 @@ namespace Backstage.Controllers
                 count++;
             }
             ViewBag.cAccountType = items;
+            var result = t.ToPagedList(currentPage, pagesize);
 
 
-
-            return View(t);
+            return View(result);
         }
         [HttpPost]
         public ActionResult MemberTypeEdit(int AccountTypeId, int fId)
@@ -148,6 +149,15 @@ namespace Backstage.Controllers
         public ActionResult MemberDetailEdit(tMember nm)
         {
             tMember x = db.tMember.FirstOrDefault(f => f.fId == nm.fId);
+            
+            if (nm.fImage != null)
+            {
+                string photoName = Guid.NewGuid().ToString() + Path.GetExtension(nm.fImage.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/"), photoName);
+                nm.fImage.SaveAs(path);
+                nm.fPhotoPath = "../Content/" + photoName;
+            }
+
 
             if (x != null)
             {
@@ -184,11 +194,17 @@ namespace Backstage.Controllers
         }
 
 
-        public ActionResult MemberDetailsList()
+        public ActionResult MemberDetailsList(int page=1)
         {
+            int currentPage = page < 1 ? 1 : page;
             var t = from m in db.tMember
+                    orderby m.fId
                     select m;
-            return View(t);
+            var result = t.ToPagedList(currentPage, pagesize);
+
+
+
+            return View(result);
         }
 
 

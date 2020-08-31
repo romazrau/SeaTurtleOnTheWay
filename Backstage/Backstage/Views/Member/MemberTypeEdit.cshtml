@@ -4,25 +4,25 @@
     ViewBag.Title = "MemberTypeEdit";
 }
 
-<h2>MemberTypeEdit</h2>
+<h2>帳號等級修改</h2>
 
 
 <table class="table table-borderless">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fId)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fAccount)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fCoins)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fPhotoPath)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fAccountType)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
         </th>
         
         <th></th>
