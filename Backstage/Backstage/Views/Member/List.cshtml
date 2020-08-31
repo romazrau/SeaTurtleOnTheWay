@@ -1,0 +1,114 @@
+﻿@model IPagedList<Backstage.Models.MemberList>
+
+@{
+    ViewBag.Title = "成員列表";
+}
+
+
+<h2>成員列表</h2>
+@using (Html.BeginForm())
+{
+    <div class="form_container">
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+        <select id="Dropdownlist">
+            <option>依ID順序</option>
+            <option>依ID倒序</option>
+            <option>積分大到小</option>
+            <option>積分小到大</option>
+            <option>依照會員等級排序</option>
+            <option>依照會員等級倒序</option>
+        </select>
+    </div>
+
+}
+
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
+        </th>
+        <th>
+    @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
+</th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoins)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.fPhotoPath)
+            </td>
+            <td>
+    @Html.DisplayFor(modelItem => item.fAccountType)
+</td>
+            <td>
+                @Html.ActionLink("修改等級", "MemberTypeEdit", "Member", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("詳細資料", "MemberDetailsList", "Member", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("刪除", "MemberDelete", "Member", new { id = item.fId }, new
+           {
+               OnClick = "return confirm('確定要刪除嗎')",
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("新增", "MemberCreate", "Member", new {  }, new
+         {
+           Class = "btn btn-danger"
+         })
+
+@Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+
+    $("body").on("change", "#Dropdownlist", ch)
+
+    function ch() {
+        $.post('/Member/List',
+            { ch: $("#Dropdownlist option:selected").index() },
+            (e) => {
+                document.body.innerHTML = e;
+
+
+            }
+        )
+        console.log($("#Dropdownlist option:selected").index())
+
+    }
+
+
+
+</script>
