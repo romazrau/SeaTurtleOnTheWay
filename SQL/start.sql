@@ -280,11 +280,11 @@ CREATE TABLE Activity.tActivityHadLabel
 (
   fId               INT           NOT NULL,
   fActivityId       INT           NOT NULL,
-  tActivityLabelId         INT           NOT NULL,
+  fActivityLabelId  INT           NOT NULL,
   PRIMARY KEY(fId),
   FOREIGN KEY(fActivityId) 
     REFERENCES Activity.tActivity(fId),
-  FOREIGN KEY(tActivityLabelId) 
+  FOREIGN KEY(fActivityLabelId) 
     REFERENCES Activity.tActivityLabel(fId),
 );
 

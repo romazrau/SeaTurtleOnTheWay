@@ -19,6 +19,9 @@ namespace test1.Controllers
 
             return View();
         }
+
+
+
         public ActionResult list(int page =1)
         {
             int currentPage = page < 1 ? 1 : page;
@@ -36,6 +39,11 @@ namespace test1.Controllers
 
             return View(result);
         }
+
+
+
+
+
         public ActionResult create()
         {
             var arr = db.tAccountType.ToDictionary(x => x.fId, y => y.fAccountType);
@@ -52,6 +60,12 @@ namespace test1.Controllers
             db.SaveChanges();
             return View();
         }
+
+
+
+
+
+
         public ActionResult delete(int? id)
         {
             tMember x = db.tMember.FirstOrDefault(s => s.fId == id);
@@ -59,6 +73,11 @@ namespace test1.Controllers
             db.SaveChanges();
             return RedirectToAction("list");
         }
+
+
+
+
+
         public ActionResult edit(int? id)
         {
             tMember x = db.tMember.FirstOrDefault(m => m.fId == id);
