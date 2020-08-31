@@ -268,7 +268,7 @@ VALUES
 --  活動
 insert into Activity.tActivity
 	(fActName,fCreatDate,fActivityDate,fActivityEndDate,fMemberId,fIntroduction,
-	fImgPath, fActLabelID, fMaxLimit,fMinLimit,fActAttestId,fActTypeId,fActLocation, fCoordinateX, fCoordinateY)
+	fImgPath, fActLabelId, fMaxLimit,fMinLimit,fActAttestId,fActTypeId,fActLocation, fCoordinateX, fCoordinateY)
 values('2020國家地理路跑-世界地球日50週年', '2020/03/09', '2020/08/09 12:00', '2020/08/09 14:00:00' , 4, 'https://www.eventpal.com.tw/FOAS/actions/ActivityIndex.action?showTabContent&seqno=9db4bc32-d8ef-473f-8bcd-e17840edab64',
 		'', 2, 100, 10, 1, 1, '台北', 25.071874, 121.5802),
 	--'路跑','世界地球日',null,null,null),
@@ -562,7 +562,7 @@ values('2020國家地理路跑-世界地球日50週年', '2020/03/09', '2020/08/
 
 ---------------------------------------------------------------------------------------
 insert into sMessage.tMessage
-	(fMemberID,fContent)
+	(fMemberId,fContent)
 VALUES(1, '成功加入社團'),
 	(1, '已加入活動'),
 	(2, '成功加入社團'),
