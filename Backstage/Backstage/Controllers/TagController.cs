@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Windows;
+using PagedList;
 
 namespace Backstage.Controllers
 {
@@ -11,13 +12,19 @@ namespace Backstage.Controllers
     {
         SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
         // GET: Tag
-        public ActionResult TagList()
+        public ActionResult TagList(int page=1)
         {
-            
+            int currentPage = page < 1 ? 1 : page;       //判斷page
+            var ActTag = db.tActivityLabel.OrderBy(x => x.fId);   //一定要先排序
+            var result = ActTag.ToPagedList(currentPage, 10);  //使用ToPagedList
+                       
+
             IQueryable<tActivityLabel> t = null;
+            IQueryable<tActivityHadLabel> th = null;
             string keyword = Request.Form["txtKeyword"];
             if (string.IsNullOrEmpty(keyword))
             {
+                
                 t = from s in db.tActivityLabel
                     orderby s.fId
                     select s;
@@ -30,8 +37,7 @@ namespace Backstage.Controllers
                     select s;
             }
             
-
-            return View(t);
+            return View(result);
 
         }
 
@@ -55,6 +61,8 @@ namespace Backstage.Controllers
             }
             return View(t);
         }
+
+        
         [HttpPost]
         public ActionResult TagAdd(string NewTag)
         {
@@ -68,7 +76,8 @@ namespace Backstage.Controllers
                 db.SaveChanges();
 
             }
-            else {
+            else
+            {
                 MessageBox.Show("已擁有此標籤");
                 return View();
             }

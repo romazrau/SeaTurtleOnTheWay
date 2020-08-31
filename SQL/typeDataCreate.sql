@@ -181,4 +181,6 @@ values
 	('plogging');
 	     
 
-
+-- 活動 Had 標籤
+insert into Activity.tActivityHadLabel(fId,fActivityId,fActivityLabelId)
+values (1,29,27),(2,29,28),(3,24,19),(4,24,20),(5,24,21),(6,24,4)
