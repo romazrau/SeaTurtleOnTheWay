@@ -9,6 +9,7 @@ namespace test1.Viewmodel
     public class Memberlist
     {
         public int fId { get; set; }
+
         public string fAccount { get; set; }
         public string fName { get; set; }
 
