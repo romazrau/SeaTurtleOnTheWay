@@ -10,14 +10,26 @@
 {
     <input type="text" id="txtKeyword" name="txtKeyword" />
 
-    <input type="submit" />
+    <input type="submit" value="查詢" class="btn btn-primary" />
 }
 
-
-
-
+<span>新增標籤名稱</span>
+<span><input type="text" id="txtNewTag" name="txtNewTag" /></span>
+<span><input type="button" value="送出" onclick="AddTag()" class="btn btn-secondary" /></span>
+<span>@Html.ActionLink("回到標籤清單", "TagList")</span>
 
 <table class="table table-borderless">
+    @*<tr>
+        <td>
+            新增標籤名稱
+        </td>
+        <td>
+            <input type="text" id="txtNewTag" name="txtNewTag" />
+        </td>
+        <td>
+            <input type="button" value="送出" onclick="AddTag()" class="btn btn-secondary" />
+        </td>
+    </tr>*@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.fId)
@@ -40,19 +52,12 @@
 
         </tr>
     }
-    <tr>
-        <td>
-        </td>
-        <td>
-            <input type="text" id="txtNewTag" name="txtNewTag" />
-        </td>
-        <td>
-            <input type="button" value="送出" onclick="AddTag()" class="btn-secondary" />
-        </td>
-    </tr>
+    
 
 
 </table>
+
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     function AddTag() {
