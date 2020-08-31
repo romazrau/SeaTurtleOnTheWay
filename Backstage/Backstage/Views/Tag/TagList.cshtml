@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<Backstage.tActivityLabel>
+
+@{
+    ViewBag.Title = "TagList";
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+
+}
+
+<h2>標籤清單</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="text" id="txtKeyword" name="txtKeyword" />
+
+    <input type="submit" value="查詢" class="btn btn-primary" />
+
+    <p>@Html.ActionLink("新增", "TagAdd", "Tag", null, new { Class = "btn btn-danger" })</p>
+}
+
+
+
+
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fLabelName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fLabelName)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "TagEdit", "Tag", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+
+                @Html.ActionLink("刪除", "TagDelete", "Tag", new { id = item.fId }, new
+           {
+               OnClick = "return confirm('確定要刪除嗎')",
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+    @*<tr>
+            <td></td>
+            <td>@Html.ActionLink("新增", "TagAdd", "Tag", null, new { Class = "btn btn-danger" })</td>
+        </tr>*@
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("TagList", new { page }))

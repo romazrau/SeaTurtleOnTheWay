@@ -1,0 +1,118 @@
+﻿@model IPagedList<Backstage.tMember>
+
+@{
+    ViewBag.Title = "MemberDetailsList";
+}
+
+<h2>MemberDetailsList</h2>
+
+<p>
+    @Html.ActionLink("新增資料", "MemberCreate","Member")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fBirthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCeilphoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fIntroduction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountTypeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fLastTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fBirthdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCeilphoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fIntroduction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccountTypeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPhotoPath)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fLastTime)
+            </td>
+            <td>
+            <td>
+                @Html.ActionLink("修改", "MemberDetailEdit", "Member", new { id = item.fId }, new
+           {
+               Class = "btn btn-danger"
+           })
+
+            </td>
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("MemberDetailsList", new { page }))

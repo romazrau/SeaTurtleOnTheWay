@@ -1,0 +1,104 @@
+﻿@model IPagedList<Backstage.Models.MemberList>
+
+@{
+    ViewBag.Title = "MemberTypeEdit";
+}
+
+<h2>帳號等級修改</h2>
+
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoins)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.fPhotoPath)
+            </td>
+            @if (item.fId == ViewBag.fId)
+            {
+
+                <td>
+                    @Html.DropDownList("AccountTypeDDL", (IEnumerable<SelectListItem>)ViewBag.cAccountType, new { @class = "dropdown-toggle-split" })
+                </td>
+                <td>
+                    <input type="button" onclick="AccountTypeEdit()" value="確認" class="btn btn-secondary" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAccountType)
+                </td>
+                <td>
+                </td>
+            }
+
+
+
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("MemberTypeEdit", new { page }))
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    function AccountTypeEdit()
+    {
+
+        $.post('/Member/MemberTypeEdit',
+            { fId: @ViewBag.fId, AccountTypeId: $('#AccountTypeDDL option:selected').val() }
+
+        )
+
+        window.location.href = "/Member/List";
+
+
+
+
+        @*fetch('/Member/MemberTypeEdit', {
+            method: 'POST',
+            body: encodeURI({
+                AccountTypeId: document.getElementById("AccountTypeDDL").value,
+                fId:@ViewBag.fId })
+        }).then(
+
+            console.log(document.getElementById("AccountTypeDDL").value)
+
+
+
+        )*@
+
+    }
+</script>

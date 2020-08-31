@@ -1,0 +1,117 @@
+﻿@model IPagedList<Backstage.Models.CommunityListDetail>
+
+@{
+    ViewBag.Title = "CommunityList";
+}
+
+<h2>社團清單</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form_container">
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+        <span>排序:</span>
+        <select id="Dropdownlist">
+            <option>依id</option>
+            <option>依創建日期排序</option>
+            <option>依創建日期倒序</option>
+            <option>依狀態</option>
+        </select>
+    </div>
+
+}
+
+
+<table class="table table-borderless">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fImgPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fStatusName)
+            </td>
+
+            <td>
+                @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+                @Html.ActionLink("詳細修改", "CommunityDetailsEdit", "Community", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-info"
+           })
+
+                @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
+           {
+
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+
+</table> 
+@Html.ActionLink("新增", "CommunityCreate", "Community",null, new
+{
+
+    Class = "btn btn-danger"
+}) 
+@Html.PagedListPager(Model, page => Url.Action("CommunityList", new { page }))
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+
+    $("body").on("change", "#Dropdownlist", ch)
+
+    function ch() {
+        $.post('/Community/CommunityList',
+            { ch: $("#Dropdownlist option:selected").index() },
+            (e) => {
+                document.body.innerHTML = e;
+
+
+            }
+        )
+        console.log($("#Dropdownlist option:selected").index())
+
+    }
+</script>
