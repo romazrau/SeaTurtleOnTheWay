@@ -278,7 +278,7 @@ CREATE TABLE Activity.tJoinList
 -- 活動小標籤列表
 CREATE TABLE Activity.tActivityHadLabel
 (
-  fId               INT           NOT NULL,
+  fId               INT           NOT NULL IDENTITY(1,1),
   fActivityId       INT           NOT NULL,
   fActivityLabelId  INT           NOT NULL,
   PRIMARY KEY(fId),
