@@ -613,7 +613,7 @@ values
 	     
 
 -- 活動 Had 標籤
-insert into Activity.tActivityHadLabel(fActivityId,tActivityLabelId)
+insert into Activity.tActivityHadLabel(fActivityId,fActivityLabelId)
 values (1,8),(1,2),(2,76),(2,2),(3,76),(3,2),(4,1),(4,4),(4,77),(4,78),(5,68),
 (6,89),(7,49),(7,21),(7,80);
 
