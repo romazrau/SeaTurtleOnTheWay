@@ -129,9 +129,9 @@ CREATE TABLE Community.tPost
  fId             INT             NOT NULL IDENTITY(1,1),
  fMemberId       INT             NOT NULL,  --or null決定會員是否能在非社團內PO文 (非在社團的人發文前就擋下)
  fCommunityId    INT             NOT NULL, 
- fPostTime       NVARCHAR(50)       NOT NULL,
+ fPostTime       NVARCHAR(50)    NOT NULL,
  fContent        NVARCHAR(MAX)   NULL,
- fImgPaths       NVARCHAR(2040)      NULL,   -- 多個照片用 ,,分隔 ex: 23.png,,img/123.jpg
+ fImgPaths       NVARCHAR(2040)  NULL,   -- 多個照片用 ,,分隔 ex: 23.png,,img/123.jpg
  CONSTRAINT PK_Post PRIMARY KEY(fId),
  FOREIGN KEY(fMemberId)
    REFERENCES Member.tMember(fId),   --取得(社團成員帳號or會員帳號)讓發文帳號為fk
@@ -139,6 +139,18 @@ CREATE TABLE Community.tPost
    REFERENCES Community.tCommunity(fId) --取得社團名稱為fk
 )
 
+--文章喜歡
+CREATE TABLE Community.tLike
+(
+ fId              INT       NOT NULL IDENTITY(1,1),
+ fPostId          INT       NOT NULL,
+ fLikeMemberId    INT       NOT NULL,
+ CONSTRAINT PK_Like PRIMARY KEY(fId),
+ CONSTRAINT FK_Community_Post_Like FOREIGN KEY(fPostId)
+   REFERENCES Community.tPost(fId),
+ FOREIGN KEY(fLikeMemberId)
+   REFERENCES Member.tMember(fId),
+)
 
 --文章留言
 CREATE TABLE Community.tReply
