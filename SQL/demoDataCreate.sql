@@ -270,22 +270,27 @@ insert into Activity.tActivity
 	(fActName,fCreatDate,fActivityDate,fActivityEndDate,fMemberId,fIntroduction,
 	fImgPath, fActLabelId, fMaxLimit,fMinLimit,fActAttestId,fActTypeId,fActLocation, fCoordinateX, fCoordinateY)
 values('2020國家地理路跑-世界地球日50週年', '2020/03/09', '2020/08/09 12:00', '2020/08/09 14:00:00' , 4, 'https://www.eventpal.com.tw/FOAS/actions/ActivityIndex.action?showTabContent&seqno=9db4bc32-d8ef-473f-8bcd-e17840edab64',
-		'', 2, 100, 10, 1, 1, '台北', 25.071874, 121.5802),
+		'img/event5.jpg', 2, 100, 10, 1, 1, '台北', 25.071874, 121.5802),
 	--'路跑','世界地球日',null,null,null),
 	('魚取漁囚 - 守護海洋行動體驗特展', '2020/03/09', '2020/08/09 12:00:00', '2020/08/09 14:00:00', 4, 'https://www.google.com',
-		'', 3, Null, Null, 1, 1, '基隆', 25.007839, 121.494713),
+		'img/event6.png', 3, Null, Null, 1, 1, '基隆', 25.007839, 121.494713),
 	--'守護海洋','世界地球日',null,null,null),
 	('Plogging淨街慢跑-迪化街', '2020/02/13', '2020/07/19 13:00:00', '2020/07/19 16:00:00', 4, 'https://blog.decathlon.tw/running/sport-knowledge/plogging',
-		'', 2, 80, 5, 1, 2, '台北', 25.133756, 121.36425),
+		'img/event3.jpg', 2, 80, 5, 1, 2, '台北', 25.133756, 121.36425),
 	--'守護海洋','世界地球日',null,null,null),
 	('環保潛水隊-隊員招募中', '2020/04/22', '2020/09/01 10:00:00', '2020/08/09 14:00:00', 4, 'https://news.ltn.com.tw/news/local/paper/1286949',
-		'', 0, 30, Null, 1, 2, '台東', 25.283227, 121.525955),
+		'img/event7.jpg', 0, 30, Null, 1, 2, '台東', 25.283227, 121.525955),
 	--'潛水','環保','海洋垃圾','培訓',null),
 	('臉部平權運動臺北國道馬拉松', '2020/05/01', '2020/09/06 18:00:00', '2020/09/06 20:00:00', 4, 'https://www.sportsnet.org.tw/20200308_web/',
+<<<<<<< Updated upstream
 		'', 2, 50, Null, 1, 2, '台北', 24.979212, 121.624832),
 	--'認識自己的城市',null,null,null,null),
+=======
+		'img/event12.png', 2, 50, Null, 1, 2, '台北', 24.979212, 121.624832),
+	--'潛水',null,null,null,null),
+>>>>>>> Stashed changes
 	('世界環境清潔日 相約海洋淨灘', '2020/06/12', '2020/08/26 20:00:00', '2020/08/26 22:00:00', 4, 'http://letsdoittaiwan.tw/2018worldcleanupday/coastline/',
-		'', 1, 10, Null, 1, 2, '台東', 25.230442, 121.645088),
+		'img/event8.png', 1, 10, Null, 1, 2, '台東', 25.230442, 121.645088),
 	--'淨灘',null,null,null,null),
 	('天母二手市集', '2020/09/07', '2020/09/01 12:00:00', '2020/09/01 15:00:00', 4, 'https://vivawei.tw/tianmu-market/',
 		'', 4, 150, 20, 1, 2, '台北', 25.117735, 121.528873),
@@ -618,7 +623,9 @@ values (1,8),(1,2),(2,76),(2,2),(3,76),(3,2),(4,1),(4,4),(4,77),(4,78),(5,68),
 (6,89),(7,49),(7,21),(7,80);
 
 
-
+-- 活動 Had 標籤
+insert into Activity.tActivityHadLabel(fId,fActivityId,fActivityLabelId)
+values (1,29,27),(2,29,28),(3,24,19),(4,24,20),(5,24,21),(6,24,4)
 
 
 ---------------------------------------------------------------------------------------
