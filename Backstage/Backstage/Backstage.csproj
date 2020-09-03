@@ -239,6 +239,8 @@
     <Compile Include="tStatus.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
+    <Compile Include="viewmodel\active_list_detail.cs" />
+    <Compile Include="viewmodel\Join_member_list.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -269,6 +271,12 @@
     <Content Include="SeaTurtle.edmx.diagram">
       <DependentUpon>SeaTurtle.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Activity\active_list_detail.cshtml" />
+    <Content Include="Views\Activity\active_list_detail_Creat.cshtml" />
+    <Content Include="Views\Activity\active_list_detail_edit.cshtml" />
+    <Content Include="Views\Activity\join_list_detail.cshtml" />
+    <Content Include="Views\Activity\join_list_detail_delete.cshtml" />
+    <Content Include="Views\Activity\join_list_detail_edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Backstage.viewmodel.Join_member_list>
+
+@{
+    ViewBag.Title = "join_list_detail";
+}
+
+<h2>join_list_detail</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActivityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fMemberName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fJoinTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fJoinTypeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fActivityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fMemberName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fJoinTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fJoinTypeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "join_list_detail_edit", new { id=item.fId  }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.fId */ }) |
+            @Html.ActionLink("Delete", "join_list_detail_delete", new {  id=item.fId})
+        </td>
+    </tr>
+}
+
+</table>
