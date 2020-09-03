@@ -246,6 +246,29 @@ VALUES
     (30, 15, '2020/08/28 21:22', '9/29的時候我們有辦一個愛護地球手作環保套組的活動～目前還有名額，這樣就不用再買環保袋或飲料袋了！@XXX就是在說你※活動連結', null), 
     (11, 15, '2020/08/28 13:03', '原本的環保袋破掉了啦，選擇障礙爆發惹，大家覺得哪個顏色比較好看？', 'community_article/green_post04.jpg');
 
+-- 社團文章喜歡
+INSERT INTO Community.tLike
+    (fPostId, fLikeMemberId)
+VALUES
+    (31, 2),
+	(31, 4),
+	(31, 7),
+	(31, 17),
+	(31, 23),
+	(31, 22),
+	(31, 20),
+	(31, 12),
+    (30, 2),
+	(30, 4),
+	(30, 7),
+	(28, 17),
+	(28, 23),
+	(28, 22),
+	(28, 29),
+	(28, 31),
+	(27, 23),
+	(27, 22);
+
 -- 社團文章回覆
 INSERT INTO Community.tReply
 	( fPostId, fReplyMemberId, fReplyTime, fContent )
@@ -288,6 +311,8 @@ Come to this workshop, you can learn sentences and popular words commonly spoken
 	('臉部平權運動臺北國道馬拉松', '2020/05/01', '2020/09/06 18:00:00', '2020/09/06 20:00:00', 11, 'https://www.sportsnet.org.tw/20200308_web/',
 		'img/event7.jpg', 2, 50, Null, 1, 2, '中山高速公路五股 - 汐止高架段', 24.979212, 121.624832,null),
 	--'認識自己的城市',null,null,null,null),
+		
+	--'潛水',null,null,null,null),
 	('世界環境清潔日 相約海洋淨灘', '2020/06/12', '2020/08/26 20:00:00', '2020/08/26 22:00:00', 4, 'http://letsdoittaiwan.tw/2018worldcleanupday/coastline/',
 		'img/event3.jpg', 1, 10, Null, 1, 2, '新金山海灘', 25.230442, 121.645088,null),
 	--'淨灘',null,null,null,null),
@@ -656,5 +681,8 @@ VALUES(1, '成功加入社團'),
 	(4, '活動人數不足,活動未成立'),
 	(3, '成功加入社團'),
 	(5, '等待審核請稍後~')
-
+---------------------------------------------------------------------------------------
+insert into Activity.tJoinList
+		(fActivityId,fMemberId,fJoinTime,fJoinTypeId)
+values(3,2,1992/05/08,3),(3,15,1990/07/08,2),(3,2,1995/06/23,3)
 

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<backe.tProductTag>
+
+@{
+    ViewBag.Title = "標籤管理";
+}
+
+<h2>List</h2>
+
+
+@using (Html.BeginForm())
+{
+    <label>搜尋:</label> @Html.TextBox("txtKeyword");
+    <input type="submit" />
+    <label>排序:</label>
+    <select>
+        <option>順序</option>
+        <option>倒序</option>
+    </select>
+
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "ProductTagsEdit", "Tags", new { id = item.fId }, null) |
+
+                @Html.ActionLink("刪除", "ProductTagsDelete", "Tags", new { id = item.fId }, new
+           {
+               OnClick = "return confirm('確定要刪除嗎')",
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("新增標籤", "ProductTagsNew", "Tags");

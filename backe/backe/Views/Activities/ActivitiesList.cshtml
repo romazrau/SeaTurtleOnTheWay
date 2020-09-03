@@ -1,0 +1,86 @@
+﻿@model IEnumerable<backe.Models.ActivityListDetail>
+
+@{
+    ViewBag.Title = "ActivitiesList";
+}
+
+<h2>ActivitiesList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCreatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fActivityDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAttestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fStatusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fLabelName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.fId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fActName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fCreatDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fActivityDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fLimit)
+    </td>
+
+   
+        <td>
+            @Html.DisplayFor(modelItem => item.fAttestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fStatusName)
+        </td>
+    
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.fLabelName)
+    </td>
+    <td>
+        @Html.ActionLink("狀態修改", "ActivitiesStatusEdit", "Activities", new { id = item.fId }, null) |
+        @Html.ActionLink("詳細修改", "ActivitiesEdit", "Activities", new { id = item.fId }, null) |
+        @Html.ActionLink("刪除", "ActivitiesDelete", "Activities", new { id = item.fId }, null)
+    </td>
+</tr>
+}
+
+</table>
