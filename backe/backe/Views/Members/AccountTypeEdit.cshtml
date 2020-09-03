@@ -1,0 +1,123 @@
+﻿@model IEnumerable<backe.tMember>
+
+@{
+    ViewBag.Title = "AccountTypeEdit";
+
+
+}
+
+<h2>AccountTypeEdit</h2>
+
+@functions
+{
+    public tAccountType getAccountTypeName(int id)
+    {
+        SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
+        tAccountType result = db.tAccountType.FirstOrDefault(m => m.fId == id);
+
+        return result;
+    }
+
+
+
+}
+
+
+<form>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fAccount)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.fName)
+            </th>
+
+
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.fCoins)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.fAccountTypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fPhotoPath)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAccount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCoins)
+                </td>
+                @if (item.fId == ViewBag.fId)
+                {
+                    <td>
+                        @Html.DropDownList("AccountType_Drop", (IEnumerable<SelectListItem>)ViewBag.cAccountType)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @getAccountTypeName(item.fAccountTypeId).fAccountType
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPhotoPath)
+                </td>
+                @if (item.fId == ViewBag.fId)
+                {
+                    <td>
+                        <input type="button" onclick="edit()" value=" 確認" />
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+        }
+
+
+    </table>
+</form>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+<script>
+    function edit() {
+        $.post('/Members/AccountTypeEdit',
+            { fId: @ViewBag.fId, fNumber: $('#AccountType_Drop option:selected').val() }
+            
+        )
+
+        window.location.href = "/Members/MemberList";
+
+    }
+
+
+
+
+
+</script>
