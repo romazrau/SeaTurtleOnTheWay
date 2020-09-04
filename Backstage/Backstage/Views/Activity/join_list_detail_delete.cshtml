@@ -1,0 +1,64 @@
+﻿@model Backstage.tJoinList
+
+@{
+    ViewBag.Title = "join_list_detail_delete";
+}
+
+<h2>join_list_detail_delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tJoinList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fActivityId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fActivityId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fMemberId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fMemberId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fJoinTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fJoinTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fJoinTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fJoinTypeId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "join_list_detail")
+        </div>
+    }
+</div>

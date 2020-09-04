@@ -1,4 +1,5 @@
 ﻿using Backstage.Models;
+using Backstage.viewmodel;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -266,7 +267,192 @@ namespace Backstage.Controllers
 
             return RedirectToAction("ActivityList");
         }
+        public ActionResult active_list_detail(int page = 1)
+        {
+            IQueryable<active_list_detail> x = null;
+            string txt = Request.Form["search_active_detail"];
+
+            int currentPage = page < 1 ? 1 : page;
+            if (string.IsNullOrEmpty(txt))
+            {
+                x = from t in db.tActivity
+                    orderby t.fId
+                    select new viewmodel.active_list_detail
+                    {
+                        fId = t.fId,
+                        fActName = t.fActName,
+                        fCreatDate = t.fCreatDate,
+                        fActivityDate = t.fActivityDate,
+                        fActivityEndDate = t.fActivityEndDate,
+                        //fCommunityName = t.
+                        fMemberName = t.tMember.fName,
+                        fIntroduction = t.fIntroduction,
+                        fMaxLimit = t.fMaxLimit,
+                        fMinLimit = t.fMinLimit,
+                        fAttestName = t.tAttestType.fAttestName,
+                        fStatusName = t.tActivityType.fStatusName,
+                        fActLocation = t.fActLocation,
+                        fCoordinateX = t.fCoordinateX,
+                        fCoordinateY = t.fCoordinateY,
+                        fLabelName = t.tActivityMainLabel.fLabelName,
+                        fImgPath = t.fImgPath
+                    };
+            }
+            else
+            {
+                x = from t in db.tActivity
+                    orderby t.fId
+                    where t.fActName.Contains(txt) || t.tMember.fName.Contains(txt)
+                    select new viewmodel.active_list_detail
+                    {
+                        fId = t.fId,
+                        fActName = t.fActName,
+                        fCreatDate = t.fCreatDate,
+                        fActivityDate = t.fActivityDate,
+                        fActivityEndDate = t.fActivityEndDate,
+                        //fCommunityName = t.
+                        fMemberName = t.tMember.fName,
+                        fIntroduction = t.fIntroduction,
+                        fMaxLimit = t.fMaxLimit,
+                        fMinLimit = t.fMinLimit,
+                        fAttestName = t.tAttestType.fAttestName,
+                        fStatusName = t.tActivityType.fStatusName,
+                        fActLocation = t.fActLocation,
+                        fCoordinateX = t.fCoordinateX,
+                        fCoordinateY = t.fCoordinateY,
+                        fLabelName = t.tActivityMainLabel.fLabelName,
+                        fImgPath = t.fImgPath
+                    };
+            }
+
+            var result = x.ToPagedList(currentPage, 5);
+            return View(result);
+        }
+
+
+        public ActionResult active_list_detail_Delete(int? id)
+        {
+            tActivity x = db.tActivity.FirstOrDefault(m => m.fId == id);
+            db.tActivity.Remove(x);
+            db.SaveChanges();
+            return View();
+        }
+
+
+        public ActionResult active_list_detail_Creat()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult active_list_detail_Creat(tActivity x)
+        {
+            db.tActivity.Add(x);
+            db.SaveChanges();
+            return RedirectToAction("active_list_detail");
+        }
+
+        public ActionResult active_list_detail_edit(int? id)
+        {
+            tActivity x = db.tActivity.FirstOrDefault(m => m.fId == id);
+
+            return View(x);
+        }
+
+        [HttpPost]
+        public ActionResult active_list_detail_edit(tActivity s)
+        {
+            tActivity m = db.tActivity.FirstOrDefault(z => z.fId == s.fId); 
+            m.fActName = s.fActName;
+            m.fCreatDate = s.fCreatDate;
+            m.fActivityDate = s.fActivityDate;
+            m.fActivityEndDate = s.fActivityEndDate;
+            m.fMemberId = s.fMemberId;
+            m.fIntroduction = s.fIntroduction;
+            m.fMaxLimit = s.fMaxLimit;
+            m.fMinLimit = s.fMinLimit;
+            m.fActAttestId = s.fActAttestId;
+            m.fActAttestId = s.fActAttestId;
+            m.fActLocation = s.fActLocation;
+            m.fCoordinateX = s.fCoordinateX;
+            m.fCoordinateY = s.fCoordinateY;
+            m.fActLabelId = s.fActLabelId;
+            m.fImgPath = s.fImgPath;
+
+            db.SaveChanges();
+            return RedirectToAction("active_list_detail");
+        }
+
+        public ActionResult join_list_detail(int? id)
+        {
+            var cust = from t in db.tJoinList
+                       where t.fActivityId == id
+                       select new viewmodel.Join_member_list
+                       {
+                           fId = t.fId,
+                           fActivityName = t.tActivity.fActName,
+                           fMemberName = t.tMember.fName,
+                           fJoinTime = t.fJoinTime,
+                           fJoinTypeName = t.tJoinType.fJoinName
+                       };
+
+            return View(cust);
+        }
+
+        public ActionResult join_list_detail_delete(int? id)
+        {
+            tJoinList x = db.tJoinList.FirstOrDefault(m => m.fId == id);
+            db.tJoinList.Remove(x);
+            db.SaveChanges();
+            return RedirectToAction("join_list_detail");
+        }
+
+        public ActionResult join_list_detail_edit(int? id)
+        {
+            tJoinList s = db.tJoinList.FirstOrDefault(m => m.fId == id);
+            return View(s);
+        }
+
+        [HttpPost]
+        public ActionResult join_list_detail_edit(tJoinList x)
+        {
+            tJoinList s = db.tJoinList.FirstOrDefault(m => m.fId == x.fId);
+            //s.fId = x.fId;
+            //s.fActivityId = x.fActivityId;
+            //s.fMemberId = x.fMemberId;
+            //s.fJoinTime = x.fJoinTime;
+            s.fJoinTypeId = x.fJoinTypeId;
+            db.SaveChanges();
+            return RedirectToAction("join_list_detail");
+        }
+
+
+        public ActionResult check_statusname()
+        {
+            DateTime nowdate = DateTime.Now;
+            Session["today"] = nowdate.ToString("yyyy/MM/dd");
+            var acvdates = from t in db.tActivity
+                           select t;
+
+            foreach (tActivity item in acvdates)
+            {
+                tActivity x = db.tActivity.FirstOrDefault(m => m.fId == item.fId);
+                if (string.Compare(item.fActivityDate, nowdate.ToString("yyyy/MM/dd H:mm:ss")) > 0)
+                {
+                    x.fActTypeId = 1;
+                }
+                else if (string.Compare(item.fActivityDate, nowdate.ToString("yyyy/MM/dd H:mm:ss")) < 0 && string.Compare(item.fActivityEndDate, nowdate.ToString("yyyy/MM/dd")) > 0)
+                {
+                    x.fActTypeId = 2;
+                }
+                else if (string.Compare(item.fActivityDate, nowdate.ToString("yyyy/MM/dd H:mm:ss")) < 0)
+                {
+                    x.fActTypeId = 3;
+                }
+            }
+            db.SaveChanges();
+            return RedirectToAction("active_list_detail");
+        }
     }
 
-        
+
 }

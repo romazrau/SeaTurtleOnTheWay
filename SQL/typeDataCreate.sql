@@ -51,8 +51,8 @@ values
 	(2, '參加'),
 	(3, '退出'),
 	(4, '未出席'),
-	(5, '完成');
-
+	(5, '完成'),
+	(6, '發起者');
 
 -- 活動狀態標籤
 insert into Activity.tActivityType
