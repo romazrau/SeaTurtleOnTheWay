@@ -7,19 +7,19 @@ INSERT INTO Member.tMember
 	fAddress, fCity, fCeilphoneNumber, fCoins,
 	fPhotoPath, fAccountTypeId, fIntroduction )
 VALUES
-	('root', 'FAlonDAfaISgood666', '管理員', '2000/02/20', 'cycle2link@gmail.com',
+	('root', '$2b$10$XIOKrX5dNZHPCYSqarXameYSwJhXbNtx0TTQEE12DMHc0bLN.ckfO', '管理員', '2000/02/20', 'cycle2link@gmail.com', --wecanuseit
 		'復興南路一段390號2樓', '台北市', 0989859112, 100000,
 		null, 0, '沙漠中一無所有，一無所有非人所求也。'),
-	('guest', 'badiii7777', '訪客', '2000/02/20', 'cycle2link@gmail.com',
+	('guest', '$2b$10$7x5qvbiQNvcn43f0mjxWCO1Jx4Lc.BD0ZQkLM4dGJgQLE73WiDrBi', '訪客', '2000/02/20', 'cycle2link@gmail.com',  -- badiii7777
 		'復興南路一段390號2樓', '台北市', 0989859112, 0,
 		null, 5, '沙漠中一無所有，一無所有非人所求也。'),
-	('romazrau', '55688app', '饒孝天', '2000/02/20', 'adoro0920@gmail.com',
+	('romazrau', '$2b$10$vCcMCrfudRScjP8kVmqxgeo2Zz7Vd74.A7BOcAIX7ib0wMvyLRpwq', '饒孝天', '2000/02/20', 'adoro0920@gmail.com',  --55688app
 		'南港區南港路2段222號2樓之2', '台北市', 0989859112, 2222,
 		'member/id1.jpg', 3, '沙漠中一無所有，一無所有非人所求也。'),
-	('AndyKao123', 'j123456789', '郭安迪', '1987/08/07', 'O222132435@gmail.com',
+	('AndyKao123', '$2b$10$6UI27slTilYkyOlORk6qwOoeVf/Qockdst2xMElUXTnDXnqrmCLIi', '郭安迪', '1987/08/07', 'O222132435@gmail.com',  --j123456789
 		'南投縣魚池鄉富錦路33-1號', '南投縣', 0934999444, 2567,
 		'member/id2.jpeg', 2, '幻想拯救世界的積極環保人士一枚'),
-	('Wwill', 'w134667', '王威比', '1988/02/19', 'A125453792@gmail.com',
+	('Wwill', '$2b$10$vHkUQfBKpWO0f9SHOu8ReeyeIjJwztf2xifENA61cfIGIsIsymskK', '王威比', '1988/02/19', 'A125453792@gmail.com',  -- w134667
 		'中山區民生東路二段78號3樓', '台北市', 0913345168, 3700,
 		'member/id3.jpg', 1, '佛系環保人士，盡量隨身攜帶環保餐具，偶爾還是會不爭氣地拿塑膠吸管，淨灘其實蠻好玩的，大家都是有趣的人～'),
 	('JL1992', 'ss66789', '劉日', '1992/01/29', 'F229842651@hotmail.com',
