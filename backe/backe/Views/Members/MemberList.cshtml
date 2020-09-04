@@ -1,0 +1,66 @@
+﻿@model IEnumerable<backe.Models.MemberListDetail>
+
+@{
+    ViewBag.Title = "MemberList";
+}
+
+<h2>成員列表</h2>
+
+@using (Html.BeginForm())
+{
+    <label>搜尋:</label> @Html.TextBox("txtKeyword");
+    <input type="submit" />
+    @Html.DropDownList("DropDownList", (IEnumerable<SelectListItem>)ViewBag.cAccountType);
+    <input type="submit" onclick="TypeCh()" />
+}
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fCoins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAccountType)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoins)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAccountType)
+            </td>
+            <td>
+                @Html.ActionLink("修改權限", "AccountTypeEdit", "Members", new { id = item.fId }, null) |
+                @Html.ActionLink("詳細修改", "AccountProfileEdit", "Members", new { id = item.fId }, null) |
+                @Html.ActionLink("刪除", "AccountDelete", "Members", new { id = item.fId }, new
+           {
+               OnClick = "return confirm('確定要刪除嗎')",
+               Class = "btn btn-danger"
+           })
+            </td>
+        </tr>
+    }
+
+</table>

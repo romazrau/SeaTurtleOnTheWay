@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e4ff0d96569462893d0aacb5191f2b1" Name="Diagram1">
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivity" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityHadLabel" Width="1.5" PointX="10.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityLabel" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityMainLabel" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityMessage" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tActivityType" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAttestType" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tJoinList" Width="1.5" PointX="10.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tJoinType" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tScore" Width="1.5" PointX="10.5" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tSearchList" Width="1.5" PointX="13.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAccessRight" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tCommunity" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tFeedback" Width="1.5" PointX="8.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tMemberList" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tPost" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tReply" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tStatus" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAccountLikeList" Width="1.5" PointX="5.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tAccountType" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tMember" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tFaceToFace" Width="1.5" PointX="15" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tProduct" Width="1.5" PointX="12.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tProduct5Tag" Width="1.5" PointX="18" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tProductTag" Width="1.5" PointX="15.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tQnA" Width="1.5" PointX="15" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tReply1" Width="1.5" PointX="17.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SeaTurtleOnTheWayModel.tSearchingRecord" Width="1.5" PointX="15" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__fActi__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__fActL__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__fMemb__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tScore__fActivit__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tSearchLi__fActi__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Activity_ActivityType" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Activity_AttestType" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_JoinList_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__tActi__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__fMemb__7A672E12" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tActivity__fRepl__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_ActivityMessage_AttestType" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tJoinList__fMemb__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_JoinList_JoinType" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tScore__fMemberI__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tSearchLi__fMemb__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Community_AccessRight" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Community_Community_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Community_Community_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Community_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tFeedback__fFeed__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tFeedback__fRepl__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tMemberLi__fMemb__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tPost__fMemberId__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Community_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tReply__fReplyMe__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_AccountLikeList_Member_get" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_AccountLikeList_Member_give" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK_Member_AccountTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tFaceToFa__fProd__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tProduct5__fProd__2180FB33" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tQnA__fProductId__282DF8C2" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tSearchin__fProd__25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tProduct5__fProd__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="SeaTurtleOnTheWayModel.FK__tReply__fQnAId__2B0A656D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

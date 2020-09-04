@@ -7,16 +7,16 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C9E88370-939A-48FA-BBF2-4A40FE831482}</ProjectGuid>
+    <ProjectGuid>{4C004067-CAD2-4E41-B50F-D964F798A41E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Backstage</RootNamespace>
-    <AssemblyName>Backstage</AssemblyName>
+    <RootNamespace>backe</RootNamespace>
+    <AssemblyName>backe</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44331</IISExpressSSLPort>
+    <IISExpressSSLPort>44398</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -50,13 +50,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -107,7 +103,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -126,8 +121,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="SeaTurtle.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeaTurtle.edmx</DependentUpon>
       <LastGenOutput>SeaTurtle.Context.cs</LastGenOutput>
+      <DependentUpon>SeaTurtle.edmx</DependentUpon>
     </Content>
     <Content Include="SeaTurtle.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -135,31 +130,29 @@
       <LastGenOutput>SeaTurtle.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
-    <Content Include="Views\Member\List.cshtml" />
-    <Content Include="Views\Member\MemberTypeEdit.cshtml" />
-    <Content Include="Views\Member\MemberDetailEdit.cshtml" />
-    <Content Include="Views\Activity\ActivityList.cshtml" />
-    <Content Include="Views\Activity\ActivityStatusEdit.cshtml" />
-    <Content Include="Views\Tag\TagList.cshtml" />
-    <Content Include="Views\Tag\TagAdd.cshtml" />
-    <Content Include="Views\Tag\TagEdit.cshtml" />
-    <Content Include="Views\Community\CommunityList.cshtml" />
-    <Content Include="Views\Community\CommunityStatusEdit.cshtml" />
-    <Content Include="Views\Community\CommunityDetailsEdit.cshtml" />
+    <Content Include="Views\Members\AccountTypeEdit.cshtml" />
+    <Content Include="Views\Members\AccountProfileEdit.cshtml" />
+    <Content Include="Views\Activities\ActivitiesEdit.cshtml" />
+    <Content Include="Views\Tags\ProductTagsEdit.cshtml" />
+    <Content Include="Views\Tags\ProductTagsNew.cshtml" />
+    <Content Include="Views\Tags\ProductTagsList.cshtml" />
+    <Content Include="Views\Members\MemberList.cshtml" />
+    <Content Include="Views\Activities\ActivitiesList.cshtml" />
+    <Content Include="Views\Activities\ActivitiesStatusEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ActivityController.cs" />
-    <Compile Include="Controllers\CommunityController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
-    <Compile Include="Controllers\TagController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ActivityListDetail.cs" />
-    <Compile Include="Models\CommunityListDetail.cs" />
-    <Compile Include="Models\MemberList.cs" />
+    <Compile Include="Models\ClsKeySession.cs" />
+    <Compile Include="Models\ClsSqlQuery.cs" />
+    <Compile Include="Models\MemberListDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeaTurtle.Context.cs">
       <AutoGen>True</AutoGen>
@@ -177,6 +170,9 @@
       <DependentUpon>SeaTurtle.edmx</DependentUpon>
     </Compile>
     <Compile Include="tAccessRight.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tAccountLikeList.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
     <Compile Include="tAccountType.cs">
@@ -206,6 +202,9 @@
     <Compile Include="tCommunity.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
+    <Compile Include="tFaceToFace.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
     <Compile Include="tFeedback.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
@@ -221,16 +220,31 @@
     <Compile Include="tMemberList.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
-    <Compile Include="tMessage.cs">
+    <Compile Include="tPost.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
-    <Compile Include="tPost.cs">
+    <Compile Include="tProduct.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tProduct5Tag.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tProductTag.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tQnA.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
     <Compile Include="tReply.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
+    <Compile Include="tReply1.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
     <Compile Include="tScore.cs">
+      <DependentUpon>SeaTurtle.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tSearchingRecord.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
     <Compile Include="tSearchList.cs">
@@ -239,8 +253,6 @@
     <Compile Include="tStatus.cs">
       <DependentUpon>SeaTurtle.tt</DependentUpon>
     </Compile>
-    <Compile Include="viewmodel\active_list_detail.cs" />
-    <Compile Include="viewmodel\Join_member_list.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -253,17 +265,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Views\Member\MemberDetailsList.cshtml" />
-    <Content Include="Views\Member\MemberCreate.cshtml" />
-    <Content Include="Views\Activity\ActivityCreate.cshtml" />
-    <Content Include="Views\Community\CommunityCreate.cshtml" />
-    <Content Include="Views\Activity\ActivityDetailsEdit.cshtml" />
-    <Content Include="Views\test\Index.cshtml" />
     <EntityDeploy Include="SeaTurtle.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SeaTurtle.Designer.cs</LastGenOutput>
@@ -271,12 +272,10 @@
     <Content Include="SeaTurtle.edmx.diagram">
       <DependentUpon>SeaTurtle.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Activity\active_list_detail.cshtml" />
-    <Content Include="Views\Activity\active_list_detail_Creat.cshtml" />
-    <Content Include="Views\Activity\active_list_detail_edit.cshtml" />
-    <Content Include="Views\Activity\join_list_detail.cshtml" />
-    <Content Include="Views\Activity\join_list_detail_delete.cshtml" />
-    <Content Include="Views\Activity\join_list_detail_edit.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -286,6 +285,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\ProductTag\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -303,9 +304,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>57172</DevelopmentServerPort>
+          <DevelopmentServerPort>60315</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44331/</IISUrl>
+          <IISUrl>https://localhost:44398/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
