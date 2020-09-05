@@ -36,14 +36,14 @@ CREATE TABLE Member.tAccountType
 CREATE TABLE Member.tMember
 (
   fId              INT           NOT NULL  IDENTITY(1,1),  --IDENTITY 自動填值
-  fAccount         NVARCHAR(50)     NOT NULL,
-  fPassword        CHAR(50)      NOT NULL,            --視加密技術調整
+  fAccount         NVARCHAR(50)  NOT NULL,
+  fPassword        NVARCHAR(100) NOT NULL,           
   fName            NVARCHAR(50)  NOT NULL,
-  fBirthdate       NVARCHAR(50)     NOT NULL,
+  fBirthdate       NVARCHAR(50)  NOT NULL,
   fMail            NVARCHAR(100) NOT NULL,
   fAddress         NVARCHAR(60)  NOT NULL,
   fCity            NVARCHAR(20)  NOT NULL,
-  fCeilphoneNumber NVARCHAR(50)     NOT NULL,
+  fCeilphoneNumber NVARCHAR(50)  NOT NULL,
   fCoins           INT           NOT NULL,
   fIntroduction    NVARCHAR(MAX) NULL,
   fAccountTypeId   INT           NOT NULL,
