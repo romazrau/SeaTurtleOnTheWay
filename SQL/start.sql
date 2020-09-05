@@ -44,9 +44,9 @@ CREATE TABLE Member.tMember
   fAddress         NVARCHAR(60)  NOT NULL,
   fCity            NVARCHAR(20)  NOT NULL,
   fCeilphoneNumber NVARCHAR(50)  NOT NULL,
-  fCoins           INT           NOT NULL,
+  fCoins           INT           NOT NULL   DEFAULT 100,
   fIntroduction    NVARCHAR(MAX) NULL,
-  fAccountTypeId   INT           NOT NULL,
+  fAccountTypeId   INT           NOT NULL   DEFAULT 1,
   fPhotoPath       NVARCHAR(200)    NULL,
   fLastTime        NVARCHAR(50)     NULL,
   CONSTRAINT PK_Member PRIMARY KEY(fId),   --設定為Primary Key
@@ -84,10 +84,10 @@ CREATE TABLE Community.tCommunity
 (
  fId         INT               NOT NULL IDENTITY(1,1),
  fName       NVARCHAR(50)      NOT NULL,
- fDate       NVARCHAR(50)         NOT NULL,
+ fDate       NVARCHAR(50)      NOT NULL,
  fInfo       NVARCHAR(MAX)     NOT NULL,
- fStatusId   INT               NOT NULL,
- fImgPath    NVARCHAR(200)        NOT NULL,
+ fStatusId   INT               NOT NULL   DEFAULT 1,
+ fImgPath    NVARCHAR(200)     NOT NULL,
  CONSTRAINT PK_Community PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Status FOREIGN KEY(fStatusId)
    REFERENCES Community.tStatus(fId),
@@ -110,8 +110,8 @@ CREATE TABLE Community.tMemberList
  fId               INT               NOT NULL IDENTITY(1,1),
  fCommunityId      INT               NOT NULL,
  fMemberId         INT               NOT NULL,
- fJoinDate         NVARCHAR(50)         NOT NULL,
- fAccessRightId    INT               NOT NULL,
+ fJoinDate         NVARCHAR(50)      NOT NULL,
+ fAccessRightId    INT               NOT NULL  DEFAULT 1,
  PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Community_Member FOREIGN KEY(fCommunityId)
    REFERENCES Community.tCommunity(fId), --取得社團id為fk
@@ -130,7 +130,7 @@ CREATE TABLE Community.tPost
  fMemberId       INT             NOT NULL,  --or null決定會員是否能在非社團內PO文 (非在社團的人發文前就擋下)
  fCommunityId    INT             NOT NULL, 
  fPostTime       NVARCHAR(50)    NOT NULL,
- fContent        NVARCHAR(MAX)   NULL,
+ fContent        NVARCHAR(MAX)   NOT NULL,
  fImgPaths       NVARCHAR(2040)  NULL,   -- 多個照片用 ,,分隔 ex: 23.png,,img/123.jpg
  CONSTRAINT PK_Post PRIMARY KEY(fId),
  FOREIGN KEY(fMemberId)
@@ -158,7 +158,7 @@ CREATE TABLE Community.tReply
  fId              INT             NOT NULL IDENTITY(1,1),
  fPostId          INT             NOT NULL,
  fReplyMemberId   INT             NOT NULL,
- fReplyTime       NVARCHAR(50)       NOT NULL,
+ fReplyTime       NVARCHAR(50)    NOT NULL,
  fContent         NVARCHAR(MAX)   NOT NULL,
  CONSTRAINT PK_Reply PRIMARY KEY(fId),
  CONSTRAINT FK_Community_Post FOREIGN KEY(fPostId)
@@ -173,7 +173,7 @@ CREATE TABLE Community.tFeedback
  fId                 INT             NOT NULL IDENTITY(1,1),
  fReplyId            INT             NOT NULL,
  fFeedbackMemberId   INT             NOT NULL,
- fFeedbackTime       NVARCHAR(50)       NOT NULL,
+ fFeedbackTime       NVARCHAR(50)    NOT NULL,
  fContent            NVARCHAR(MAX)   NOT NULL,
  CONSTRAINT PK_Feedback PRIMARY KEY(fId),
  FOREIGN KEY(fReplyId)
@@ -241,16 +241,16 @@ CREATE TABLE Activity.tActivity
 (
   fId               INT           NOT NULL  IDENTITY(1,1),
   fActName          NVARCHAR(50)  NOT NULL,
-  fCreatDate        NVARCHAR(50)     NOT NULL,
-  fActivityDate     NVARCHAR(50)     NOT NULL,
-  fActivityEndDate  NVARCHAR(50)     NOT NULL,
+  fCreatDate        NVARCHAR(50)  NOT NULL,
+  fActivityDate     NVARCHAR(50)  NOT NULL,
+  fActivityEndDate  NVARCHAR(50)  NOT NULL,
   fCommunityId      INT           NULL,
   fMemberId         INT           NOT NULL,
   fIntroduction     NVARCHAR(MAX) NOT NULL,
   fMaxLimit		    INT           NULL,
   fMinLimit         INT           NULL,
-  fActAttestId      INT           NOT NULL, 
-  fActTypeId        INT           NOT NULL,
+  fActAttestId      INT           NOT NULL   DEFAULT 1, 
+  fActTypeId        INT           NOT NULL   DEFAULT 1,
   fActLocation      NVARCHAR(100) NOT NULL,
   fCoordinateX      NVARCHAR(100)    NULL,
   fCoordinateY      NVARCHAR(100)    NULL,
