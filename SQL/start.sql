@@ -326,7 +326,7 @@ CREATE TABLE Activity.tActivityMessage
 --活動搜尋紀錄
 CREATE TABLE Activity.tSearchList
 (
-  fId               INT           NOT NULL,
+  fId               INT           NOT NULL  IDENTITY(1,1),
   fActivityId       INT           NOT NULL,
   fMemberId         INT           NOT NULL,
   fSearchTime       NVARCHAR(50)     NOT NULL,

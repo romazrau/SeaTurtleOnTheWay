@@ -699,3 +699,7 @@ insert into Activity.tJoinList
 		(fActivityId,fMemberId,fJoinTime,fJoinTypeId)
 values(3,2,'1992/05/08',3),(3,15,'1990/07/08',2),(3,2,'1995/06/23',3)
 
+----瀏覽過資料-----------------------------------------------------------------------------------------
+insert into Activity.tSearchList(fActivityId,fMemberId,fSearchTime)
+
+values(2,3,'2020/08/24'),(2,5,'2019/07/29'),(2,6,'2020/08/24')
