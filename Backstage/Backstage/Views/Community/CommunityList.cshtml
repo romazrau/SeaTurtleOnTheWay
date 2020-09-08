@@ -8,17 +8,22 @@
 
 @using (Html.BeginForm())
 {
-    <div class="form_container">
-        <input class="" type="text" name="txtKeyword" />
-        <input class="btn-primary" value="查詢" type="submit" />
-        <span>排序:</span>
-        <select id="Dropdownlist">
-            <option>依id</option>
-            <option>依創建日期排序</option>
-            <option>依創建日期倒序</option>
-            <option>依狀態</option>
-        </select>
-    </div>
+<div class="form_container">
+    <input class="" type="text" name="txtKeyword" />
+    <input class="btn-primary" value="查詢" type="submit" />
+    <span>排序:</span>
+    <select id="Dropdownlist">
+        <option>依id</option>
+        <option>依創建日期排序</option>
+        <option>依創建日期倒序</option>
+        <option>依狀態</option>
+    </select>
+    @Html.ActionLink("社團與成員全覽", "List", "CommunityMemberList", null, new
+{
+
+Class = "btn btn-danger"
+})
+</div>
 
 }
 
@@ -80,12 +85,18 @@
 
                Class = "btn btn-info"
            })
+                @Html.ActionLink("查看成員", "CommunityMember", "Community", new { id = item.fId }, new
+           {
 
+               Class = "btn btn-info"
+           })
+                
                 @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
            {
 
                Class = "btn btn-danger"
            })
+
             </td>
         </tr>
     }

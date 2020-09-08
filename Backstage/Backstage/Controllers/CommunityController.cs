@@ -230,5 +230,18 @@ namespace Backstage.Controllers
 
             return RedirectToAction("CommunityList");
         }
+
+        public ActionResult CommunityMember(int? id)
+        { 
+            if (id==0)
+                return RedirectToAction("CommunityList");
+            var t= from m in db.tMemberList
+                   where m.fCommunityId==id
+                   select m;
+
+            return View(t);
+        }
+
+
     }
 }

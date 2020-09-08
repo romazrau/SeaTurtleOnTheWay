@@ -11,7 +11,8 @@ namespace Backstage
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tReply
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,15 @@ namespace Backstage
         {
             this.tFeedback = new HashSet<tFeedback>();
         }
-    
+        
         public int fId { get; set; }
+        [DisplayName("文章")]
         public int fPostId { get; set; }
+        [DisplayName("留言人")]
         public int fReplyMemberId { get; set; }
+        [DisplayName("回覆時間")]
         public string fReplyTime { get; set; }
+        [DisplayName("內容")]
         public string fContent { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
