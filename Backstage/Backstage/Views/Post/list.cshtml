@@ -1,0 +1,62 @@
+﻿@model PagedList<Backstage.viewmodel.postDetailViewModel>
+
+<p>
+    @Html.ActionLink("新增貼文", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <input type="text" name="txtsearch" />
+        <input type="submit" value="查詢" />
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fMember)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCommunity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fPostTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPaths)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fMember)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCommunity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fPostTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fImgPaths)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new { id = item.fId }) |
+                @Html.ActionLink("查看回文", "replyList", new { id=item.fId}) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.fId })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("List", new { page }))

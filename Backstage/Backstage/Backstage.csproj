@@ -203,8 +203,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActivityController.cs" />
     <Compile Include="Controllers\CommunityController.cs" />
+    <Compile Include="Controllers\CommunityMemberListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -299,6 +301,7 @@
     </Compile>
     <Compile Include="viewmodel\active_list_detail.cs" />
     <Compile Include="viewmodel\Join_member_list.cs" />
+    <Compile Include="viewmodel\postDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -335,6 +338,14 @@
     <Content Include="Views\Activity\join_list_detail.cshtml" />
     <Content Include="Views\Activity\join_list_detail_delete.cshtml" />
     <Content Include="Views\Activity\join_list_detail_edit.cshtml" />
+    <Content Include="Views\Post\list.cshtml" />
+    <Content Include="Views\Post\create.cshtml" />
+    <Content Include="Views\Post\edit.cshtml" />
+    <Content Include="Views\CommunityMemberList\edit.cshtml" />
+    <Content Include="Views\CommunityMemberList\list.cshtml" />
+    <Content Include="Views\CommunityMemberList\Create.cshtml" />
+    <Content Include="Views\Community\CommunityMember.cshtml" />
+    <Content Include="Views\Post\replyList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
