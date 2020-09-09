@@ -71,7 +71,7 @@ VALUES
 		),
 	('Cersei333', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'Cersei', '1968/11/23', 'Cersei1968@gmail.com',
 		'大安區羅斯福路四段1號', '台北市', 0985625414, 22245,
-		'img/member/id12.jpg', 2, '瑟曦·蘭尼斯特（Cersei Lannister）是美國作家喬治·R·R·馬丁（George R. R. Martin）創作的《冰與火之歌》系列奇幻小說中的虛構人物，其電視改編版《權力遊戲》由英國女演員琳娜·海莉（Lena Headey）飾演。'
+		'img/member/id12.png', 2, '瑟曦·蘭尼斯特（Cersei Lannister）是美國作家喬治·R·R·馬丁（George R. R. Martin）創作的《冰與火之歌》系列奇幻小說中的虛構人物，其電視改編版《權力遊戲》由英國女演員琳娜·海莉（Lena Headey）飾演。'
 		),
 	('Arya333', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'Arya', '1992/04/23', 'Arya1992@gmail.com',
 		'松山區南京東路四段2號', '台北市', 0912525414, 1225,
