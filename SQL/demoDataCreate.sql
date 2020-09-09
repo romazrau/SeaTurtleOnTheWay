@@ -15,10 +15,10 @@ VALUES
 		'img/member/guest.png', 5, '沙漠中一無所有，一無所有非人所求也。'),
 	('romazrau', '$2b$10$vCcMCrfudRScjP8kVmqxgeo2Zz7Vd74.A7BOcAIX7ib0wMvyLRpwq', '饒孝天', '2000/02/20', 'adoro0920@gmail.com',  --55688app
 		'南港區南港路2段222號2樓之2', '台北市', 0989859112, 2222,
-		'member/id1.jpg', 3, '沙漠中一無所有，一無所有非人所求也。'),
+		'img/member/id1.jpg', 3, '沙漠中一無所有，一無所有非人所求也。'),
 	('AndyKao123', '$2b$10$6UI27slTilYkyOlORk6qwOoeVf/Qockdst2xMElUXTnDXnqrmCLIi', '郭安迪', '1987/08/07', 'O222132435@gmail.com',  --j123456789
 		'南投縣魚池鄉富錦路33-1號', '南投縣', 0934999444, 2567,
-		'member/id2.jpeg', 2, '幻想拯救世界的積極環保人士一枚'),
+		'img/member/id35.jpg', 2, '幻想拯救世界的積極環保人士一枚'),
 	('Wwill', '$2b$10$vHkUQfBKpWO0f9SHOu8ReeyeIjJwztf2xifENA61cfIGIsIsymskK', '王威比', '1988/02/19', 'A125453792@gmail.com',  -- w134667
 		'中山區民生東路二段78號3樓', '台北市', 0913345168, 3700,
 		'img/member/id3.jpg', 1, '佛系環保人士，盡量隨身攜帶環保餐具，偶爾還是會不爭氣地拿塑膠吸管，淨灘其實蠻好玩的，大家都是有趣的人～'),
