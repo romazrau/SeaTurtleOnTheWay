@@ -686,3 +686,41 @@ values(3,2,'1992/05/08',3),(3,15,'1990/07/08',2),(3,2,'1995/06/23',3)
 insert into Activity.tSearchList(fActivityId,fMemberId,fSearchTime)
 
 values(2,3,'2020/08/24'),(2,5,'2019/07/29'),(2,6,'2020/08/24')
+
+
+
+
+
+
+
+
+
+
+
+-- chat ------------------------
+INSERT INTO Chat.tChatroom (fMemberId1, fMemberId2) 
+Values  (3, 4),(3, 5),(3, 6);
+
+INSERT INTO Chat.tChatData(fChatRoomId, fTime, fMemberId, fContent) 
+Values  (1, '20201111',3 ,'你好'),
+ (1, '20201111', 4,'我很好'), (1, '20201111', 4,'掰掰'), (1, '20201111', 3,'再見'),
+ (2, '20201112', 3, '你吃飽了嗎'), (2, '20201111', 5,'還沒'),(2, '20201112', 3,'等等一起吃嗎?'), (2, '20201111',5,'不要')
+  
+
+  UPDATE Chat.tChatroom 
+  SET fLastDataId = 4  --更改欄位
+  WHERE fId = 1    
+  
+  UPDATE Chat.tChatroom 
+  SET fLastDataId = 8  --更改欄位
+  WHERE fId = 2  
+
+
+
+
+
+
+
+
+
+

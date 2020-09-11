@@ -132,3 +132,80 @@ WITH member AS (
   WHERE fId =  21
 
 
+
+
+
+
+
+
+
+
+ 
+  --  Member 相關  ---------------------------------------
+  --login
+  select M.fId, M.fName , T.fAccountType as 'account type' , T.fAccountAuthority as 'account authority'
+  from Member.tMember as M
+  LEFT join Member.tAccountType as T
+  on M.fAccountTypeId = T.fId
+  where fAccount = 'guest' AND fPassword = 'badiii7777';
+
+
+
+  --updata
+UPDATE Member.tMember 
+SET fName = '員員員',
+	fBirthdate = '2000/02/20',
+	fMail ='cycle2link@gmail.com',
+	fAddress = '復興南路一段390號2樓',
+	fCity = '台北市',
+	fCeilphoneNumber = 0989859112,
+	fPhotoPath = null,
+	fIntroduction = '沙漠中一無所有，一無所有非人所求也。'
+WHERE fId = 20                                   
+
+
+-- list
+select M.fId,M.fAccount, M.fName , M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId;
+
+
+
+-- by id
+select M.fId, M.fName ,M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId
+		where M.fId = 5
+
+
+-- by Account or name
+select M.fId ,M.fAccount, M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority', M.fPhotoPath, M.fLastTime
+        from Member.tMember as M
+        LEFT join Member.tAccountType as T
+        on M.fAccountTypeId = T.fId
+        where M.fAccount like '%ro%' or M.fName like '%ro%';
+
+
+
+
+-- chat ------------------------------------
+-- room
+select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name'
+from Chat.tChatroom as C
+left join Member.tMember as M
+on C.fMemberId1 = M.fId
+left join Member.tMember as M2
+on C.fMemberId2 = M2.fId
+ 
+
+
+ -- room by id
+select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name'
+from Chat.tChatroom as C
+left join Member.tMember as M
+on C.fMemberId1 = M.fId
+left join Member.tMember as M2
+on C.fMemberId2 = M2.fId
+where fMemberId1 = 6 OR fMemberId2 = 6;

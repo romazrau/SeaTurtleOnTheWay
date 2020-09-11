@@ -17,6 +17,9 @@ CREATE SCHEMA Activity AUTHORIZATION dbo;
 GO
 CREATE SCHEMA sMessage AUTHORIZATION dbo;
 GO
+CREATE SCHEMA Chat AUTHORIZATION dbo
+GO
+
 
 ---------------------------------------------------------------------
 -- Create empty tables
@@ -352,6 +355,8 @@ CREATE TABLE Activity.tScore
     REFERENCES Activity.tActivity(fId),
 );
 
+
+-- 訊息------------------------------------
 CREATE TABLE sMessage.tMessage
 (
   fId               INT             NOT NULL IDENTITY(1,1),
@@ -362,3 +367,35 @@ CREATE TABLE sMessage.tMessage
     REFERENCES Member.tMember(fId),
 );
 
+
+
+
+-- 聊天室 ---------------------
+----------------聊天室
+CREATE TABLE Chat.tChatroom
+(
+  fId            INT          NOT NULL IDENTITY(1,1) PRIMARY KEY ,
+  fMemberId1     INT          NOT NULL,
+  fMemberId2     INT          NOT NULL,
+  fLastDataId    INT          NULL,
+	CONSTRAINT FK_tChatroom_fAttenderId1 FOREIGN KEY(fMemberId1) 
+    REFERENCES Member.tMember(fId),
+	CONSTRAINT FK_tChatroom_fAttenderId2 FOREIGN KEY(fMemberId2) 
+    REFERENCES Member.tMember(fId),
+);
+
+
+-- 聊天資料
+CREATE TABLE Chat.tChatData
+(
+  fId                 INT             NOT NULL IDENTITY(1,1) PRIMARY KEY,
+  fChatRoomId         INT             NOT NULL,
+  fTime               NVARCHAR(50)    NOT NULL,
+  fMemberId           INT             NOT NULL,
+  fContent            NVARCHAR(50)    NULL,
+  fIsReaded           TINYINT         NOT NULL  DEFAULT 0, 
+ CONSTRAINT FK_tChatData_fTalkerId FOREIGN KEY(fMemberId) 
+    REFERENCES Member.tMember(fId),
+ FOREIGN KEY(fChatRoomId) 
+    REFERENCES Chat.tChatroom(fId),
+);
