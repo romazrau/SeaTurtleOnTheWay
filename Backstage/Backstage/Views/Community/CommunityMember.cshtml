@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Backstage.tMemberList>
+
+@{
+    ViewBag.Title = "CommunityMember";
+    int count = 0;
+}
+
+<h2>CommunityMember</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            序
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.fMemberId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fJoinDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fAccessRightId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    count++;
+        <input hidden value="@item.fId"/>
+    <tr>
+        <td>
+            @count
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.tMember.fName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fJoinDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tAccessRight.fName)
+        </td>
+        <td>
+            
+            @Html.ActionLink("移除", "Delete", new { id=item.fId })
+        </td>
+    </tr>
+}
+
+</table>

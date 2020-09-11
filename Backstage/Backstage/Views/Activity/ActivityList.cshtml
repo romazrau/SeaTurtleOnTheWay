@@ -21,7 +21,13 @@
         <option>人數限制(少到多)</option>
     </select>
 
-    <div>@Html.ActionLink("審核", "List", "Point", new { area = "" }, new { @class = "" })</div>
+    <div>
+        @Html.ActionLink("活動詳細列表", "active_list_detail", "Activity", null, new
+        {
+
+            Class = "btn btn-info"
+        })
+    </div>
 </div>
 }
 
@@ -106,11 +112,7 @@
                OnClick = "return confirm('確定要刪除嗎')",
                Class = "btn btn-danger"
            })
-                @Html.ActionLink("活動詳細列表", "active_list_detail", "Activity", new { id = item.fId }, new
-          {
-
-              Class = "btn btn-info"
-          })
+               
             </td>
         </tr>
     }

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
-namespace 社團成員.Controllers
+namespace Backstage.Controllers
 {
     public class CommunityMemberListController : Controller
     {
@@ -14,14 +13,7 @@ namespace 社團成員.Controllers
         {
             return View();
         }
-
-        //Instance Entity(資料庫) -->型別是資料庫名稱+Entity
         SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
-
-
-
-
-        //查尋
         public ActionResult list()
         {
             var table = from t in db.tMemberList
@@ -29,17 +21,13 @@ namespace 社團成員.Controllers
                         select t;
             return View(table);
         }
-        
-
-
-        //修改
         public ActionResult edit(int? id)
         {
             tMemberList s = db.tMemberList.FirstOrDefault(m => m.fId == id);
 
 
             var arr_MemberName = from t in db.tMember
-                      select t;
+                                 select t;
             ViewBag.fMemberId = arr_MemberName.Select(x => new SelectListItem
             {
                 Text = x.fName,
@@ -47,20 +35,17 @@ namespace 社團成員.Controllers
                 Selected = s.fMemberId == x.fId,
 
             });
-
             var arr_CommunityName = from t in db.tCommunity
-                       select t;
+                                    select t;
             ViewBag.fCommunityId = arr_CommunityName.Select(x => new SelectListItem
             {
                 Text = x.fName,
                 Value = x.fId.ToString(),
                 Selected = s.fCommunityId == x.fId,
-
             }
             );
-
             var arr_AccessName = from t in db.tAccessRight
-                       select t;
+                                 select t;
             ViewBag.fAccessRightId = arr_AccessName.Select(x => new SelectListItem
             {
                 Text = x.fName,
@@ -69,14 +54,6 @@ namespace 社團成員.Controllers
 
             }
                 );
-
-
-
-
-
-
-
-
             //var arr = from t in db.tMember
             //          select t;
             //ViewBag.fMemberId = arr.Select(x => new SelectListItem
@@ -86,7 +63,6 @@ namespace 社團成員.Controllers
             //});
             return View(s);
         }
-
         [HttpPost]
         public ActionResult edit(tMemberList x)
         {
@@ -102,8 +78,8 @@ namespace 社團成員.Controllers
 
         }
 
-        //新增
-        public ActionResult Create() {
+        public ActionResult Create()
+        {
 
             //var arr = db.tMember.ToDictionary(x => x.fId, y => y.fName);
             //SelectList sl = new SelectList(arr);
@@ -144,7 +120,7 @@ namespace 社團成員.Controllers
         {
             db.tMemberList.Add(x);
             db.SaveChanges();
-             return RedirectToAction("list");
+            return RedirectToAction("list");
         }
 
 
@@ -157,6 +133,7 @@ namespace 社團成員.Controllers
             db.SaveChanges();
             return RedirectToAction("list");
         }
+
 
 
 

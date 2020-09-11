@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Backstage.viewmodel.active_list_detail>
+﻿@model PagedList<Backstage.viewmodel.active_list_detail>
 
 @{
     ViewBag.Title = "active_list_detail";
@@ -7,118 +7,120 @@
 <h2>active_list_detail</h2>
 
 <p>
-    @Html.ActionLink("Create New", "active_list_detail_Creat")
+
     @Html.ActionLink("Check", "check_statusname")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fId)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fActName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fActName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fCreatDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCreatDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fActivityDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fActivityDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fActivityEndDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fActivityEndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fMemberName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fMemberName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fIntroduction)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fIntroduction)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fMaxLimit)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fMaxLimit)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fMinLimit)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fMinLimit)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fAttestName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fAttestName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fStatusName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fActLocation)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fActLocation)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fCoordinateX)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoordinateX)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fCoordinateY)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoordinateY)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fLabelName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fLabelName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fImgPath)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPath)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fActName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fCreatDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fActivityDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fActivityEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fMemberName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fIntroduction)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fMaxLimit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fMinLimit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fAttestName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fStatusName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fActLocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fCoordinateX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fCoordinateY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fLabelName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fImgPath)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "active_list_detail_edit", new { id=item.fId}) |
-            @Html.ActionLink("Details", "join_list_detail", new { id=item.fId }) |
-            @Html.ActionLink("Delete", "active_list_detail_Delete", new { id=item.fId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fActName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCreatDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fActivityDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fActivityEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fMemberName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fIntroduction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fMaxLimit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fMinLimit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fAttestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fStatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fActLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoordinateX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fCoordinateY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fLabelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fImgPath)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "active_list_detail_edit", new { id = item.fId }) |
+                @Html.ActionLink("Details", "join_list_detail", new { id = item.fId }) |
+                @Html.ActionLink("Delete", "active_list_detail_Delete", new { id = item.fId })
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("active_list_detail", new { page }))

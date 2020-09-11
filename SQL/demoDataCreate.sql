@@ -15,10 +15,10 @@ VALUES
 		'img/member/guest.png', 5, '沙漠中一無所有，一無所有非人所求也。'),
 	('romazrau', '$2b$10$vCcMCrfudRScjP8kVmqxgeo2Zz7Vd74.A7BOcAIX7ib0wMvyLRpwq', '饒孝天', '2000/02/20', 'adoro0920@gmail.com',  --55688app
 		'南港區南港路2段222號2樓之2', '台北市', 0989859112, 2222,
-		'member/id1.jpg', 3, '沙漠中一無所有，一無所有非人所求也。'),
+		'img/member/id1.jpg', 3, '沙漠中一無所有，一無所有非人所求也。'),
 	('AndyKao123', '$2b$10$6UI27slTilYkyOlORk6qwOoeVf/Qockdst2xMElUXTnDXnqrmCLIi', '郭安迪', '1987/08/07', 'O222132435@gmail.com',  --j123456789
 		'南投縣魚池鄉富錦路33-1號', '南投縣', 0934999444, 2567,
-		'member/id2.jpeg', 2, '幻想拯救世界的積極環保人士一枚'),
+		'img/member/id35.jpg', 2, '幻想拯救世界的積極環保人士一枚'),
 	('Wwill', '$2b$10$vHkUQfBKpWO0f9SHOu8ReeyeIjJwztf2xifENA61cfIGIsIsymskK', '王威比', '1988/02/19', 'A125453792@gmail.com',  -- w134667
 		'中山區民生東路二段78號3樓', '台北市', 0913345168, 3700,
 		'img/member/id3.jpg', 1, '佛系環保人士，盡量隨身攜帶環保餐具，偶爾還是會不爭氣地拿塑膠吸管，淨灘其實蠻好玩的，大家都是有趣的人～'),
@@ -71,7 +71,7 @@ VALUES
 		),
 	('Cersei333', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'Cersei', '1968/11/23', 'Cersei1968@gmail.com',
 		'大安區羅斯福路四段1號', '台北市', 0985625414, 22245,
-		'img/member/id12.jpg', 2, '瑟曦·蘭尼斯特（Cersei Lannister）是美國作家喬治·R·R·馬丁（George R. R. Martin）創作的《冰與火之歌》系列奇幻小說中的虛構人物，其電視改編版《權力遊戲》由英國女演員琳娜·海莉（Lena Headey）飾演。'
+		'img/member/id12.png', 2, '瑟曦·蘭尼斯特（Cersei Lannister）是美國作家喬治·R·R·馬丁（George R. R. Martin）創作的《冰與火之歌》系列奇幻小說中的虛構人物，其電視改編版《權力遊戲》由英國女演員琳娜·海莉（Lena Headey）飾演。'
 		),
 	('Arya333', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'Arya', '1992/04/23', 'Arya1992@gmail.com',
 		'松山區南京東路四段2號', '台北市', 0912525414, 1225,
@@ -250,6 +250,16 @@ VALUES
 INSERT INTO Community.tLike
     (fPostId, fLikeMemberId)
 VALUES
+    (1, 9),
+	(1, 14),
+	(1, 27),
+	(1, 15),
+	(1, 21),
+	(2, 12),
+	(2, 24),
+	(2, 17),
+	(2, 12),
+	(2, 29),
     (31, 2),
 	(31, 4),
 	(31, 7),
@@ -273,6 +283,11 @@ VALUES
 INSERT INTO Community.tReply
 	( fPostId, fReplyMemberId, fReplyTime, fContent )
 VALUES
+	(1, 15, '2020/07/30 14:54', '有朋友住那附近欸，我先問問看'),
+	(1, 17, '2020/07/30 15:02', 'QQ好想要養，可是家裡也不給養'),
+	(2, 33, '2020/09/01 18:32', '最喜歡雪納瑞了QQ'),
+	(2, 24, '2020/09/01 20:03', '已分享！'),
+	(2, 22, '2020/09/02 08:41', '希望他早點找到好主人....'),
     (31, 30, '2020/08/28 14:16', '你給我等等！晚點PO活動資訊給你啦'),
 	(31, 11, '2020/08/28 16:42', '是什麼活動啊？'),
     (30, 11, '2020/08/28 21:34', '好讚哦這樣就不用買袋袋ㄌ'),
@@ -685,12 +700,11 @@ values(3,2,'1992/05/08',3),(3,15,'1990/07/08',2),(3,2,'1995/06/23',3)
 ----瀏覽過資料-----------------------------------------------------------------------------------------
 insert into Activity.tSearchList(fActivityId,fMemberId,fSearchTime)
 
-values(2,3,'2020/08/24'),(2,5,'2019/07/29'),(2,6,'2020/08/24')
+values(2,3,'2020/08/24 13:15:25'),(2,5,'2019/07/29 14:18:28'),(2,6,'2020/08/24 19:29:30')
 
+insert into Activity.tSearchList(fId,fActivityId,fMemberId,fSearchTime)
 
-
-
-
+values(4,4,3,'2020/08/20 13:15:25'),(5,5,5,'2019/07/27 14:18:28'),(6,9,6,'2020/08/25 19:29:30')
 
 
 
@@ -714,13 +728,3 @@ Values  (1, '20201111',3 ,'你好'),
   UPDATE Chat.tChatroom 
   SET fLastDataId = 8  --更改欄位
   WHERE fId = 2  
-
-
-
-
-
-
-
-
-
-

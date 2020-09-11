@@ -11,15 +11,21 @@ namespace Backstage
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tMemberList
     {
+        [DisplayName("fid")]
         public int fId { get; set; }
+        [DisplayName("社團名稱")]
         public int fCommunityId { get; set; }
+        [DisplayName("會員名稱")]
         public int fMemberId { get; set; }
+        [DisplayName("加入時間")]
         public string fJoinDate { get; set; }
+        [DisplayName("會員等級")]
         public int fAccessRightId { get; set; }
-    
+
         public virtual tAccessRight tAccessRight { get; set; }
         public virtual tCommunity tCommunity { get; set; }
         public virtual tMember tMember { get; set; }
