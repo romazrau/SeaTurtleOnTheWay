@@ -209,3 +209,18 @@ on C.fMemberId1 = M.fId
 left join Member.tMember as M2
 on C.fMemberId2 = M2.fId
 where fMemberId1 = 6 OR fMemberId2 = 6;
+
+
+
+SELECT l.* , m.fName, m.fPhotoPath
+  FROM Community.tMemberList as l
+  left join Member.tMember as m
+  on l.fMemberId = m.fId 
+  where l.fAccessRightId = 1 and l.fCommunityId = 5;
+
+
+
+
+
+
+
