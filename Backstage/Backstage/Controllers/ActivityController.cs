@@ -453,15 +453,17 @@ namespace Backstage.Controllers
             return RedirectToAction("active_list_detail");
         }
 
-        public ActionResult Highchats(int month=9)
+        public ActionResult Highchats()
         {
-         
-            int sport = db.tActivity.Where(x => x.fActLabelId == 5 ).Count();
-            int market = db.tActivity.Where(x => x.fActLabelId == 4).Count();
-            int teach = db.tActivity.Where(x => x.fActLabelId == 3).Count();
-            int clean = db.tActivity.Where(x => x.fActLabelId == 2).Count();
-            int internetact = db.tActivity.Where(x => x.fActLabelId == 6).Count();
-            int freeact = db.tActivity.Where(x => x.fActLabelId == 1).Count();
+            DateTime nowdate = DateTime.Now;
+            //var test = db.tActivity.GroupBy(o =>o.fActivityDate.Substring(0,7)).Select(g=>g.)
+            
+            int sport = db.tActivity.Where(x => x.fActLabelId == 5 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
+            int market = db.tActivity.Where(x => x.fActLabelId == 4 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
+            int teach = db.tActivity.Where(x => x.fActLabelId == 3 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
+            int clean = db.tActivity.Where(x => x.fActLabelId == 2 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
+            int internetact = db.tActivity.Where(x => x.fActLabelId == 6 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
+            int freeact = db.tActivity.Where(x => x.fActLabelId == 1 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
 
             ratio obj = new ratio();
             obj.Sport = sport;

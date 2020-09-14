@@ -98,72 +98,7 @@
 
     <div class="container body-content">
 
-        <div id="container">
-
-
-
-        </div>
-
-        <script>
-            $(document).ready(function () {
-                $.getJSON("/Activity/Highchats", function (data) {
-                    Highcharts.chart('container', {
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false,
-                            type: 'pie'
-                        },
-                        title: {
-                            text: 'Browser market shares in January, 2018'
-                        },
-                        tooltip: {
-                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                        },
-                        accessibility: {
-                            point: {
-                                valueSuffix: '%'
-                            }
-                        },
-                        plotOptions: {
-                            pie: {
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                                }
-                            }
-                        },
-                        series: [{
-                            name: 'Brands',
-                            colorByPoint: true,
-                            data: [{
-                                name: '運動',
-                                y: data.Sport
-                            }, {
-                                name: '二手市集',
-                                y: data.Market
-                            }, {
-                                name: '線上活動',
-                                y: data.Interentact
-                            }, {
-                                name: '自然教育',
-                                y: data.Teach
-                            }, {
-                                name: '志工服務',
-                                y: data.Freeact
-                            }, {
-                                name: '環境清潔',
-                                y: data.Clean
-                            }]
-                        }]
-                    });
-                });
-            });
-
-
-        </script>
+        
 
 
         @RenderBody()

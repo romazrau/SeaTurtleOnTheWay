@@ -238,11 +238,42 @@ namespace Backstage.Controllers
                 return View();
             }
 
-           
-
-
-
             return RedirectToAction("List");
+        }
+
+        public ActionResult Highchatsyear()
+        {
+            DateTime nowdate = DateTime.Now;
+            //var test = db.tActivity.GroupBy(o =>o.fActivityDate.Substring(0,7)).Select(g=>g.)
+
+            
+
+
+            int year1020 = db.tMember.AsEnumerable().Where(x => nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4)) < 21).Count();
+            int year2130 = db.tMember.AsEnumerable().Where(x => nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4))> 20 && nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4)) < 31).Count();
+            int year3140 = db.tMember.AsEnumerable().Where(x => nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4))> 30 && nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4)) < 41).Count();
+            int year4150 = db.tMember.AsEnumerable().Where(x => nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4))> 40 && nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4)) < 51).Count();
+            int year51 = db.tMember.AsEnumerable().Where(x => nowdate.Year - int.Parse(x.fBirthdate.Substring(0,4))> 50 ).Count();
+            ratio obj = new ratio();
+            obj.year1020 = year1020;
+            obj.year2130 = year2130;
+            obj.year3140 = year3140;
+            obj.year4150 = year4150;
+            obj.year51 = year51;
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public class ratio
+        {
+            public int year1020 { get; set; }
+            public int year2130 { get; set; }
+            public int year3140 { get; set; }
+            public int year4150 { get; set; }
+            public int year51 { get; set; }
+            //public int oldman { get; set; }
+
         }
 
     }

@@ -3,11 +3,76 @@
 @{
     ViewBag.Title = "成員列表";
 }
+<script src="~/Scripts/bundles/jqueryval"></script>
+<script src="~/Scripts/chat/exporting.js"></script>
+<script src="~/Scripts/chat/highcharts.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
 
 
 <h2>成員列表</h2>
 @using (Html.BeginForm())
 {
+    <div id="containermem">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $.getJSON("/Member/Highchatsyear", function (data) {
+                Highcharts.chart('containermem', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Cycle-link Member'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: '10-20歲',
+                            y: data.year1020
+                        }, {
+                            name: '21-30歲',
+                            y: data.year2130
+                        }, {
+                            name: '31-40歲',
+                            y: data.year3140
+                        },{
+                             name: '41-50歲',
+                             y:data.year4150
+                            }, {
+                                name: '51歲',
+                                y: data.year51
+                            }]
+                    }]
+                });
+            });
+        });
+
+    </script>
     <div class="form_container">
         <input class="" type="text" name="txtKeyword" />
         <input class="btn-primary" value="查詢" type="submit" />
@@ -19,12 +84,10 @@
             <option>依照會員等級排序</option>
             <option>依照會員等級倒序</option>
         </select>
-
-
     </div>
 
-}
 
+}
 
 <table class="table table-borderless">
     <tr>
