@@ -77,11 +77,13 @@
 
     <nav>
         <div class="BackStage_ManageBox">
-            <div>@Html.ActionLink("會員", "List", "Member", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("活動", "ActivityList", "Activity", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("標籤", "TagList", "Tag", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("社團", "CommunityList", "Community", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("文章", "List", "Post", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+          
+            <div><a class="navbar-brand jump" href="/Member/List">會員</a></div>
+            <div><a class="navbar-brand jump" href="/Activity/ActivityList">活動</a></div>
+            <div><a class="navbar-brand jump" href="/Tag/TagList">標籤</a></div>
+            <div><a class="navbar-brand jump" href="/Community/CommunityList">社團</a></div>
+            <div><a class="navbar-brand jump" href="/Post/List">文章</a></div>
+            
         </div>
         
 
