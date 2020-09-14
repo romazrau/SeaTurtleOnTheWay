@@ -452,6 +452,35 @@ namespace Backstage.Controllers
             db.SaveChanges();
             return RedirectToAction("active_list_detail");
         }
+
+        public ActionResult Highchats(int month=9)
+        {
+         
+            int sport = db.tActivity.Where(x => x.fActLabelId == 5 ).Count();
+            int market = db.tActivity.Where(x => x.fActLabelId == 4).Count();
+            int teach = db.tActivity.Where(x => x.fActLabelId == 3).Count();
+            int clean = db.tActivity.Where(x => x.fActLabelId == 2).Count();
+            int internetact = db.tActivity.Where(x => x.fActLabelId == 6).Count();
+            int freeact = db.tActivity.Where(x => x.fActLabelId == 1).Count();
+
+            ratio obj = new ratio();
+            obj.Sport = sport;
+            obj.Market = market;
+            obj.Clean = clean;
+            obj.Interentact = internetact;
+            obj.Freeact = freeact;
+            obj.Teach = teach;
+            return Json(obj,JsonRequestBehavior.AllowGet);
+        }
+        public class ratio 
+        { 
+            public int Sport { get; set; }
+            public int Market { get; set; }
+            public int Teach { get; set; }
+            public int Clean { get; set; }
+            public int Interentact { get; set; }
+            public int Freeact { get; set; }
+        }
     }
 
 

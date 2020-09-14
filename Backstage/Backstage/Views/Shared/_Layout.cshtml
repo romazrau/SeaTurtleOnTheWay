@@ -7,6 +7,12 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/bundles/jqueryval"></script>
+    <script src="~/Scripts/chat/exporting.js"></script>
+    <script src="~/Scripts/chat/highcharts.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
     <style>
         nav {
             position: fixed;
@@ -14,13 +20,14 @@
             height: 100%;
             top: 8rem;
         }
+
         .navbar {
-        height:6rem;
-        border:0;
+            height: 6rem;
+            border: 0;
         }
+
         .navbar-brand {
             border-radius: 4px;
-            
             color: black;
             cursor: pointer;
             padding: 15px 20px;
@@ -30,13 +37,13 @@
             margin-right: 30px;
             margin-bottom: 3rem
         }
+
         td {
-               max-width:300px;
+            max-width: 300px;
         }
 
         .title {
             font-size: 4rem;
-            
         }
 
         jump {
@@ -47,13 +54,10 @@
 
         .jump:hover {
             background-color: #e3f2fd;
-            
             border-radius: 4px;
             transform: translateY(-4px);
             color: black;
         }
-
-
     </style>
 </head>
 <body>
@@ -93,6 +97,75 @@
 
 
     <div class="container body-content">
+
+        <div id="container">
+
+
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $.getJSON("/Activity/Highchats", function (data) {
+                    Highcharts.chart('container', {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Browser market shares in January, 2018'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: '%'
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Brands',
+                            colorByPoint: true,
+                            data: [{
+                                name: '運動',
+                                y: data.Sport
+                            }, {
+                                name: '二手市集',
+                                y: data.Market
+                            }, {
+                                name: '線上活動',
+                                y: data.Interentact
+                            }, {
+                                name: '自然教育',
+                                y: data.Teach
+                            }, {
+                                name: '志工服務',
+                                y: data.Freeact
+                            }, {
+                                name: '環境清潔',
+                                y: data.Clean
+                            }]
+                        }]
+                    });
+                });
+            });
+
+
+        </script>
+
+
         @RenderBody()
         <hr />
         <footer>
@@ -100,7 +173,6 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+   
 </body>
 </html>
