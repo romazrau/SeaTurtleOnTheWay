@@ -134,7 +134,10 @@ namespace Backstage.Controllers
 
         }
 
-
+        public ActionResult Highchats() 
+        {
+            return View();
+        }
 
 
     }
