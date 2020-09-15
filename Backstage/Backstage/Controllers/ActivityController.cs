@@ -456,8 +456,8 @@ namespace Backstage.Controllers
         public ActionResult Highchats()
         {
             DateTime nowdate = DateTime.Now;
-            //var test = db.tActivity.GroupBy(o =>o.fActivityDate.Substring(0,7)).Select(g=>g.)
             
+
             int sport = db.tActivity.Where(x => x.fActLabelId == 5 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
             int market = db.tActivity.Where(x => x.fActLabelId == 4 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
             int teach = db.tActivity.Where(x => x.fActLabelId == 3 && string.Compare(x.fActivityDate, "2020-09-01") >= 0 && string.Compare(x.fActivityDate, "2020-09-30") <= 0).Count();
@@ -483,6 +483,12 @@ namespace Backstage.Controllers
             public int Interentact { get; set; }
             public int Freeact { get; set; }
         }
+        public ActionResult ActLinePic()
+        {
+            var Actlinepic = db.tActivity.GroupBy(o => o.fActivityDate.Substring(0, 7)).Select(g => new { fOrDateMonth = g.Key, Actcount = g.Count() });
+            return Json(Actlinepic, JsonRequestBehavior.AllowGet); ;
+        }
+
     }
 
 
