@@ -15,9 +15,15 @@
     </div>
     
 </div>
-<div id="containeractline"style="margin-top:50px">
+<div style="display:flex">
+    <div id="containeractline" style="margin-top:50px">
 
+    </div>
+    <div id="containeractcolum" style="margin-top:50px">
+
+    </div>
 </div>
+
 
 
 <script>
@@ -186,6 +192,82 @@
                 yAxis: {
                     title: {
                         text: "活動總數量",
+                        style: {
+                            fontSize: '18px'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            //color: 'red',
+                            fontSize: '14px'
+                        }
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                //處理數據上在折線圖顯示部分
+                //tooltip: {
+                //    //一次看多點數據
+                //    //shared: true,
+                //    //當滑鼠移動至月份區塊時 整塊區塊會產生底色
+                //    crosshairs: false,
+                //    useHTML: true,
+                //    borderRadius: 10,
+                //    borderWidth: 3,
+                //},
+                series: [{
+                    name: "月份",
+                    data: Actcount,
+                }]
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $.getJSON("/Activity/ActLinecolum", function (data) {
+            var Months = []
+            var Actcount = []
+            for (var i = 0; i < data.length; i++) {
+                Months.push(data[i].fOrDateMonth);
+                Actcount.push(data[i].Actcount);
+                //console.log("data[i].fOrDateMonth: " + data[i].fOrDateMonth);
+                //console.log("data[i].sumTotalPrice: ") + data[i].sumTotalPrice;
+            }
+
+            Highcharts.chart("containeractcolum", {
+                chart: {
+                    type: 'column',
+                    width: 600
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: "瀏覽紀錄"
+                },
+                subtitle: {
+                    text: "單位:瀏覽次數"
+                },
+                xAxis: {
+                    categories: Months,
+                    labels: {
+                        style: {
+                            //color: 'red',
+                            fontSize: '14px'
+                        }
+                    }
+
+                },
+                yAxis: {
+                    title: {
+                        text: "活動瀏覽次數",
                         style: {
                             fontSize: '18px'
                         }
