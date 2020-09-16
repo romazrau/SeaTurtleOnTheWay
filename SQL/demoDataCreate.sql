@@ -7,7 +7,7 @@ INSERT INTO Member.tMember
 	fAddress, fCity, fCeilphoneNumber, fCoins,
 	fPhotoPath, fAccountTypeId, fIntroduction )
 VALUES
-	('root', '$2b$10$XIOKrX5dNZHPCYSqarXameYSwJhXbNtx0TTQEE12DMHc0bLN.ckfO', '管理員', '2000/02/20', 'cycle2link@gmail.com', --wecanuseit
+	('root', '123456', '管理員', '2000/02/20', 'cycle2link@gmail.com', --wecanuseit
 		'復興南路一段390號2樓', '台北市', 0989859112, 100000,
 		'img/member/root.png', 0, '沙漠中一無所有，一無所有非人所求也。'),
 	('guest', '$2b$10$7x5qvbiQNvcn43f0mjxWCO1Jx4Lc.BD0ZQkLM4dGJgQLE73WiDrBi', '訪客', '2000/02/20', 'cycle2link@gmail.com',  -- badiii7777

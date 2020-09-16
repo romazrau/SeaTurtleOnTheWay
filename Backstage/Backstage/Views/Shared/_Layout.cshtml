@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Backstage.Models;
+@{
+    ViewBag.Title = "ayout";
+
+    tMember cust = Session[cDictionary.SK_Member] as tMember;
+}
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -62,7 +72,7 @@
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color:#e3f2fd" >
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#e3f2fd">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -71,35 +81,34 @@
                     <span class="icon-bar"></span>
                 </button>
                 <h2>後臺管理</h2>
-               
+
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
 
     <nav>
         <div class="BackStage_ManageBox">
-          
+
             <div><a class="navbar-brand jump" href="/Member/List">會員</a></div>
             <div><a class="navbar-brand jump" href="/Activity/ActivityList">活動</a></div>
             <div><a class="navbar-brand jump" href="/Tag/TagList">標籤</a></div>
             <div><a class="navbar-brand jump" href="/Community/CommunityList">社團</a></div>
             <div><a class="navbar-brand jump" href="/Post/List">文章</a></div>
-            
+
         </div>
-        
 
 
 
-</nav>
+
+    </nav>
 
 
     <div class="container body-content">
 
-        
+
 
 
         @RenderBody()
@@ -109,6 +118,6 @@
         </footer>
     </div>
 
-   
+
 </body>
 </html>

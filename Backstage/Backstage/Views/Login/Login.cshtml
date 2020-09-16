@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /*.container {
+            border: 1px solid black;
+            position: absolute;
+            top: 40%;
+            left:35%;
+        }*/
+        .marginauto {
+            
+            margin-top: 200px;
+
+        }
+        form {
+             
+             text-align:center;
+             
+        }
+        input {
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="marginauto">
+            <h2 style="text-align:center">Login</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <span class="marginauto">帳號:</span><input type="text" name="txtAccount" />
+                <br>
+                <span class="marginauto">密碼:</span><input type="text" name="txtPassword" />
+                <br>
+                @*<span>@ViewBag.code</span> //產生的code可以拆解成用圖片驗證*@
+                <div >
+                    <input class="btn btn-primary" type="submit"/>
+                </div>
+
+            }
+        </div>
+    </div>
+    <script src="/Scripts/jquery-1.9.0.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+
+</body>
+</html>
