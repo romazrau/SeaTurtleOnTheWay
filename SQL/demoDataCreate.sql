@@ -132,11 +132,11 @@ INSERT INTO Community.tCommunity
 VALUES('北區淨灘團', 1, '2020/4/16', '活動地區以北北基為主，開放大家投票討論下一次淨灘地點～', 'img/community/08.jpg'),
 	('熱血跑步魂', 1, '2020/7/23', '跑步是為了找到內心的平靜，生命要過得好也是如此。', 'img/community/07.jpg'),
 	('寶寶長大啦', 1, '2020/1/11', '明明東西還很新，快拿出來給下一個需要的寶寶', 'img/community/09.jpg'),
-	('一時暴雷一時爽', 2, '2020/5/2', '一直暴雷一直爽', ''),
+	('一時暴雷一時爽', 2, '2020/5/2', '一直暴雷一直爽', 'img/community/movie.jpg'),
 	('我要當流浪動物義工救援團隊', 1, '2020/7/01', '我要當流浪動物義工救援團隊需要真正以實際行動幫助流浪動物的您來參加我們行列，希望能集合大家力量以真正實際行動關懷流浪動物，我們也願意跟任何關懷流浪動物團體一起配合成長。', 'img/community/02.jpg'),
 	('北部地區志工活動資訊交流站', 1, '2020/8/16', '這裡是一個提供所有社會大眾、服務性社團、志工團隊、志工運用單位相互交流的平台！', 'img/community/01.jpg'),
-	('農業栽培交流', 1, '2020/8/16', '農業技術交流都可以彼此分享', ''),
-	('鳥類辨識與特性觀察探討', 1, '2020/09/20', '愛好鳥類的社團，鼓勵團員從網路互動中學習如何辨識鳥類，以及分享觀察心得。', ''),
+	('農業栽培交流', 1, '2020/8/16', '農業技術交流都可以彼此分享', 'img/community/plant.jpg'),
+	('鳥類辨識與特性觀察探討', 1, '2020/09/20', '愛好鳥類的社團，鼓勵團員從網路互動中學習如何辨識鳥類，以及分享觀察心得。', 'img/community/birdwatch.jpg'),
 	('How to Save the World by 2030', 1, '2020/03/30', 'The influx of life-changing technologies has and is transforming the world as we know it by the seconds. Whether it’s the latest developments in artificial intelligence or quantum computing, we’re constantly reminded the vital role technology plays in making society richer, smarter, and more efficient. However, one aspect that often goes under the radar escapes a mention here is the impact tech is having on the environment, and how - if at all - it can prevent any further damage to the planet.', 'img/community/03.jpg'),
 	('用Javascript改變Cimate Change', 1, '2020/01/01', '宅宅的逆襲,我們用Javascript為環境盡一份心力', 'img/community/04.jpg'),
 	('濕地保護聯盟', 1, '2020/02/08', '以保護台灣環境，努力於濕地與相關生態保護之工作目的。以培養國民高雅之情操與保護自然環境之觀念，並參加國內外相關組織活動。以共同保護全世界濕地與相關生態。', 'img/community/05.jpg'),
@@ -410,7 +410,7 @@ Come to this workshop, you can learn sentences and popular words commonly spoken
 		'img/activity/停一下往山林.jpg', 5, 80, 10, 2, 3, '真武山受玄宮', 24.9088265, 121.5346265,2),
 	--'停一下往山林','路跑')
 	('台灣斯巴達障礙跑競賽 - TRAIL 越野跑', '2020/08/30', '2020/10/09 7:30', '2020/10/09 14:30', 10, 'https://kwankwan.kktix.cc/events/10ntcspartan-1qrq',
-		'activity/斯巴達.jpg', 5, 100, 20, 3, 1, '新北貢寮', 25.0519184, 121.9204032,2),
+		'img/activity/斯巴達.jpg', 5, 100, 20, 3, 1, '新北貢寮', 25.0519184, 121.9204032,2),
 	--'路跑','斯巴達','障礙賽')
 	('2020 普悠瑪鐵人三項', '2020/09/10', '2020/10/17 4:40', '2020/10/17 13:00', 9, 'https://bao-ming.com/eb/www/reg.php?activitysn=3985',
 		'img/activity/普悠瑪.jpg', 5, 70, 20, 1, 1, '臺東市森林公園活水湖', 22.7652163, 121.1625769,null),
@@ -592,7 +592,7 @@ Come to this workshop, you can learn sentences and popular words commonly spoken
 		'img/activity/181.jpg', 2, 5, 20, 1, 3, '', 25.2848807, 121.5148355,null),
 	--'環保','救地球')
 	('綠色生活 21 天', '2020/05/08', '2020/10/12 09:00', '2020/10/03 17:30', 8, '連續 21 天，每天一個簡單綠行動，一起在日常生活中做一點小改變，
-       也許你會開始習慣，隨時隨地，都對環境再好一點點。','activity/19.jpg', 2, 5, 20, 1, 3, '台中', 24.2204731, 120.6756898,null),
+       也許你會開始習慣，隨時隨地，都對環境再好一點點。','img/activity/19.jpg', 2, 5, 20, 1, 3, '台中', 24.2204731, 120.6756898,null),
     ('減廢又減廢', '2020/04/13', '2020/10/15 09:00', '2020/12/31 17:30',6, '以在地廢棄貝殼為原料,推出消毒粉，讓消毒也可以很環保',
 		'img/activity/20.jpg', 6, 5, 20, 1, 2, '台灣',0, 0,null),
 	('響應環保全面行動', '2020/04/10', '2020/09/15 09:00', '2020/09/31 21:30', 2, '台東鹿野的農產品以人力方式，更可以體會到人情味',
@@ -711,9 +711,9 @@ insert into Activity.tSearchList(fActivityId,fMemberId,fSearchTime)
 
 values(2,3,'2020/08/24 13:15:25'),(2,5,'2019/07/29 14:18:28'),(2,6,'2020/08/24 19:29:30')
 
-insert into Activity.tSearchList(fId,fActivityId,fMemberId,fSearchTime)
+insert into Activity.tSearchList(fActivityId,fMemberId,fSearchTime)
 
-values(4,4,3,'2020/08/20 13:15:25'),(5,5,5,'2019/07/27 14:18:28'),(6,9,6,'2020/08/25 19:29:30')
+values(4,3,'2020/08/20 13:15:25'),(5,5,'2019/07/27 14:18:28'),(9,6,'2020/08/25 19:29:30')
 
 
 
