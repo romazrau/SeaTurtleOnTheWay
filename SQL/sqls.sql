@@ -5,13 +5,13 @@ GO
 	
 
 ---    刪除資料表用
-DELETE FROM  Member.tMember;
-DELETE FROM  Activity.tActivity;
-DELETE FROM  Community.tCommunity;
-DELETE FROM  Community.tMemberList;
-DELETE FROM  Community.tPost;
-DELETE FROM  Activity.tActivity;
-DELETE FROM Activity.tActivityLabel
+--DELETE FROM  Member.tMember;
+--DELETE FROM  Activity.tActivity;
+--DELETE FROM  Community.tCommunity;
+--DELETE FROM  Community.tMemberList;
+--DELETE FROM  Community.tPost;
+--DELETE FROM  Activity.tActivity;
+--DELETE FROM Activity.tActivityLabel
 
 
 -- 搜尋範例  --------------------------------------------------
@@ -173,11 +173,21 @@ select M.fId,M.fAccount, M.fName , M.fCity, M.fCoins , T.fAccountType as 'fAccou
 
 
 -- by id
-select M.fId, M.fName ,M.fName, M.fCity, M.fCoins , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+with actConut as (
+	select  fMemberId, count(fActivityId) as 'fActiviteCount'
+	from Activity.tJoinList
+	where fMemberId = 11
+    group by fMemberId
+)
+select M.fId, M.fName, M.fCity, M.fCoins, M.fBirthdate, M.fCeilphoneNumber, C.fActiviteCount , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
         from Member.tMember as M
         LEFT join Member.tAccountType as T
         on M.fAccountTypeId = T.fId
-		where M.fId = 5
+		LEFT join actConut as C
+		on C.fMemberId = M.fId
+		where M.fId = 11
+
+
 
 
 -- by Account or name
@@ -202,13 +212,75 @@ on C.fMemberId2 = M2.fId
 
 
  -- room by id
+select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name' , d.fIsReaded, IIF( d.fMemberId = 3 , 1, 0 ) as fIsMeLastChat
+from Chat.tChatroom as C
+left join Member.tMember as M
+on C.fMemberId1 = M.fId
+left join Member.tMember as M2
+on C.fMemberId2 = M2.fId
+left join  Chat.tChatData as d
+on C.fLastDataId = d.fId
+where fMemberId1 = 3 OR fMemberId2 = 3
+order by fLastDataId desc;
+
 select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name'
 from Chat.tChatroom as C
 left join Member.tMember as M
 on C.fMemberId1 = M.fId
 left join Member.tMember as M2
 on C.fMemberId2 = M2.fId
-where fMemberId1 = 6 OR fMemberId2 = 6;
+where ( fMemberId1 = 6 and fMemberId2 = 3 ) or ( fMemberId1 = 3 and fMemberId2 = 6);
+
+
+INSERT INTO Chat.tChatroom
+	( fMemberId1, fMemberId2 )
+VALUES ( 3, 7);
+
+--updata last data
+with roomData as (
+select max(fId) as fLastId
+from Chat.tChatData
+where fChatRoomId = 1
+)
+UPDATE Chat.tChatroom 
+SET fLastDataId = roomData.fLastId
+from roomData
+WHERE fId = 1 
+
+
+
+
+
+
+-- room messages
+select d.* , m.fName
+from Chat.tChatData as d
+left join Member.tMember as m
+on m.fId = d.fMemberId
+where fChatRoomId = 2
+
+
+INSERT INTO Chat.tChatData
+	( fChatRoomId, fTime, fMemberId, fContent )
+VALUES (2, '2020/09/13 下午1:10', 3, '哭哭饅頭')
+
+
+with roomData as (
+select max(fId) as fLastId
+from Chat.tChatData
+where fChatRoomId = 2
+)
+UPDATE Chat.tChatData
+SET fIsReaded = 1
+from roomData
+WHERE fId = roomData.fLastId and fMemberId != 3
+
+
+
+
+
+
+
 
 
 
