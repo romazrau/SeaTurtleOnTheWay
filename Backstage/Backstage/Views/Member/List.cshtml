@@ -5,9 +5,12 @@
 }
 
 
+
+
 <h2>成員列表</h2>
 @using (Html.BeginForm())
 {
+    
     <div class="form_container">
         <input class="" type="text" name="txtKeyword" />
         <input class="btn-primary" value="查詢" type="submit" />
@@ -19,12 +22,10 @@
             <option>依照會員等級排序</option>
             <option>依照會員等級倒序</option>
         </select>
-
-
     </div>
 
-}
 
+}
 
 <table class="table table-borderless">
     <tr>

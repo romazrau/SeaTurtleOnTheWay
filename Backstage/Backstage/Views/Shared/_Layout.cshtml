@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Backstage.Models;
+@{
+    ViewBag.Title = "ayout";
+
+    tMember cust = Session[cDictionary.SK_Member] as tMember;
+}
+
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,6 +17,13 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/bundles/jqueryval"></script>
+    <script src="~/Scripts/chat/exporting.js"></script>
+    <script src="~/Scripts/chat/highcharts.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
     <style>
         nav {
             position: fixed;
@@ -14,13 +31,14 @@
             height: 100%;
             top: 8rem;
         }
+
         .navbar {
-        height:6rem;
-        border:0;
+            height: 6rem;
+            border: 0;
         }
+
         .navbar-brand {
             border-radius: 4px;
-            
             color: black;
             cursor: pointer;
             padding: 15px 20px;
@@ -30,13 +48,13 @@
             margin-right: 30px;
             margin-bottom: 3rem
         }
+
         td {
-               max-width:300px;
+            max-width: 300px;
         }
 
         .title {
             font-size: 4rem;
-            
         }
 
         jump {
@@ -47,17 +65,14 @@
 
         .jump:hover {
             background-color: #e3f2fd;
-            
             border-radius: 4px;
             transform: translateY(-4px);
             color: black;
         }
-
-
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color:#e3f2fd" >
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#e3f2fd">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -66,31 +81,36 @@
                     <span class="icon-bar"></span>
                 </button>
                 <h2>後臺管理</h2>
-               
+
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
 
     <nav>
         <div class="BackStage_ManageBox">
-            <div>@Html.ActionLink("會員", "List", "Member", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("活動", "ActivityList", "Activity", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("標籤", "TagList", "Tag", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("社團", "CommunityList", "Community", new { area = "" }, new { @class = "navbar-brand jump" })</div>
-            <div>@Html.ActionLink("文章", "List", "Post", new { area = "" }, new { @class = "navbar-brand jump" })</div>
+
+            <div><a class="navbar-brand jump" href="/Member/List">會員</a></div>
+            <div><a class="navbar-brand jump" href="/Activity/ActivityList">活動</a></div>
+            <div><a class="navbar-brand jump" href="/Tag/TagList">標籤</a></div>
+            <div><a class="navbar-brand jump" href="/Community/CommunityList">社團</a></div>
+            <div><a class="navbar-brand jump" href="/Post/List">文章</a></div>
+
         </div>
-        
 
 
 
-</nav>
+
+    </nav>
 
 
     <div class="container body-content">
+
+
+
+
         @RenderBody()
         <hr />
         <footer>
@@ -98,7 +118,6 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+
 </body>
 </html>

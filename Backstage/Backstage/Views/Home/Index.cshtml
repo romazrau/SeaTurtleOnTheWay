@@ -1,6 +1,320 @@
-﻿
+﻿@using Backstage.Models;
+@{
+    tMember cust = Session[cDictionary.SK_Member] as tMember;
+    if (cust == null)
+    {
+        Layout = null;
+        
+    }
+
+}
 @{
     ViewBag.Title = "Index";
 }
+<script src="~/Scripts/bundles/jqueryval"></script>
+<script src="~/Scripts/chat/exporting.js"></script>
+<script src="~/Scripts/chat/highcharts.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div style="display:flex">
+    <div id="containeract" style="margin-top:50px">
+    </div>
+    <div id="containermem" style="margin-top:50px">
+    </div>
+
+</div>
+<div style="display:flex">
+    <div id="containeractline" style="margin-top:50px">
+    </div>
+    <div id="containeractcolum" style="margin-top:50px">
+    </div>
+</div>
 
 
+
+<script>
+    //判斷登入
+    if (@cust !== null) {
+        $(document).ready(function () {
+            $.getJSON("/Member/Highchatsyear", function (data) {
+                Highcharts.chart('containermem', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        width: 600,
+                        height: 400
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: 'Cycle-link 會員年齡分布'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: '10-20歲',
+                            y: data.year1020
+                        }, {
+                            name: '21-30歲',
+                            y: data.year2130
+                        }, {
+                            name: '31-40歲',
+                            y: data.year3140
+                        }, {
+                            name: '41-50歲',
+                            y: data.year4150
+                        }, {
+                            name: '51歲',
+                            y: data.year51
+                        }]
+                    }]
+                });
+            });
+        });
+        $(document).ready(function () {
+            $.getJSON("/Activity/Highchats", function (data) {
+                Highcharts.chart('containeract', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie',
+                        width: 600,
+                        height: 400
+
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: '9月活動分布'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: '運動',
+                            y: data.Sport
+                        }, {
+                            name: '二手市集',
+                            y: data.Market
+                        }, {
+                            name: '線上活動',
+                            y: data.Interentact
+                        }, {
+                            name: '自然教育',
+                            y: data.Teach
+                        }, {
+                            name: '志工服務',
+                            y: data.Freeact
+                        }, {
+                            name: '環境清潔',
+                            y: data.Clean
+                        }]
+                    }]
+                });
+            });
+        });
+        //折線圖
+        $(document).ready(function () {
+            $.getJSON("/Activity/ActLinePic", function (data) {
+                var Months = []
+                var Actcount = []
+                for (var i = 0; i < data.length; i++) {
+                    Months.push(data[i].fOrDateMonth);
+                    Actcount.push(data[i].Actcount);
+                    console.log("data[i].fOrDateMonth: " + data[i].fOrDateMonth);
+                    //console.log("data[i].sumTotalPrice: ") + data[i].sumTotalPrice;
+                }
+
+                Highcharts.chart("containeractline", {
+                    chart: {
+                        type: 'line',
+                        width: 600
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: "2020年每月活動統計"
+                    },
+                    subtitle: {
+                        text: "單位:活動總數量"
+                    },
+                    xAxis: {
+                        categories: Months,
+                        labels: {
+                            style: {
+                                //color: 'red',
+                                fontSize: '14px'
+                            }
+                        }
+
+                    },
+                    yAxis: {
+                        title: {
+                            text: "活動總數量",
+                            style: {
+                                fontSize: '18px'
+                            }
+                        },
+                        labels: {
+                            style: {
+                                //color: 'red',
+                                fontSize: '14px'
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    //處理數據上在折線圖顯示部分
+                    //tooltip: {
+                    //    //一次看多點數據
+                    //    //shared: true,
+                    //    //當滑鼠移動至月份區塊時 整塊區塊會產生底色
+                    //    crosshairs: false,
+                    //    useHTML: true,
+                    //    borderRadius: 10,
+                    //    borderWidth: 3,
+                    //},
+                    series: [{
+                        name: "月份",
+                        data: Actcount,
+                    }]
+                });
+            });
+        });
+        //長條圖
+        $(document).ready(function () {
+            $.getJSON("/Activity/ActLinecolum", function (data) {
+                var Months = []
+                var Actcount = []
+                for (var i = 0; i < data.length; i++) {
+                    Months.push(data[i].fOrDateMonth);
+                    Actcount.push(data[i].Actcount);
+                    //console.log("data[i].fOrDateMonth: " + data[i].fOrDateMonth);
+                    //console.log("data[i].sumTotalPrice: ") + data[i].sumTotalPrice;
+                }
+
+                Highcharts.chart("containeractcolum", {
+                    chart: {
+                        type: 'column',
+                        width: 600
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: "瀏覽紀錄"
+                    },
+                    subtitle: {
+                        text: "單位:瀏覽次數"
+                    },
+                    xAxis: {
+                        categories: Months,
+                        labels: {
+                            style: {
+                                //color: 'red',
+                                fontSize: '14px'
+                            }
+                        }
+
+                    },
+                    yAxis: {
+                        title: {
+                            text: "活動瀏覽次數",
+                            style: {
+                                fontSize: '18px'
+                            }
+                        },
+                        labels: {
+                            style: {
+                                //color: 'red',
+                                fontSize: '14px'
+                            }
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    //處理數據上在折線圖顯示部分
+                    //tooltip: {
+                    //    //一次看多點數據
+                    //    //shared: true,
+                    //    //當滑鼠移動至月份區塊時 整塊區塊會產生底色
+                    //    crosshairs: false,
+                    //    useHTML: true,
+                    //    borderRadius: 10,
+                    //    borderWidth: 3,
+                    //},
+                    series: [{
+                        name: "月份",
+                        data: Actcount,
+                    }]
+                });
+            });
+        });
+    }
+    else {
+        alert("請先登入");
+    }
+    //圓餅圖
+    
+</script>

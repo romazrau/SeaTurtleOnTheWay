@@ -452,6 +452,49 @@ namespace Backstage.Controllers
             db.SaveChanges();
             return RedirectToAction("active_list_detail");
         }
+
+        public ActionResult Highchats()
+        {
+            DateTime nowdate = DateTime.Now;
+            
+
+            int sport = db.tActivity.Where(x => x.fActLabelId == 5 && string.Compare(x.fActivityDate, "2020/09/01") >= 0 && string.Compare(x.fActivityDate, "2020/09/30") <= 0).Count();
+            int market = db.tActivity.Where(x => x.fActLabelId == 4 && string.Compare(x.fActivityDate, "2020/09/01") >= 0 && string.Compare(x.fActivityDate, "2020/09/30") <= 0).Count();
+            int teach = db.tActivity.Where(x => x.fActLabelId == 3 && string.Compare(x.fActivityDate, "2020/09/01") >= 0 && string.Compare(x.fActivityDate, "2020/09/30") <= 0).Count();
+            int clean = db.tActivity.Where(x => x.fActLabelId == 2 && string.Compare(x.fActivityDate, "2020/09/01") >= 0 && string.Compare(x.fActivityDate, "2020/09/30") <= 0).Count();
+            int internetact = db.tActivity.Where(x => x.fActLabelId == 6 && string.Compare(x.fActivityDate, "2020/09/01") >= 0 && string.Compare(x.fActivityDate, "2020/09/30") <= 0).Count();
+            int freeact = db.tActivity.Where(x => x.fActLabelId == 1 && string.Compare(x.fActivityDate, "2020/09/01") >= 0 && string.Compare(x.fActivityDate, "2020/09/30") <= 0).Count();
+
+            ratio obj = new ratio();
+            obj.Sport = sport;
+            obj.Market = market;
+            obj.Clean = clean;
+            obj.Interentact = internetact;
+            obj.Freeact = freeact;
+            obj.Teach = teach;
+            return Json(obj,JsonRequestBehavior.AllowGet);
+        }
+        public class ratio 
+        { 
+            public int Sport { get; set; }
+            public int Market { get; set; }
+            public int Teach { get; set; }
+            public int Clean { get; set; }
+            public int Interentact { get; set; }
+            public int Freeact { get; set; }
+        }
+        public ActionResult ActLinePic()
+        {
+            var Actlinepic = db.tActivity.GroupBy(o => o.fActivityDate.Substring(5, 2)).Select(g => new { fOrDateMonth = g.Key, Actcount = g.Count() });
+            return Json(Actlinepic, JsonRequestBehavior.AllowGet); 
+        }
+
+        public ActionResult ActLinecolum()
+        {
+            var Actcolumpic = db.tSearchList.GroupBy(o => o.fSearchTime.Substring(5, 2)).Select(g => new { fOrDateMonth = g.Key, Actcount = g.Count() });
+            return Json(Actcolumpic, JsonRequestBehavior.AllowGet); ;
+        }
+
     }
 
 

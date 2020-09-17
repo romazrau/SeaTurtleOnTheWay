@@ -3,35 +3,47 @@
 @{
     ViewBag.Title = "ActivitiyList";
 }
-
+<script src="~/Scripts/bundles/jqueryval"></script>
+<script src="~/Scripts/chat/exporting.js"></script>
+<script src="~/Scripts/chat/highcharts.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 <h2>活動清單</h2>
 
 @using (Html.BeginForm())
 {
-<div class="form_container d-flex">
-    <input class="" type="text" name="txtKeyword" />
-    <input class="btn-primary" value="查詢" type="submit" />
-    <span>排序:</span>
-    <select id="Dropdownlist">
-        <option>依ID順序</option>
-        <option>依ID倒序</option>
-        <option>最久日期</option>
-        <option>最新日期</option>
-        <option>人數限制(多到少)</option>
-        <option>人數限制(少到多)</option>
-    </select>
-
-    <div>
-        @Html.ActionLink("活動詳細列表", "active_list_detail", "Activity", null, new
-        {
-
-            Class = "btn btn-info"
-        })
+    <div id="container">
     </div>
-</div>
+
+    <script>
+       
+
+    </script>
+    <div class="form_container d-flex">
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+        <span>排序:</span>
+        <select id="Dropdownlist">
+            <option>依ID順序</option>
+            <option>依ID倒序</option>
+            <option>最久日期</option>
+            <option>最新日期</option>
+            <option>人數限制(多到少)</option>
+            <option>人數限制(少到多)</option>
+        </select>
+
+        <div>
+            @Html.ActionLink("活動詳細列表", "active_list_detail", "Activity", null, new
+            {
+
+                Class = "btn btn-info"
+            })
+        </div>
+    </div>
 }
 
 <table class="table-responsive">
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
@@ -112,7 +124,7 @@
                OnClick = "return confirm('確定要刪除嗎')",
                Class = "btn btn-danger"
            })
-               
+
             </td>
         </tr>
     }
@@ -137,7 +149,7 @@
 
             }
         )
-       
+
 
     }
 </script>

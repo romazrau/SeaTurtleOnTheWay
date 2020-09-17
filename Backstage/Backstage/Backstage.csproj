@@ -138,6 +138,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\03.jpg" />
     <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -153,6 +154,8 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chat\exporting.js" />
+    <Content Include="Scripts\chat\highcharts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -205,6 +208,7 @@
     <Compile Include="Controllers\CommunityController.cs" />
     <Compile Include="Controllers\CommunityMemberListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\TagController.cs" />
@@ -213,6 +217,7 @@
     </Compile>
     <Compile Include="Models\ActivityListDetail.cs" />
     <Compile Include="Models\CommunityListDetail.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MemberList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\DataSet1.Designer.cs">
@@ -324,7 +329,6 @@
     <Content Include="Views\Activity\ActivityCreate.cshtml" />
     <Content Include="Views\Community\CommunityCreate.cshtml" />
     <Content Include="Views\Activity\ActivityDetailsEdit.cshtml" />
-    <Content Include="Views\test\Index.cshtml" />
     <EntityDeploy Include="SeaTurtle.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SeaTurtle.Designer.cs</LastGenOutput>
@@ -346,6 +350,8 @@
     <Content Include="Views\CommunityMemberList\Create.cshtml" />
     <Content Include="Views\Community\CommunityMember.cshtml" />
     <Content Include="Views\Post\replyList.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
