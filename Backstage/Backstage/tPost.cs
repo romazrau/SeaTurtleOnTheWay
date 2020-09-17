@@ -11,7 +11,8 @@ namespace Backstage
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tPost
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +20,17 @@ namespace Backstage
         {
             this.tReply = new HashSet<tReply>();
         }
-    
+        [DisplayName("序")]
         public int fId { get; set; }
+        [DisplayName("成員")]
         public int fMemberId { get; set; }
+        [DisplayName("社團")]
         public int fCommunityId { get; set; }
+        [DisplayName("發文時間")]
         public string fPostTime { get; set; }
+        [DisplayName("內容")]
         public string fContent { get; set; }
+        [DisplayName("圖片路徑")]
         public string fImgPaths { get; set; }
     
         public virtual tCommunity tCommunity { get; set; }

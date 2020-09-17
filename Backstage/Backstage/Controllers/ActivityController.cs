@@ -231,7 +231,7 @@ namespace Backstage.Controllers
         public ActionResult ActivityCreate()
         { 
             var cMember = db.tMember.ToDictionary(x => x.fId, y => y.fName);
-            var cLabel = db.tActivityLabel.ToDictionary(x => x.fId, y => y.fLabelName);
+            var cLabel = db.tActivityMainLabel.ToDictionary(x => x.fId, y => y.fLabelName);
             List<SelectListItem> itemsMem = new List<SelectListItem>();
             List<SelectListItem> itemsLab = new List<SelectListItem>();
             foreach (var cm in cMember)
