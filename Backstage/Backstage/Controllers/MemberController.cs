@@ -121,8 +121,15 @@ namespace Backstage.Controllers
             if (mem != null)
             {
                 mem.fAccountTypeId = AccountTypeId;
-                db.SaveChanges();
+               
 
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex){
+                    throw;
+                }
             }
             return RedirectToAction("List");
         }
