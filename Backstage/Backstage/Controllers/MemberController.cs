@@ -25,6 +25,7 @@ namespace Backstage.Controllers
             if (string.IsNullOrEmpty(keyword))
             {
                 t = from m in db.tMember
+                    where m.fId>2
                     select new Models.MemberList
                     {
                         fId = m.fId,
@@ -37,7 +38,7 @@ namespace Backstage.Controllers
             else
             {
                 t = from m in db.tMember
-                    where m.fAccount.Contains(keyword)
+                    where m.fAccount.Contains(keyword) && m.fId > 2
                     select new Models.MemberList
                     {
                         fId = m.fId,
