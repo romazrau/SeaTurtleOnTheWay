@@ -23,8 +23,8 @@ VALUES
 		'中山區民生東路二段78號3樓', '台北市', 0913345168, 3700,
 		'img/member/id3.jpg', 1, '佛系環保人士，盡量隨身攜帶環保餐具，偶爾還是會不爭氣地拿塑膠吸管，淨灘其實蠻好玩的，大家都是有趣的人～'),
 	('JL1992', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', '劉日', '1992/01/29', 'F229842651@hotmail.com',   --web123456
-		'板橋區中山路二段87號', '新北市', 0921021027, 9999,
-		'img/member/id4.jpeg', 1, '安安你好'),
+		'板橋區中山路二段87號', '新北市', 0921021027, 5800,
+		'img/member/id4.jpeg', 2, '安安你好'),
 	('aaa123', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', '陳佑銘', '1993/09/06', 'A122465898@gmail.com',
 		'台北市大安區和平東路二段106號11樓', '台北市', 0926324123, 6666,
 		'img/member/id87.jpg', 1, '這個會員沒有留下什麼'),
