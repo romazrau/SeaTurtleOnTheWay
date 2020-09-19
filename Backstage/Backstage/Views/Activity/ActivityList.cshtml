@@ -3,13 +3,17 @@
 @{
     ViewBag.Title = "ActivitiyList";
 }
-<script src="~/Scripts/bundles/jqueryval"></script>
+@*<script src="~/Scripts/bundles/jqueryval"></script>
 <script src="~/Scripts/chat/exporting.js"></script>
 <script src="~/Scripts/chat/highcharts.js"></script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>*@
 <h2>活動清單</h2>
-
+<style>
+    td {
+        padding:8px;
+    }
+</style>
 @using (Html.BeginForm())
 {
     <div id="container">
@@ -19,7 +23,7 @@
        
 
     </script>
-    <div class="form_container d-flex">
+    <div class="d-flex">
         <input class="" type="text" name="txtKeyword" />
         <input class="btn-primary" value="查詢" type="submit" />
         <span>排序:</span>
@@ -42,7 +46,7 @@
     </div>
 }
 
-<table class="table-responsive">
+<table >
 
     <tr>
         <th>
