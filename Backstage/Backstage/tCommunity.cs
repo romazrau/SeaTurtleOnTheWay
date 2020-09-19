@@ -22,7 +22,7 @@ namespace Backstage
             this.tMemberList = new HashSet<tMemberList>();
             this.tPost = new HashSet<tPost>();
         }
-    
+        [DisplayName("序")]
         public int fId { get; set; }
         [DisplayName("社團名稱")]
         public string fName { get; set; }

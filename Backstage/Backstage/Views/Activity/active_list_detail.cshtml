@@ -4,11 +4,18 @@
     ViewBag.Title = "active_list_detail";
 }
 
-<h2>active_list_detail</h2>
+<h2>活動詳細表</h2>
 
+@functions{
+    public string getImageName(string path)
+    {
+        string result = path.Split('/').Last();
+        return result;
+    }
+}
 <p>
 
-    @Html.ActionLink("Check", "check_statusname")
+    @Html.ActionLink("審核活動", "check_statusname")
 </p>
 <table class="table">
     <tr>
@@ -112,12 +119,21 @@
                 @Html.DisplayFor(modelItem => item.fLabelName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fImgPath)
+               @getImageName(item.fImgPath)
             </td>
             <td>
-                @Html.ActionLink("Edit", "active_list_detail_edit", new { id = item.fId }) |
-                @Html.ActionLink("Details", "join_list_detail", new { id = item.fId }) |
-                @Html.ActionLink("Delete", "active_list_detail_Delete", new { id = item.fId })
+                @Html.ActionLink("修改", "active_list_detail_edit", new { id = item.fId }, new
+           {
+               Class = "btn btn-info"
+           }) 
+                @Html.ActionLink("成員列表", "join_list_detail", new { id = item.fId }, new
+           {
+               Class = "btn btn-info"
+           }) 
+                @Html.ActionLink("刪除", "active_list_detail_Delete", new { id = item.fId }, new
+           {
+               Class = "btn btn-danger"
+           })
             </td>
         </tr>
     }

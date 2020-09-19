@@ -8,7 +8,7 @@ namespace Backstage.viewmodel
 {
     public class postDetailViewModel
     {
-
+        [DisplayName("序")]
         public int fId { get; set; }
         [DisplayName("發文者")]
         public string fMember { get; set; }

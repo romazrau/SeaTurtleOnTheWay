@@ -30,7 +30,7 @@ namespace Backstage
             this.tReply = new HashSet<tReply>();
             this.tMessage = new HashSet<tMessage>();
         }
-    
+        [DisplayName("序")]
         public int fId { get; set; }
         [DisplayName("帳號")]
         public string fAccount { get; set; }
@@ -54,7 +54,7 @@ namespace Backstage
         public string fIntroduction { get; set; }
         [DisplayName("帳號等級")]
         public int fAccountTypeId { get; set; }
-        [DisplayName("圖片路徑")]
+        [DisplayName("圖片")]
         public string fPhotoPath { get; set; }
         [DisplayName("最後上線時間")]
         public string fLastTime { get; set; }
