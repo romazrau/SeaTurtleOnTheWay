@@ -4,7 +4,7 @@
     ViewBag.Title = "active_list_detail_Creat";
 }
 
-<h2>active_list_detail_Creat</h2>
+<h2>新增活動</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>tActivity</h4>
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -160,7 +160,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "active_list_detail")
+    @Html.ActionLink("回活動首頁", "active_list_detail")
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>

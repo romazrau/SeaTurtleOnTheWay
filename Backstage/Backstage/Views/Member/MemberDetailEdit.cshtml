@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fId, new { htmlAttributes = new { @class = "form-control" } })
+               <input hidden />
                 @Html.ValidationMessageFor(model => model.fId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -137,7 +137,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回成員列表", "Index")
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>

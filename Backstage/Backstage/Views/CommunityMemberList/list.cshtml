@@ -50,7 +50,7 @@
             <td>
                 @*顯示名稱/action/parameter*@
                 @Html.ActionLink("修改", "Edit", new { id = item.fId }) |
-                @Html.ActionLink("Delete", "Delete", "CommunityMemberList", new { id = item.fId },
+                @Html.ActionLink("刪除", "Delete", "CommunityMemberList", new { id = item.fId },
                 new { OnClick = "return confirm('確定要刪除嗎')" })
             </td>
         </tr>

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "ActivityDetailsEdit";
+   
 }
 
 <h2>活動詳細修改</h2>
@@ -10,19 +11,19 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-        @Html.LabelFor(model => model.fId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-            @Html.EditorFor(model => model.fId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.fId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.fId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fId, "", new { @class = "text-danger" })
             </div>
-         </div>
-    
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.fActName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -127,7 +128,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fActLabelId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownList("MainLabelList")
+                @Html.DropDownList("MainLabelList")
             </div>
         </div>
 
@@ -140,7 +141,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回活動頁", "ActivityList")
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>

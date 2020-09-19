@@ -3,11 +3,19 @@
 @{
     ViewBag.Title = "MemberDetailsList";
 }
+@functions{
+    public string getImageName(string path)
+    {
+        string result = path.Split('/').Last();
+        return result;
+    }
+}
 
-<h2>MemberDetailsList</h2>
+
+<h2>會員詳細表</h2>
 
 <p>
-    @Html.ActionLink("新增資料", "MemberCreate","Member")
+    @Html.ActionLink("新增資料", "MemberCreate", "Member")
 </p>
 <table class="table">
     <tr>
@@ -50,9 +58,7 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fLastTime)
-        </th>
+     
         <th></th>
     </tr>
 
@@ -96,13 +102,10 @@
                 @Html.DisplayFor(modelItem => item.fAccountTypeId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fPhotoPath)
+                @getImageName(item.fPhotoPath)
 
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fLastTime)
-            </td>
-            <td>
+            
             <td>
                 @Html.ActionLink("修改", "MemberDetailEdit", "Member", new { id = item.fId }, new
            {
@@ -110,7 +113,7 @@
            })
 
             </td>
-            </td>
+          
         </tr>
     }
 
