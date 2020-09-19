@@ -7,7 +7,7 @@
 <h2>join_list_detail</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新增", "Create")
 </p>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.fJoinTypeName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "join_list_detail_edit", new { id=item.fId  }) |
+            @Html.ActionLink("修改", "join_list_detail_edit", new { id=item.fId  }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.fId */ }) |
-            @Html.ActionLink("Delete", "join_list_detail_delete", new {  id=item.fId})
+            @Html.ActionLink("刪除", "join_list_detail_delete", new {  id=item.fId})
         </td>
     </tr>
 }

@@ -5,7 +5,13 @@
 }
 
 <h2>帳號等級修改</h2>
-
+@functions{
+    public string getImageName(string path)
+    {
+        string result = path.Split('/').Last();
+        return result;
+    }
+}
 
 <table class="table table-borderless">
     <tr>
@@ -42,7 +48,7 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.fPhotoPath)
+                @getImageName(item.fPhotoPath)
             </td>
             @if (item.fId == ViewBag.fId)
             {

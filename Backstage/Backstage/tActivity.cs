@@ -56,6 +56,7 @@ namespace Backstage
         public string fCoordinateY { get; set; }
         [DisplayName("活動分類")]
         public int fActLabelId { get; set; }
+        [DisplayName("圖")]
         public string fImgPath { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

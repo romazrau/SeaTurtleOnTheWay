@@ -11,7 +11,16 @@
         <input type="submit" value="查詢" />
     </div>
 }
-
+@functions{
+    public string getImageName(string path)
+    {
+        string result = "";
+        if (path == null)
+            return "暫無圖片";
+         result = path.Split('/').Last();
+        return result;
+    }
+}
 <table class="table">
     <tr>
         <th>
@@ -48,11 +57,11 @@
                 @Html.DisplayFor(modelItem => item.fContent)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fImgPaths)
+                @getImageName(item.fImgPaths)
             </td>
             <td>
                 @Html.ActionLink("編輯", "Edit", new { id = item.fId }) |
-                @Html.ActionLink("查看回文", "replyList", new { id=item.fId}) |
+                @Html.ActionLink("查看回文", "replyList", new { id = item.fId }) |
                 @Html.ActionLink("刪除", "Delete", new { id = item.fId })
             </td>
         </tr>

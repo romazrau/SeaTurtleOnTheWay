@@ -4,7 +4,14 @@
     ViewBag.Title = "成員列表";
 }
 
+@functions{
+    public string getImageName(string path)
+    {
+        string result = path.Split('/').Last();
+        return result;
+    }
 
+}
 
 
 <h2>成員列表</h2>
@@ -63,7 +70,7 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.fPhotoPath)
+                @getImageName(item.fPhotoPath)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fAccountType)

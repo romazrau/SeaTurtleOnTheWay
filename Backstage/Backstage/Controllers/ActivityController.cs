@@ -127,6 +127,7 @@ namespace Backstage.Controllers
             ViewBag.fId = id;
             return View(t);
         }
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult ActivityStatusEdit(int Act, int Att, int fId)
         {
@@ -186,6 +187,7 @@ namespace Backstage.Controllers
 
             return View(t);
         }
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult ActivityDetailsEdit(tActivity t)
         {
