@@ -63,7 +63,7 @@ namespace Backstage.Controllers
             //});
             return View(s);
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult edit(tMemberList x)
         {
             tMemberList s = db.tMemberList.FirstOrDefault(m => m.fId == x.fId);
@@ -115,7 +115,7 @@ namespace Backstage.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult create(tMemberList x)
         {
             db.tMemberList.Add(x);

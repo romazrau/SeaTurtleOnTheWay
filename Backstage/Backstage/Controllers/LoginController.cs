@@ -18,7 +18,7 @@ namespace Backstage.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult Login(int? a )
         {
             string id = Request.Form["txtAccount"];

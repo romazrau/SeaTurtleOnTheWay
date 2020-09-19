@@ -9,7 +9,10 @@
 @functions{
     public string getImageName(string path)
     {
-        string result = path.Split('/').Last();
+        string result = "";
+        if (path == null)
+            return "暫無圖片";
+        result = path.Split('/').Last();
         return result;
     }
 }
@@ -119,17 +122,17 @@
                 @Html.DisplayFor(modelItem => item.fLabelName)
             </td>
             <td>
-               @getImageName(item.fImgPath)
+                @getImageName(item.fImgPath)
             </td>
             <td>
                 @Html.ActionLink("修改", "active_list_detail_edit", new { id = item.fId }, new
            {
                Class = "btn btn-info"
-           }) 
+           })
                 @Html.ActionLink("成員列表", "join_list_detail", new { id = item.fId }, new
            {
                Class = "btn btn-info"
-           }) 
+           })
                 @Html.ActionLink("刪除", "active_list_detail_Delete", new { id = item.fId }, new
            {
                Class = "btn btn-danger"

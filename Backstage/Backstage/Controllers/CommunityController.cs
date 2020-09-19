@@ -112,7 +112,7 @@ namespace Backstage.Controllers
 
 
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult CommunityStatusEdit(int fId, int fcs)
         {
             tCommunity c = db.tCommunity.FirstOrDefault(f => f.fId == fId);
@@ -153,7 +153,7 @@ namespace Backstage.Controllers
 
             
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult CommunityDetailsEdit(tCommunity t)
         {
             
@@ -208,7 +208,7 @@ namespace Backstage.Controllers
 
             return View();
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult CommunityCreate(tCommunity x)
         {
             x.fStatusId =int.Parse( Request.Form["StatusDDL"]);

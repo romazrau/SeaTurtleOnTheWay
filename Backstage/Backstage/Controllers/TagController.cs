@@ -10,17 +10,18 @@ namespace Backstage.Controllers
 {
     public class TagController : Controller
     {
+        int pages = 10;
         SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
         // GET: Tag
         public ActionResult TagList(int page=1)
         {
             int currentPage = page < 1 ? 1 : page;       //判斷page
             var ActTag = db.tActivityLabel.OrderBy(x => x.fId);   //一定要先排序
-            var result = ActTag.ToPagedList(currentPage, 10);  //使用ToPagedList
+            var result = ActTag.ToPagedList(currentPage, pages);  //使用ToPagedList
                        
 
             IQueryable<tActivityLabel> t = null;
-            IQueryable<tActivityHadLabel> th = null;
+            //IQueryable<tActivityHadLabel> th = null;
             string keyword = Request.Form["txtKeyword"];
             if (string.IsNullOrEmpty(keyword))
             {
@@ -32,11 +33,13 @@ namespace Backstage.Controllers
             else
             {
                 t = from s in db.tActivityLabel
-                    where s.fLabelName.Contains(keyword)
+                    where s.fLabelName.Contains("天")
                     orderby s.fId
                     select s;
             }
-            
+            ViewBag.page = currentPage;
+
+
             return View(result);
 
         }
@@ -63,7 +66,7 @@ namespace Backstage.Controllers
         }
 
         
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult TagAdd(string NewTag)
         {
 
@@ -87,10 +90,12 @@ namespace Backstage.Controllers
 
 
 
-        public ActionResult TagEdit(int? id)
+        public ActionResult TagEdit(int? id,int page=1)
         {
-            if (id == null) return RedirectToAction("TagList");
-
+            if (id == null) 
+                return RedirectToAction("TagList");
+            
+            int currentPage = page < 1 ? 1 : page;
             IQueryable<tActivityLabel> t = null;
             string keyword = Request.Form["txtKeyword"];
             if (string.IsNullOrEmpty(keyword))
@@ -108,10 +113,11 @@ namespace Backstage.Controllers
             }
 
             ViewBag.fId = id;
-            return View(t);
+            var r = t.ToPagedList(currentPage, pages);
+            return View(r);
 
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult TagEdit(string fName,int fId)
         {
             tActivityLabel t = db.tActivityLabel.FirstOrDefault(f => f.fId == fId);
