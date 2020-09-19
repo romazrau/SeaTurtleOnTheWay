@@ -18,7 +18,7 @@ namespace Backstage.Models
         public string fInfo { get; set; }
         [DisplayName("社團狀態")]
         public string fStatusName { get; set; }
-        [DisplayName("圖片路徑")]
+        [DisplayName("圖片")]
         public string fImgPath { get; set; }
 
 

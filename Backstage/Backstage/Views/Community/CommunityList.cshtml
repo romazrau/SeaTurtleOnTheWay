@@ -4,28 +4,36 @@
     ViewBag.Title = "CommunityList";
 }
 
+@functions{
+    public string getImageName(string path)
+    {
+        string result = path.Split('/').Last();
+        return result;
+    }
+}
 <h2>社團清單</h2>
 
 @using (Html.BeginForm())
 {
-<div class="form_container">
-    <input class="" type="text" name="txtKeyword" />
-    <input class="btn-primary" value="查詢" type="submit" />
-    <span>排序:</span>
-    <select id="Dropdownlist">
-        <option>依id</option>
-        <option>依創建日期排序</option>
-        <option>依創建日期倒序</option>
-        <option>依狀態</option>
-    </select>
-    @Html.ActionLink("社團與成員全覽", "List", "CommunityMemberList", null, new
-{
+    <div class="form_container">
+        <input class="" type="text" name="txtKeyword" />
+        <input class="btn-primary" value="查詢" type="submit" />
+        <span>排序:</span>
+        <select id="Dropdownlist">
+            <option>依id</option>
+            <option>依創建日期排序</option>
+            <option>依創建日期倒序</option>
+            <option>依狀態</option>
+        </select>
+        @Html.ActionLink("社團與成員全覽", "List", "CommunityMemberList", null, new
+    {
 
-Class = "btn btn-danger"
-})
-</div>
+    Class = "btn btn-danger"
+    })
+    </div>
 
 }
+
 
 
 <table class="table table-borderless">
@@ -68,7 +76,7 @@ Class = "btn btn-danger"
                 @Html.DisplayFor(modelItem => item.fInfo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fImgPath)
+               @getImageName(item.fImgPath)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fStatusName)
@@ -90,7 +98,7 @@ Class = "btn btn-danger"
 
                Class = "btn btn-info"
            })
-                
+
                 @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
            {
 
@@ -101,12 +109,12 @@ Class = "btn btn-danger"
         </tr>
     }
 
-</table> 
-@Html.ActionLink("新增", "CommunityCreate", "Community",null, new
+</table>
+@Html.ActionLink("新增", "CommunityCreate", "Community", null, new
 {
 
     Class = "btn btn-danger"
-}) 
+})
 @Html.PagedListPager(Model, page => Url.Action("CommunityList", new { page }))
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>

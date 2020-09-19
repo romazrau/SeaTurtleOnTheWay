@@ -18,7 +18,7 @@ namespace Backstage.Models
         public int fCoins { get; set; }
         [DisplayName("帳號等級")]
         public string fAccountType { get; set; }
-        [DisplayName("路徑")]
+        [DisplayName("圖片")]
         public string fPhotoPath { get; set; }
 
     }
