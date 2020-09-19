@@ -242,6 +242,12 @@ namespace Backstage.Controllers
             return View(t);
         }
 
+        public ActionResult ComArticlePic()
+        {
+            
+            var ComArticlePic = db.tPost.GroupBy(o => o.fCommunityId).Select(g => new { fCommunityId = g.Key, Articlecount = g.Count()});
+            return Json(ComArticlePic, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
