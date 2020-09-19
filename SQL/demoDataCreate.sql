@@ -27,7 +27,7 @@ VALUES
 		'img/member/id4.jpeg', 2, '安安你好'),
 	('aaa123', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', '陳佑銘', '1993/09/06', 'A122465898@gmail.com',
 		'台北市大安區和平東路二段106號11樓', '台北市', 0926324123, 6666,
-		'img/member/id87.jpg', 1, '這個會員沒有留下什麼'),
+		'img/member/andy.jpg', 1, '這個會員沒有留下什麼'),
 	('ddd555', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'mushroom', '2012/4/1', 'A123456789@gmail.com',
 		'台北市中山區林森北路372號2樓', '台北市', 0987948787, 1200,
 		'img/member/id34.png', 1, '你好 我是跳級生'),
@@ -58,7 +58,7 @@ VALUES
 	('sasd1348t', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', '柯林頓', '1983/01/02', 'sasd1348t@gmail.com',
 		'高雄市三民區力行路67-39', '高雄市', 0933565789, 1450,
 		'img/member/id38.png', 1, '邊緣人'),
-	('soopaaa111', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', '樓管大大', '2000/02/20', 'soopaaa111@gmail.com',
+	('soopaaa111', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'Soopaaa', '2000/02/20', 'soopaaa111@gmail.com',
 		'高雄市前鎮區草衙中街46巷15-1', '高雄市', 0978159666, 870,
 		'img/member/id37.png', 2, '手搖飲愛好者'),
 	('Daenerys333', '$2b$10$HeKQbYpIl2VgTdCBnTOchOBEj9nUCFEsRSbX80SHqEa0XhA3Xov8W', 'Daenerys', '1985/05/12', 'Daenerys1985@gmail.com',
@@ -650,7 +650,7 @@ Come to this workshop, you can learn sentences and popular words commonly spoken
 		'img/activity/06.jpg', 1, 10, null, 2, 1, '台南', 23.009596, 120.226742,null),
 	--'老樹','體檢'）
 	('線上Python初學者交流', '2020/07/30', '2020/08/29 10:00', '2020/08/29 13:30', 20, '如果對投資深感興趣、想實際操作如何使用Python爬取歷年股價資訊，歡迎來小聚和我們交流唷！',
-		'img/activity/07.jpg', 6, null, null, 1, 3, '誰沒填????', null, null,null),
+		'img/activity/07.jpg', 6, null, null, 1, 3, '線上活動', null, null,null),
 	--'Python','工程師'）
 
 	('創意手作乾燥花體驗', '2020/08/06', '2020/09/29 14:00', '2020/09/29 18:00', 19, '幸福的真正秘密，就在於，對於日常生活的所有細節抱著純粹的興趣。- William Morris 威廉莫里斯 今天你想怎樣度過呢？你的日常又充滿著什麼樣的細節呢？讓我們放下平日的繁瑣體驗一花一草的細膩美好吧',
@@ -707,7 +707,7 @@ Come to this workshop, you can learn sentences and popular words commonly spoken
 		'img/activity/171.jpg', 2, null, null, 1, 3, '台北', 25.194252, 121.5587476,null),
 	--'環保','救地球','擁抱大自然')
     ('讓海乾淨 向海致敬', '2020/04/10', '2020/10/12 09:00', '2020/10/12 17:30', 18, '還給海洋及海洋生物一個乾淨的生活空間',
-		'img/activity/181.jpg', 2, 5, 20, 1, 3, '', 25.2848807, 121.5148355,null),
+		'img/activity/181.jpg', 2, 5, 20, 1, 3, '基隆', 25.2848807, 121.5148355,null),
 	--'環保','救地球')
 	('綠色生活 21 天', '2020/05/08', '2020/10/12 09:00', '2020/10/03 17:30', 8, '連續 21 天，每天一個簡單綠行動，一起在日常生活中做一點小改變，
        也許你會開始習慣，隨時隨地，都對環境再好一點點。','img/activity/19.jpg', 2, 5, 20, 1, 3, '台中', 24.2204731, 120.6756898,null),
