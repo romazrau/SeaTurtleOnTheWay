@@ -220,8 +220,8 @@ left join Member.tMember as M2
 on C.fMemberId2 = M2.fId
 left join  Chat.tChatData as d
 on C.fLastDataId = d.fId
-where fMemberId1 = 3 OR fMemberId2 = 3
-order by fLastDataId desc;
+where fMemberId1 = 10 OR fMemberId2 = 10
+order by fLastDataId desc, fId desc;
 
 select C.* , M.fName as 'fMember1Name', M2.fName as 'fMember2Name'
 from Chat.tChatroom as C
@@ -294,5 +294,8 @@ SELECT l.* , m.fName, m.fPhotoPath
 
 
 
-
+  -- active by community
+  select fId, fActName, fActivityDate, fActivityEndDate
+  from Activity.tActivity
+  where fCommunityId = 2
 
