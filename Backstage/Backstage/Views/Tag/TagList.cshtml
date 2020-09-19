@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.fLabelName)
             </td>
             <td>
-                @Html.ActionLink("修改", "TagEdit", "Tag", new { id = item.fId }, new
+                @Html.ActionLink("修改", "TagEdit", "Tag", new { id = item.fId, page=ViewBag.page}, new
            {
 
                Class = "btn btn-info"

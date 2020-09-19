@@ -258,7 +258,7 @@ namespace Backstage.Controllers
 
             return View();
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult ActivityCreate(tActivity a)
         {
             a.fMemberId = int.Parse(Request["MemDrop"]);
@@ -345,7 +345,7 @@ namespace Backstage.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult active_list_detail_Creat(tActivity x)
         {
             db.tActivity.Add(x);
@@ -360,7 +360,7 @@ namespace Backstage.Controllers
             return View(x);
         }
 
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult active_list_detail_edit(tActivity s)
         {
             tActivity m = db.tActivity.FirstOrDefault(z => z.fId == s.fId); 
@@ -414,7 +414,7 @@ namespace Backstage.Controllers
             return View(s);
         }
 
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult join_list_detail_edit(tJoinList x)
         {
             tJoinList s = db.tJoinList.FirstOrDefault(m => m.fId == x.fId);

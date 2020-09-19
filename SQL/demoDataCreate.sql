@@ -13,7 +13,7 @@ VALUES
 	('guest', '$2b$10$7x5qvbiQNvcn43f0mjxWCO1Jx4Lc.BD0ZQkLM4dGJgQLE73WiDrBi', '訪客', '2000/02/20', 'cycle2link@gmail.com',  -- badiii7777
 		'復興南路一段390號2樓', '台北市', 0989859112, 0,
 		'img/member/guest.png', 5, '沙漠中一無所有，一無所有非人所求也。'),
-	('romazrau', '$2b$10$vCcMCrfudRScjP8kVmqxgeo2Zz7Vd74.A7BOcAIX7ib0wMvyLRpwq', '饒孝天', '2000/02/20', 'adoro0920@gmail.com',  --55688app
+	('romazrau', '$2b$10$vCcMCrfudRScjP8kVmqxgeo2Zz7Vd74.A7BOcAIX7ib0wMvyLRpwq', '朱孝天', '2000/02/20', 'adoro0920@gmail.com',  --55688app
 		'南港區南港路2段222號2樓之2', '台北市', 0989859112, 2222,
 		'img/member/id1.jpg', 3, '沙漠中一無所有，一無所有非人所求也。'),
 	('AndyKao123', '$2b$10$6UI27slTilYkyOlORk6qwOoeVf/Qockdst2xMElUXTnDXnqrmCLIi', '郭安迪', '1987/08/07', 'O222132435@gmail.com',  --j123456789
@@ -854,7 +854,12 @@ values(4,3,'2020/08/20 13:15:25'),(5,5,'2019/07/27 14:18:28'),(9,6,'2020/08/25 1
 
 -- chat ------------------------
 INSERT INTO Chat.tChatroom (fMemberId1, fMemberId2, fLastDataId) 
-Values  (3, 4, 4),(3, 5, 8),(3, 6, null);
+Values  (3, 4, 4),(3, 5, 8),
+        (3, 34, null),(3, 35, null),(3, 36, null),(3, 37, null),(3, 38, null),
+        (3, 24, null),(3, 25, null),(3, 26, null),(3, 27, null),(3, 28, null),
+		(3, 14, null),(3, 15, null),(3, 16, null),(3, 17, null),
+		(6, 34, null),(6, 35, null),(6, 36, null),
+		(5, 15, null),(5, 16, null),(5, 17, null);
 
 INSERT INTO Chat.tChatData(fChatRoomId, fTime, fMemberId, fContent) 
 Values  (1, '2020/9/11 下午12:20',3 ,'你好'),

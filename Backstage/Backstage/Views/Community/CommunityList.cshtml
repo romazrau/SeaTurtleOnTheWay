@@ -7,7 +7,10 @@
 @functions{
     public string getImageName(string path)
     {
-        string result = path.Split('/').Last();
+        string result = "";
+        if (path == null)
+            return "暫無圖片";
+        result = path.Split('/').Last();
         return result;
     }
 }
@@ -76,7 +79,7 @@
                 @Html.DisplayFor(modelItem => item.fInfo)
             </td>
             <td>
-               @getImageName(item.fImgPath)
+                @getImageName(item.fImgPath)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fStatusName)
