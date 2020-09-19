@@ -6,7 +6,10 @@
 @functions{
     public string getImageName(string path)
     {
-        string result = path.Split('/').Last();
+        string result = "";
+        if (path == null)
+            return "暫無圖片";
+        result = path.Split('/').Last();
         return result;
     }
 }
@@ -58,7 +61,7 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
         </th>
-     
+
         <th></th>
     </tr>
 
@@ -105,7 +108,7 @@
                 @getImageName(item.fPhotoPath)
 
             </td>
-            
+
             <td>
                 @Html.ActionLink("修改", "MemberDetailEdit", "Member", new { id = item.fId }, new
            {
@@ -113,7 +116,7 @@
            })
 
             </td>
-          
+
         </tr>
     }
 

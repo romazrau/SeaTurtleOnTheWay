@@ -85,6 +85,7 @@ namespace Backstage.Controllers
             if (id == null) return RedirectToAction("List");
             var t = from m in db.tMember
                     orderby m.fId
+                    where m.fId > 2
                     select new Models.MemberList
                     {
                         fId = m.fId,
@@ -114,7 +115,7 @@ namespace Backstage.Controllers
 
             return View(result);
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult MemberTypeEdit(int AccountTypeId, int fId)
         {
             tMember mem = db.tMember.FirstOrDefault(f => f.fId == fId);
@@ -154,7 +155,7 @@ namespace Backstage.Controllers
             ViewBag.cAccountType = items;
             return View(m);
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult MemberDetailEdit(tMember nm)
         {
             tMember x = db.tMember.FirstOrDefault(f => f.fId == nm.fId);
@@ -221,7 +222,7 @@ namespace Backstage.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult MemberCreate(tMember x)
         {
             tMember check = db.tMember.FirstOrDefault(f => f.fAccount == x.fAccount);

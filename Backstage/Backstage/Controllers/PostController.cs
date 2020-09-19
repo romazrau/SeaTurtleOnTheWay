@@ -71,7 +71,7 @@ namespace Backstage.Controllers
 
             return View();
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult create(tPost x)
         {
             db.tPost.Add(x);
@@ -105,7 +105,7 @@ namespace Backstage.Controllers
                 return View(x);
             }
         }
-        [HttpPost]
+        [HttpPost][ValidateInput(false)]
         public ActionResult edit(tPost x)
         {
             tPost y = db.tPost.FirstOrDefault(m => m.fId == x.fId);

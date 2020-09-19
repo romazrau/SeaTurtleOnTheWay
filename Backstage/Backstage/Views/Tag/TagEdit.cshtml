@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Backstage.tActivityLabel>
+﻿@model IPagedList<Backstage.tActivityLabel>
 
 @{
     ViewBag.Title = "TagEdit";
@@ -10,10 +10,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fId)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fLabelName)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().fLabelName)
         </th>
         <th></th>
     </tr>
@@ -32,17 +32,18 @@
 
                 </td>
                 <td>
-                    <input type="button" value="修改" onclick="EditTag()"class="btn-secondary"/>
+                    <input type="button" value="修改" onclick="EditTag()" class="btn-secondary" />
                 </td>
             }
-            else { 
+            else
+            {
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.fLabelName)
-            </td>
-            <td>
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fLabelName)
+                </td>
+                <td>
+                </td>
             }
         </tr>
     }
@@ -60,3 +61,4 @@
 
 
 </script>
+@Html.PagedListPager(Model, page => Url.Action("TagList", new { page }))
