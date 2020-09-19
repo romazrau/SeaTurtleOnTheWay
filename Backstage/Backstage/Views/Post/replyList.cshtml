@@ -2,20 +2,16 @@
 
 @{
     ViewBag.Title = "replyList";
+    int Count = 0;
 }
 
-<h2>replyList</h2>
+<h2>回覆列表</h2>
 
-<p>
-    @Html.ActionLink("新增", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fPostId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.fReplyMemberId)
@@ -30,13 +26,12 @@
     </tr>
 
 @foreach (var item in Model) {
+    Count++;
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.fId)
+            @Count
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fPostId)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.tMember.fName)
         </td>
@@ -47,10 +42,17 @@
             @Html.DisplayFor(modelItem => item.fContent)
         </td>
         <td>
-            @Html.ActionLink("修改", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("刪除", "Delete", new { /* id=item.PrimaryKey */ })
+           
+            @Html.ActionLink("刪除", "replyDelete","Post", new { id=item.fId }, new
+       {
+           OnClick = "return confirm('確定要刪除嗎')",
+           Class = "btn btn-danger"
+       })
         </td>
     </tr>
 }
 
 </table>
+<p>
+    @Html.ActionLink("回列表", "list")
+</p>
