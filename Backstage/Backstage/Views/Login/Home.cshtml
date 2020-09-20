@@ -327,6 +327,10 @@
         //        });
         //    });
         //});
+       
+         
+
+
         $(document).ready(function () {
             $.getJSON("/Community/ComArticlePic", function (data) {
                 
@@ -337,7 +341,36 @@
                     ComID.push(data[i].fName);
                     Articlecount.push(data[i].Articlecount);
                 }
+            /*-------------主資料series-------------*/
+                var MainData = []
+                var result = "";
+                for (var i = 0; i < data.length; i++) {
 
+                    let series = {
+                        name: data[i].fName,
+                        
+                        y: data[i].Articlecount,
+                        drilldown: data[i].fName,
+                    }
+
+                    MainData.push(series);
+                }
+
+                console.log("MainData:", MainData)
+
+                var drilldownseries_test = []
+                
+                for (var i = 0; i < data.length; i++) {
+                    
+                    let aaa = {
+                        name: data[i].fName,
+                        id: data[i].fName,
+                        data: [["a",1],["b",2],["c",3],["d",4],["e",5]],
+                    }
+                    console.log("第", i,'個dri',data[i].fName,)
+                     drilldownseries_test.push(aaa);
+                }
+                console.log("drillarr", drilldownseries_test)
 
                 Highcharts.chart("containeractcolum", {
                     chart: {
@@ -385,18 +418,33 @@
                         }
                     },
                     series: [{
-                        name: '社團名稱',
-                        data: Articlecount, 
-                    }],
-                    //test
+                        name: "社團名稱:",
+
+                        data: MainData,
+                        }],
                     drilldown: {
-                        series: [
-                            {
-                                name: "123",
-                                id: "123",
-                                data: [],
-                            }]
-                    }
+                        series: drilldownseries_test
+                        }   
+                    //test\
+                //    for(let i = 0;i<data.length; i++)
+                //{
+                //    drilldown.series.push({
+                //        name: data[i].fName
+                //        data: 
+                //     })
+                //}
+
+
+
+
+                    //drilldown: {
+                    //    series: [
+                    //        {
+                    //            name: "123",
+                    //            id: "123",
+                    //            data: [],
+                    //        }]
+                    //}
                    
                 });
             });
