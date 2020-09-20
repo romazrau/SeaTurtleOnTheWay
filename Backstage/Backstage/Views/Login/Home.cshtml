@@ -26,24 +26,20 @@
     <script src="~/Scripts/chat/highcharts.js"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 </head>
 <body>
 
     <div style="display:flex">
         <div id="containeract" style="margin-top:50px">
-
         </div>
         <div id="containermem" style="margin-top:50px">
         </div>
-
     </div>
     <div style="display:flex">
         <div id="containeractline" style="margin-top:50px">
-
         </div>
         <div id="containeractcolum" style="margin-top:50px">
-
         </div>
     </div>
 
@@ -333,7 +329,7 @@
                 var ComID = [];
                 var Articlecount = [];
 
-                for (var i = 0; i < 4; i++) {
+                for (var i = 0; i < data.length; i++) {
                     ComID.push(data[i].fName);
                     Articlecount.push(data[i].Articlecount);
                 }
@@ -386,9 +382,16 @@
                     },
                     series: [{
                         name: '社團名稱',
-                        data: Articlecount
+                        data: Articlecount,
+                        drilldown: 'abs',
                           
-                    }]
+                    }],
+                    drilldown: {
+                        series: [{
+                            id: 'abs',
+                            data: Articlecount,
+                        }]
+                    }
                 });
             });
         });

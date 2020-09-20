@@ -249,7 +249,7 @@ namespace Backstage.Controllers
 
             var PostandCom = db.tPost.Join(db.tCommunity, o => o.fCommunityId, s => s.fId, (p, c) => new { p.fCommunityId, p.fPostTime, c.fName });
           
-            var ComArticlePic = PostandCom.Where(a=>a.fPostTime.CompareTo("2020/08/31")>=0 && a.fPostTime.CompareTo("2020/09/30")<=0).GroupBy(o => o.fName).Select (g => new { fName = g.Key, Articlecount = g.Count()}).OrderByDescending(x=>x.Articlecount);
+            var ComArticlePic = PostandCom.Where(a=>a.fPostTime.CompareTo("2020/08/31")>=0 && a.fPostTime.CompareTo("2020/09/30")<=0).GroupBy(o => o.fName).Select (g => new { fName = g.Key, Articlecount = g.Count()}).Take(4).OrderByDescending(x=>x.Articlecount);
 
             return Json(ComArticlePic, JsonRequestBehavior.AllowGet);
 
