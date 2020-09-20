@@ -61,55 +61,57 @@
         </th>
 
         <th></th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fInfo)
-            </td>
-            <td>
-                @getImageName(item.fImgPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fStatusName)
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.fId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fInfo)
+    </td>
+    <td>
+        @getImageName(item.fImgPath)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fStatusName)
+    </td>
 
-            <td>
-                @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id = item.fId }, new
-           {
+    <td>
+        @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id = item.fId }, new
+   {
 
-               Class = "btn btn-info"
-           })
-                @Html.ActionLink("詳細修改", "CommunityDetailsEdit", "Community", new { id = item.fId }, new
-           {
+       Class = "btn btn-info"
+   })
+        @Html.ActionLink("詳細修改", "CommunityDetailsEdit", "Community", new { id = item.fId }, new
+   {
 
-               Class = "btn btn-info"
-           })
-                @Html.ActionLink("查看成員", "CommunityMember", "Community", new { id = item.fId }, new
-           {
+       Class = "btn btn-info"
+   })
+        @Html.ActionLink("查看成員", "CommunityMember", "Community", new { id = item.fId }, new
+   {
 
-               Class = "btn btn-info"
-           })
+       Class = "btn btn-info"
+   })
+    </td>
+    <td>
+        @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
+   {
 
-                @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
-           {
+       Class = "btn btn-danger"
+   })
 
-               Class = "btn btn-danger"
-           })
-
-            </td>
-        </tr>
+    </td>
+</tr>
     }
 
 </table>

@@ -42,6 +42,7 @@
 
                 Class = "btn btn-info"
             })
+            @Html.ActionLink("審核活動", "check_statusname")
         </div>
     </div>
 }
@@ -74,6 +75,8 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
         </th>
 
+        <th></th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -118,17 +121,20 @@
 
                Class = "btn btn-info"
            })
+            </td>
+            <td>
                 @Html.ActionLink("詳細修改", "ActivityDetailsEdit", "Activity", new { id = item.fId }, new
-           {
+         {
 
-               Class = "btn btn-info"
-           })
+             Class = "btn btn-info"
+         })
+             </td>
+            <td>
                 @Html.ActionLink("刪除", "ActivityDelete", "Activity", new { id = item.fId }, new
-           {
-               OnClick = "return confirm('確定要刪除嗎')",
-               Class = "btn btn-danger"
-           })
-
+        {
+            OnClick = "return confirm('確定要刪除嗎')",
+            Class = "btn btn-danger"
+        })
             </td>
         </tr>
     }
