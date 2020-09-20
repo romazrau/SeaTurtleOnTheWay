@@ -20,9 +20,9 @@
 @using (Html.BeginForm())
 {
     
-    <div class="form_container">
+    <div class="form_container mb-3" >
         <input class="" type="text" name="txtKeyword" />
-        <input class="btn-primary" value="查詢" type="submit" />
+        <input class="btn btn-primary" value="查詢" type="submit" />
         <select id="Dropdownlist">
             <option>依ID順序</option>
             <option>依ID倒序</option>
@@ -36,7 +36,7 @@
 
 }
 
-<table class="table table-borderless">
+<table class="table table-borderless table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
