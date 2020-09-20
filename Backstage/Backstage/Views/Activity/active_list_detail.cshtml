@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "active_list_detail";
 }
+<a href="~/Views/Tag/TagList.cshtml">~/Views/Tag/TagList.cshtml</a>
 
-<h2>活動詳細表</h2>
+<h2 style="border-bottom:3px solid #31708E;width:10vw;margin-bottom:3rem;">活動詳細表</h2>
 
 @functions{
     public string getImageName(string path)
@@ -18,128 +19,130 @@
 }
 <p>
 
-    
+
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fActName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fCreatDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fActivityDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fActivityEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fMemberName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fIntroduction)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fMaxLimit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fMinLimit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fAttestName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fActLocation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoordinateX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoordinateY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fLabelName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPath)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-hover">
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fActName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCreatDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fActivityDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fActivityEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fMemberName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fIntroduction)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fMaxLimit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fMinLimit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fAttestName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fStatusName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fActLocation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCoordinateX)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCoordinateY)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fLabelName)
-            </td>
-            <td>
-                @getImageName(item.fImgPath)
-            </td>
-            <td>
-                @Html.ActionLink("修改", "active_list_detail_edit", new { id = item.fId }, new
-           {
-               Class = "btn btn-info"
-           })
-                @Html.ActionLink("成員列表", "join_list_detail", new { id = item.fId }, new
-           {
-               Class = "btn btn-info"
-           })
-                @Html.ActionLink("刪除", "active_list_detail_Delete", new { id = item.fId }, new
-           {
-               Class = "btn btn-danger"
-           })
-            </td>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fActName)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fCreatDate)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fActivityDate)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fActivityEndDate)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fMemberName)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fIntroduction)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fMaxLimit)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fMinLimit)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fAttestName)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fActLocation)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fCoordinateX)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fCoordinateY)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fLabelName)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPath)
+            </th>
+            <th></th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fActName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCreatDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fActivityDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fActivityEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMemberName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fIntroduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMaxLimit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMinLimit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAttestName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fStatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fActLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCoordinateX)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCoordinateY)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fLabelName)
+                </td>
+                <td>
+                    @getImageName(item.fImgPath)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "active_list_detail_edit", new { id = item.fId }, new
+               {
+                   Class = "btn btn-info"
+               })
+                    @Html.ActionLink("成員列表", "join_list_detail", new { id = item.fId }, new
+               {
+                   Class = "btn btn-info"
+               })
+                    @Html.ActionLink("刪除", "active_list_detail_Delete", new { id = item.fId }, new
+               {
+                   Class = "btn btn-danger"
+               })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 @Html.PagedListPager(Model, page => Url.Action("active_list_detail", new { page }))

@@ -14,13 +14,14 @@
         return result;
     }
 }
-<h2>社團清單</h2>
+<h2 style="border-bottom:3px solid #31708E;width:10vw;margin-bottom:3rem">社團清單</h2>
 
 @using (Html.BeginForm())
 {
-    <div class="form_container">
+<div class="form_container d-flex">
+    <div>
         <input class="" type="text" name="txtKeyword" />
-        <input class="btn-primary" value="查詢" type="submit" />
+        <input class="btn btn-primary" value="查詢" type="submit" />
         <span>排序:</span>
         <select id="Dropdownlist">
             <option>依id</option>
@@ -34,92 +35,98 @@
     Class = "btn btn-danger"
     })
     </div>
+    <div style="margin-top:2rem">
+        @Html.ActionLink("新增社團", "CommunityCreate", "Community", null, new
+    {
+
+    Class = "btn btn-danger"
+    })
+    </div>
+</div>
 
 }
 
 
 
-<table class="table table-borderless table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fInfo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
-        </th>
+<table class="table table-borderless table-hover" style="margin: 1rem 0 0 0;">
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
+        <tr>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fName)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fDate)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fInfo)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPath)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
+            </th>
 
-        <th></th>
-        <th></th>
-    </tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fInfo)
+                </td>
+                <td>
+                    @getImageName(item.fImgPath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fStatusName)
+                </td>
 
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.fId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fInfo)
-    </td>
-    <td>
-        @getImageName(item.fImgPath)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fStatusName)
-    </td>
+                <td>
+                    @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id = item.fId }, new
+               {
 
-    <td>
-        @Html.ActionLink("狀態修改", "CommunityStatusEdit", "Community", new { id = item.fId }, new
-   {
+                   Class = "btn btn-info"
+               })
+                    @Html.ActionLink("詳細修改", "CommunityDetailsEdit", "Community", new { id = item.fId }, new
+               {
 
-       Class = "btn btn-info"
-   })
-        @Html.ActionLink("詳細修改", "CommunityDetailsEdit", "Community", new { id = item.fId }, new
-   {
+                   Class = "btn btn-info"
+               })
+                    @Html.ActionLink("查看成員", "CommunityMember", "Community", new { id = item.fId }, new
+               {
 
-       Class = "btn btn-info"
-   })
-        @Html.ActionLink("查看成員", "CommunityMember", "Community", new { id = item.fId }, new
-   {
+                   Class = "btn btn-info"
+               })
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
+               {
 
-       Class = "btn btn-info"
-   })
-    </td>
-    <td>
-        @Html.ActionLink("刪除", "CommunityDelete", "Community", new { id = item.fId }, new
-   {
+                   Class = "btn btn-danger"
+               })
 
-       Class = "btn btn-danger"
-   })
-
-    </td>
-</tr>
-    }
-
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-@Html.ActionLink("新增", "CommunityCreate", "Community", null, new
-{
 
-    Class = "btn btn-danger"
-})
 @Html.PagedListPager(Model, page => Url.Action("CommunityList", new { page }))
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>

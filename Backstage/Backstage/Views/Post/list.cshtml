@@ -1,22 +1,25 @@
 ﻿@model PagedList<Backstage.viewmodel.postDetailViewModel>
 
-<p>
-    @Html.ActionLink("新增貼文", "Create")
-    
-</p>
+
 <style>
 
     .scrollTable {
         overflow: scroll;
     }
 </style>
-
+<h2 style="border-bottom:3px solid #31708E;width:10vw;margin-bottom:3rem">文章清單</h2>
 @using (Html.BeginForm())
 {
     <div>
         <input type="text" name="txtsearch" />
-        <input type="submit" value="查詢" class="btn btn-primary"/>
+        <input type="submit" value="查詢" class="btn btn-primary" />
     </div>
+    <p style="margin-top:2rem">
+        @Html.ActionLink("新增貼文", "Create","Post",null,new {
+       Class = "btn btn-danger"
+   })
+
+    </p>
 }
 @functions{
     public string getImageName(string path)
@@ -29,53 +32,67 @@
     }
 }
 <table class="table scrollTable table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fMember)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fCommunity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fPostTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fContent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPaths)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fMember)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCommunity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fPostTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fContent)
-            </td>
-            <td>
-                @getImageName(item.fImgPaths)
-            </td>
-            <td>
-                @Html.ActionLink("編輯", "Edit", new { id = item.fId }) |
-                @Html.ActionLink("查看回文", "replyList", new { id = item.fId }) |
-                @Html.ActionLink("刪除", "Delete", new { id = item.fId })
-            </td>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fMember)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fCommunity)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fPostTime)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fContent)
+            </th>
+            <th style="font-size:large">
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fImgPaths)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMember)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCommunity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fPostTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fContent)
+                </td>
+                <td>
+                    @getImageName(item.fImgPaths)
+                </td>
+                <td>
+                    @Html.ActionLink("編輯", "Edit", "Post", new { id = item.fId }, new
+               {
 
+                   Class = "btn btn-info"
+               })
+                    @Html.ActionLink("查看回文", "replyList", "Post", new { id = item.fId }, new
+               {
+
+                   Class = "btn btn-info"
+               })
+                    @Html.ActionLink("刪除", "Delete", "Post", new { id = item.fId }, new
+               {
+
+                   Class = "btn btn-danger"
+               })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
 <script>
-    
+
 </script>
