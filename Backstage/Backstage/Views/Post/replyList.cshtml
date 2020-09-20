@@ -5,53 +5,56 @@
     int Count = 0;
 }
 
-<h2>回覆列表</h2>
+<h2 style="border-bottom:3px solid #31708E;width:10vw">回覆列表</h2>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fReplyMemberId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fReplyTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fContent)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-hover">
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fReplyMemberId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fReplyTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fContent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            Count++;
+            <tr>
+                <td>
+                    @Count
+                </td>
 
-@foreach (var item in Model) {
-    Count++;
-    <tr>
-        <td>
-            @Count
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tMember.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fReplyTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fContent)
+                </td>
+                <td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.tMember.fName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fReplyTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fContent)
-        </td>
-        <td>
-           
-            @Html.ActionLink("刪除", "replyDelete","Post", new { id=item.fId }, new
-       {
-           OnClick = "return confirm('確定要刪除嗎')",
-           Class = "btn btn-danger"
-       })
-        </td>
-    </tr>
-}
-
+                    @Html.ActionLink("刪除", "replyDelete", "Post", new { id = item.fId }, new
+               {
+                   OnClick = "return confirm('確定要刪除嗎')",
+                   Class = "btn btn-danger"
+               })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 <p>
     @Html.ActionLink("回列表", "list")
