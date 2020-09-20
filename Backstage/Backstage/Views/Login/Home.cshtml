@@ -7,6 +7,16 @@
     }
 
 }
+@functions{
+
+    public string GetCommunityName(int n)
+    {
+        SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
+        tCommunity co = db.tCommunity.FirstOrDefault(m => m.fId == n);
+        var result = co.fName;
+        return result;
+    }
+}
 
 <!DOCTYPE html>
 <html>
@@ -16,24 +26,20 @@
     <script src="~/Scripts/chat/highcharts.js"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 </head>
 <body>
 
     <div style="display:flex">
         <div id="containeract" style="margin-top:50px">
-
         </div>
         <div id="containermem" style="margin-top:50px">
         </div>
-
     </div>
     <div style="display:flex">
         <div id="containeractline" style="margin-top:50px">
-
         </div>
         <div id="containeractcolum" style="margin-top:50px">
-
         </div>
     </div>
 
@@ -322,14 +328,13 @@
                 
                 var ComID = [];
                 var Articlecount = [];
-                
 
                 for (var i = 0; i < data.length; i++) {
-                    ComID.push(data[i].fCommunityId);
+                    ComID.push(data[i].fName);
                     Articlecount.push(data[i].Articlecount);
                 }
-                //Array.Sort(Articlecount);
-                console.log(typeof(Articlecount));
+
+
                 Highcharts.chart("containeractcolum", {
                     chart: {
                         type: 'column',
@@ -339,10 +344,10 @@
                         enabled: false
                     },
                     title: {
-                        text: "瀏覽紀錄"
+                        text: "9月社團文章發文次數"
                     },
                     subtitle: {
-                        text: "單位:瀏覽次數"
+                        text: "單位:次數"
                     },
                     xAxis: {
                         categories: ComID,
@@ -355,7 +360,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: "活動瀏覽次數",
+                            text: "發文次數",
                             style: {
                                 fontSize: '18px'
                             }
@@ -376,10 +381,17 @@
                         }
                     },
                     series: [{
-                        name: "ComID",
-                        data: ComID,
-                        
-                    }]
+                        name: '社團名稱',
+                        data: Articlecount,
+                        drilldown: 'abs',
+                          
+                    }],
+                    drilldown: {
+                        series: [{
+                            id: 'abs',
+                            data: Articlecount,
+                        }]
+                    }
                 });
             });
         });
