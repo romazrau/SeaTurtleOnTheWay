@@ -2,13 +2,20 @@
 
 <p>
     @Html.ActionLink("新增貼文", "Create")
+    
 </p>
+<style>
+
+    .scrollTable {
+        overflow: scroll;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
     <div>
         <input type="text" name="txtsearch" />
-        <input type="submit" value="查詢" />
+        <input type="submit" value="查詢" class="btn btn-primary"/>
     </div>
 }
 @functions{
@@ -21,7 +28,7 @@
         return result;
     }
 }
-<table class="table">
+<table class="table scrollTable table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().fMember)
@@ -69,3 +76,6 @@
 
 </table>
 @Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+<script>
+    
+</script>

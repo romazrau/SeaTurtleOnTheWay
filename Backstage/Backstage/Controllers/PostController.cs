@@ -134,5 +134,16 @@ namespace Backstage.Controllers
 
             return View(t);
         }
+
+        public ActionResult replyDelete(int? id)
+        {
+
+            tReply r = db.tReply.FirstOrDefault(m => m.fId == id);
+             db.tReply.Remove(r);
+            db.SaveChanges();
+
+            return RedirectToAction("list");
+        }
+
     }
 }

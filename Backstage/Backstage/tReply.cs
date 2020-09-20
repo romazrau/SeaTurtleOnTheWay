@@ -20,7 +20,7 @@ namespace Backstage
         {
             this.tFeedback = new HashSet<tFeedback>();
         }
-        
+        [DisplayName("序")]
         public int fId { get; set; }
         [DisplayName("文章")]
         public int fPostId { get; set; }

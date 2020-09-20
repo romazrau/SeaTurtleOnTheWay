@@ -3,13 +3,17 @@
 @{
     ViewBag.Title = "ActivitiyList";
 }
-<script src="~/Scripts/bundles/jqueryval"></script>
+@*<script src="~/Scripts/bundles/jqueryval"></script>
 <script src="~/Scripts/chat/exporting.js"></script>
 <script src="~/Scripts/chat/highcharts.js"></script>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>*@
 <h2>活動清單</h2>
-
+<style>
+    td {
+        padding:8px;
+    }
+</style>
 @using (Html.BeginForm())
 {
     <div id="container">
@@ -19,9 +23,9 @@
        
 
     </script>
-    <div class="form_container d-flex">
+    <div class="d-flex">
         <input class="" type="text" name="txtKeyword" />
-        <input class="btn-primary" value="查詢" type="submit" />
+        <input class="btn btn-primary" value="查詢" type="submit" />
         <span>排序:</span>
         <select id="Dropdownlist">
             <option>依ID順序</option>
@@ -38,11 +42,12 @@
 
                 Class = "btn btn-info"
             })
+            @Html.ActionLink("審核活動", "check_statusname")
         </div>
     </div>
 }
 
-<table class="table-responsive">
+<table class="table table-borderless table-hover">
 
     <tr>
         <th>
@@ -70,6 +75,8 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().fStatusName)
         </th>
 
+        <th></th>
+        <th></th>
         <th></th>
     </tr>
 
@@ -114,17 +121,20 @@
 
                Class = "btn btn-info"
            })
+            </td>
+            <td>
                 @Html.ActionLink("詳細修改", "ActivityDetailsEdit", "Activity", new { id = item.fId }, new
-           {
+         {
 
-               Class = "btn btn-info"
-           })
+             Class = "btn btn-info"
+         })
+             </td>
+            <td>
                 @Html.ActionLink("刪除", "ActivityDelete", "Activity", new { id = item.fId }, new
-           {
-               OnClick = "return confirm('確定要刪除嗎')",
-               Class = "btn btn-danger"
-           })
-
+        {
+            OnClick = "return confirm('確定要刪除嗎')",
+            Class = "btn btn-danger"
+        })
             </td>
         </tr>
     }
