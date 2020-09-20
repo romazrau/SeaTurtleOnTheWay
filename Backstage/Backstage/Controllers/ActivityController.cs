@@ -488,7 +488,7 @@ namespace Backstage.Controllers
         public ActionResult ActLinePic()
         {
             var Actlinepic = db.tActivity.GroupBy(o => o.fActivityDate.Substring(5, 2)).Select(g => new { fOrDateMonth = g.Key, Actcount = g.Count() });
-            return Json(Actlinepic, JsonRequestBehavior.AllowGet); 
+            return Json(Actlinepic, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ActLinecolum()

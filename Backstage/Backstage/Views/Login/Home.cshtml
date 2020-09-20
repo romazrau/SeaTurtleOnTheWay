@@ -27,6 +27,10 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 <body>
 
@@ -382,16 +386,18 @@
                     },
                     series: [{
                         name: '社團名稱',
-                        data: Articlecount,
-                        drilldown: 'abs',
-                          
+                        data: Articlecount, 
                     }],
+                    //test
                     drilldown: {
-                        series: [{
-                            id: 'abs',
-                            data: Articlecount,
-                        }]
+                        series: [
+                            {
+                                name: "123",
+                                id: "123",
+                                data: [],
+                            }]
                     }
+                   
                 });
             });
         });
