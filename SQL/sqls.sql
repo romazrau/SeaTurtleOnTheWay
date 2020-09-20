@@ -176,15 +176,31 @@ select M.fId,M.fAccount, M.fName , M.fCity, M.fCoins , T.fAccountType as 'fAccou
 with actConut as (
 	select  fMemberId, count(fActivityId) as 'fActiviteCount'
 	from Activity.tJoinList
-	where fMemberId = 11
+	where fMemberId = 11 and fJoinTypeId != 0
     group by fMemberId
 )
-select M.fId, M.fName, M.fCity, M.fCoins, M.fBirthdate, M.fCeilphoneNumber, C.fActiviteCount , T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
+, actInterestConut as (
+	select  fMemberId, count(fActivityId) as 'fActiviteInterestCount'
+	from Activity.tJoinList
+	where fMemberId = 11 and fJoinTypeId = 0
+    group by fMemberId
+ )
+ , cumConut as (
+	select  fMemberId, count(fCommunityId) as 'fCommunityCount'
+	from Community.tMemberList
+	where fMemberId = 11 
+    group by fMemberId
+ )
+select M.fId, M.fName, M.fCity, M.fCoins, M.fBirthdate, M.fCeilphoneNumber, C.fActiviteCount, i.fActiviteInterestCount, cum.fCommunityCount, T.fAccountType as 'fAccountType' , T.fAccountAuthority as 'fAccountAuthority' , M.fIntroduction, M.fPhotoPath, M.fLastTime
         from Member.tMember as M
         LEFT join Member.tAccountType as T
         on M.fAccountTypeId = T.fId
 		LEFT join actConut as C
 		on C.fMemberId = M.fId
+		LEFT join actInterestConut as i
+		on i.fMemberId = M.fId
+		LEFT join cumConut as cum
+		on cum.fMemberId = M.fId
 		where M.fId = 11
 
 
