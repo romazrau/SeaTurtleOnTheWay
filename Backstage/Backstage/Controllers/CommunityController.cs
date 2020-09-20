@@ -260,10 +260,11 @@ namespace Backstage.Controllers
             var PostandCom = db.tPost.Join(db.tCommunity, o => o.fCommunityId, s => s.fId, (p, c) => new {p.fMemberId, p.fCommunityId, p.fPostTime, c.fName });
 
             var member = PostandCom.Join(db.tMember, o => o.fMemberId, s => s.fId, (p, m) => new { p.fMemberId, p.fCommunityId, p.fPostTime, p.fName, membername = m.fName });
+            var memberPostCount = member.Where(k => k.fName == name).GroupBy(o => o.membername).Select(g => new { membername = g.Key, postcount = g.Count() });
 
             //var test = 
-            
-            return Json(member, JsonRequestBehavior.AllowGet);
+
+            return Json(memberPostCount, JsonRequestBehavior.AllowGet);
         }
 
         public class ratio

@@ -335,10 +335,11 @@
 
 
         $(document).ready(function () {
-            $.getJSON("/Community/ComArticlePic", function (data) {
+            $.getJSON("/Community/ComArticlePic",function  (data) {
                 
                 var ComID = [];
                 var Articlecount = [];
+               
 
                 for (var i = 0; i < data.length; i++) {
                     ComID.push(data[i].fName);
@@ -351,29 +352,54 @@
 
                     let series = {
                         name: data[i].fName,
-                        
                         y: data[i].Articlecount,
                         drilldown: data[i].fName,
                     }
-
                     MainData.push(series);
                 }
 
-                console.log("MainData:", MainData)
+               
 
                 var drilldownseries_test = []
                 
-                for (var i = 0; i < data.length; i++) {
+                for (var i = 0; i < data.length; i++)
+                {
+                    
                     
                     let aaa = {
                         name: data[i].fName,
                         id: data[i].fName,
-                        data: [["a",1],["b",2],["c",3],["d",4],["e",5]],
+                        type: 'areaspline',
+                        data: $.getJSON("/Community/ComArticledrilldown", { name: data[i].fName }, function (data) {
+                            console.log("data:", data);
+                           
+                            return data
+                        }),
                     }
-                    console.log("第", i,'個dri',data[i].fName,)
+                    
                      drilldownseries_test.push(aaa);
                 }
                 console.log("drillarr", drilldownseries_test)
+
+                
+                function GetMemberPostList(N) {
+                    $.getJSON("/Community/ComArticledrilldown", { name: N }, function (data) {
+                        console.log("data:",data)
+                        drilldown_seriesdata=data  ;
+                        //let series_arr = []
+                        //for (let i = 0; i < data.length; i++)
+                        //{
+                        //    let series = [{
+                        //        name:data[i].membername,
+                        //        y:data[i].postcount
+                        //        }
+                        //    ]
+                        //    series_arr.push(series)
+                        //}
+                        //console.log("series_arr:", series_arr)
+                    })
+                }
+
 
                 Highcharts.chart("containeractcolum", {
                     chart: {
