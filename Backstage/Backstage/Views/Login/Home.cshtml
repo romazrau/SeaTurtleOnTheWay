@@ -196,6 +196,9 @@
                     credits: {
                         enabled: false
                     },
+                    exporting: {
+                        enabled: false
+                    },
                     title: {
                         text: "2020年每月活動統計"
                     },
@@ -347,6 +350,9 @@
                     credits: {
                         enabled: false
                     },
+                    exporting: {
+                        enabled: false
+                    },
                     title: {
                         text: "9月社團文章發文次數"
                     },
@@ -387,14 +393,15 @@
                     series: [{
                         name: '發文次數',
                         data: Articlecount, 
-                    }],ㄋ
+                        drilldown: ComID
+                    }],
                     //test
                     drilldown: {
                         series: [
                             {
                                 name: "123",
-                                id: "123",
-                                data: [],
+                                id: ComID,
+                                data: ComID,
                             }]
                     }
                    
