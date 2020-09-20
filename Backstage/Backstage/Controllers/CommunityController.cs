@@ -247,7 +247,7 @@ namespace Backstage.Controllers
             DateTime nowdate = DateTime.Now;
            
 
-            var PostandCom = db.tPost.Join(db.tCommunity, o => o.fCommunityId, s => s.fId, (p, c) => new { p.fCommunityId, p.fPostTime, c.fName });
+            var PostandCom = db.tPost.Join(db.tCommunity, o => o.fCommunityId, s => s.fId, (p, c) => new { p.fCommunityId, p.fPostTime, c.fName  });
           
             var ComArticlePic = PostandCom.Where(a=>a.fPostTime.CompareTo("2020/08/31")>=0 && a.fPostTime.CompareTo("2020/09/30")<=0).GroupBy(o => o.fName).Select (g => new { fName = g.Key, Articlecount = g.Count()}).Take(4).OrderByDescending(x=>x.Articlecount);
 
@@ -255,6 +255,16 @@ namespace Backstage.Controllers
 
         }
 
+        public ActionResult ComArticledrilldown(string name) {
+
+            var PostandCom = db.tPost.Join(db.tCommunity, o => o.fCommunityId, s => s.fId, (p, c) => new {p.fMemberId, p.fCommunityId, p.fPostTime, c.fName });
+
+            var member = PostandCom.Join(db.tMember, o => o.fMemberId, s => s.fId, (p, m) => new { p.fMemberId, p.fCommunityId, p.fPostTime, p.fName, membername = m.fName });
+
+            //var test = 
+            
+            return Json(member, JsonRequestBehavior.AllowGet);
+        }
 
         public class ratio
         {
