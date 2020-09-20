@@ -29,7 +29,7 @@ namespace Backstage.viewmodel
         public int? fMaxLimit { get; set; }
         [DisplayName("最小人數限制")]
         public int? fMinLimit { get; set; }
-        [DisplayName("活動等級")]
+        [DisplayName("活動等級(規模)")]
         public string fAttestName { get; set; }
         [DisplayName("活動狀態")]
         public string fStatusName { get; set; }
@@ -44,7 +44,7 @@ namespace Backstage.viewmodel
         [DisplayName("主類別")]
 
         public string fLabelName { get; set; }
-        [DisplayName("路徑")]
+        [DisplayName("照片")]
 
         public string fImgPath { get; set; }
     }

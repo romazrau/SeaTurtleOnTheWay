@@ -132,8 +132,11 @@ namespace Backstage.Controllers
 
         public ActionResult TagDelete(int? id)
         {
-            tActivityLabel x = db.tActivityLabel.FirstOrDefault(f => f.fId==id);
-
+            tActivityLabel x = db.tActivityLabel.FirstOrDefault(f => f.fId == id);
+            //var x = db.tActivityHadLabel.Where(f => f.tActivityLabelId == id);
+            //db.tActivityHadLabel.RemoveRange(x);
+            //var y = db.tActivityLabel.Where(f => f.fId == id);
+            //db.tActivityLabel.RemoveRange(y);
             db.tActivityLabel.Remove(x);
             db.SaveChanges();
             return RedirectToAction("TagList");

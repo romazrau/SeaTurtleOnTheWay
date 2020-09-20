@@ -452,7 +452,7 @@ namespace Backstage.Controllers
                 }
             }
             db.SaveChanges();
-            return RedirectToAction("active_list_detail");
+            return RedirectToAction("ActivityList");
         }
 
         public ActionResult Highchats()
