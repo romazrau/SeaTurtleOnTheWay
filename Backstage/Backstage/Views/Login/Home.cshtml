@@ -359,27 +359,42 @@
                 }
 
                
-
-                var drilldownseries_test = []
+                /**點擊之後資料 */
+                var drilldownseries = []
                 
-                for (var i = 0; i < data.length; i++)
+                for (let i = 0; i < data.length; i++)
                 {
                     
                     
                     let aaa = {
                         name: data[i].fName,
                         id: data[i].fName,
-                        type: 'areaspline',
-                        data: $.getJSON("/Community/ComArticledrilldown", { name: data[i].fName }, function (data) {
-                            console.log("data:", data);
-                           
-                            return data
-                        }),
+                        data: {}    
                     }
+
+   
+                    $.getJSON("/Community/ComArticledrilldown", { name: data[i].fName }, function (subdata) {
+                        //console.log("subdata:", subdata);
+                        let result = []
+                        for (let j = 0; j < subdata.length; j++) {
+                            let subarray = { name: subdata[j].membername, y: subdata[j].postcount };
+                            console.log("subarray:", subarray)
+                            result.push(subarray);
+                        }
+                        console.log("result:", result);
+                        //data:GetMemberPostList(data[i].fName)
+                        //data:[{name:1,y:2},{}]
+                        //data:[["a",1],["b",2].....]
+                        aaa.data = result;
+                    }
+                    )
+
+
                     
-                     drilldownseries_test.push(aaa);
+                    drilldownseries.push(aaa);
+                    console.log("drilldownseries:", drilldownseries)
                 }
-                console.log("drillarr", drilldownseries_test)
+                console.log("drillarr", drilldownseries)
 
                 
                 function GetMemberPostList(N) {
@@ -454,28 +469,9 @@
                         data: MainData,
                         }],
                     drilldown: {
-                        series: drilldownseries_test
+                        series: drilldownseries
                         }   
-                    //test\
-                //    for(let i = 0;i<data.length; i++)
-                //{
-                //    drilldown.series.push({
-                //        name: data[i].fName
-                //        data: 
-                //     })
-                //}
-
-
-
-
-                    //drilldown: {
-                    //    series: [
-                    //        {
-                    //            name: "123",
-                    //            id: "123",
-                    //            data: [],
-                    //        }]
-                    //}
+                   
                    
                 });
             });
