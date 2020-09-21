@@ -191,7 +191,7 @@
                 Highcharts.chart("containeractline", {
                     chart: {
                         type: 'line',
-                        width: 600
+                        width: 600       
                     },
                     credits: {
                         enabled: false
@@ -397,29 +397,23 @@
                 console.log("drillarr", drilldownseries)
 
                 
-                function GetMemberPostList(N) {
-                    $.getJSON("/Community/ComArticledrilldown", { name: N }, function (data) {
-                        console.log("data:",data)
-                        drilldown_seriesdata=data  ;
-                        //let series_arr = []
-                        //for (let i = 0; i < data.length; i++)
-                        //{
-                        //    let series = [{
-                        //        name:data[i].membername,
-                        //        y:data[i].postcount
-                        //        }
-                        //    ]
-                        //    series_arr.push(series)
-                        //}
-                        //console.log("series_arr:", series_arr)
-                    })
-                }
+              
 
 
                 Highcharts.chart("containeractcolum", {
                     chart: {
                         type: 'column',
-                        width: 600
+                        width: 600,
+                        events: {
+                            drilldown: function (e) {
+                            
+                                this.xAxis[0].update({ categories: ['Daisy Chen', '王威比', '陳佑銘', '過激貓', '饒孝天'] })
+                            },
+                             drillup: function (e) {
+                               
+                                 this.xAxis[0].update({ categories: ComID})
+                            }
+                        }
                     },
                     credits: {
                         enabled: false

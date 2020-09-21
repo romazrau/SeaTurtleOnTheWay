@@ -151,6 +151,7 @@ namespace Backstage.Controllers
             List<SelectListItem> itemsAtt = new List<SelectListItem>();
             List<SelectListItem> itemsMem = new List<SelectListItem>();
             var cMainLabel = db.tActivityMainLabel.ToDictionary(x => x.fId, y => y.fLabelName);
+            List<SelectListItem> itemsMainLabel = new List<SelectListItem>();
             SelectList MainLabelList = new SelectList(cMainLabel, cMainLabel.Keys, cMainLabel.Values);
 
 
@@ -179,11 +180,23 @@ namespace Backstage.Controllers
                     Value = a.Key.ToString()
                 });
             }
+            foreach (var a in cMainLabel)
+            {
+                itemsMainLabel.Add(new SelectListItem()
+                {
+                    Text = a.Value,
+                    Value = a.Key.ToString()
+                });
+            }
+
+
+
+
             ViewBag.ActDrop = itemsAct;
             ViewBag.AttDrop = itemsAtt;
             ViewBag.MemDrop = itemsMem;
             ViewBag.MainLabelList = MainLabelList;
-
+            ViewBag.MainLabelList1 = itemsMainLabel;
 
             return View(t);
         }
@@ -203,10 +216,12 @@ namespace Backstage.Controllers
                 A.fActLocation = t.fActLocation;
                 A.fCoordinateX = t.fCoordinateX;
                 A.fCoordinateY = t.fCoordinateY;
-                A.fActLabelId = t.fActLabelId;
+                A.fActLabelId = int.Parse(Request.Form["MLLDrop"]);
+
                 A.fActAttestId = int.Parse(Request.Form["AttDrop"]);
                 A.fActTypeId = int.Parse(Request.Form["ActDrop"]);
                 A.fMemberId = int.Parse(Request.Form["MemDrop"]);
+
                 db.SaveChanges();
             }
 
