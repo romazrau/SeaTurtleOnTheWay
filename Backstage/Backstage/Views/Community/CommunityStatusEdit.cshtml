@@ -18,67 +18,68 @@
 
 
 <table class="table table-borderless">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fInfo)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.fImgPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fStatusName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fInfo)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.fId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fInfo)
+            </th>
 
-            <td>
-                @getImageName(item.fImgPath)
-            </td>
-            @if (item.fId == ViewBag.fId)
-            {
-                <td>
-                    @Html.DropDownList("CommunityStatus_DDL", (IEnumerable<SelectListItem>)ViewBag.cCommunityStatus)
-                </td>
-                <td>
-                    <input type="button" onclick="StatusCh()" value="送出" />
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.fStatusName)
-                </td>
-                <td>
-                </td>
-            }
+            <th>
+                @Html.DisplayNameFor(model => model.fImgPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fStatusName)
+            </th>
+            <th></th>
         </tr>
-    }
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fInfo)
+                </td>
+
+                <td>
+                    @getImageName(item.fImgPath)
+                </td>
+                @if (item.fId == ViewBag.fId)
+                {
+                    <td>
+                        @Html.DropDownList("CommunityStatus_DDL", (IEnumerable<SelectListItem>)ViewBag.cCommunityStatus)
+                    </td>
+                    <td>
+                        <input type="button" onclick="StatusCh()" value="送出" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fStatusName)
+                    </td>
+                    <td>
+                    </td>
+                }
+            </tr>
+        }
 
 </table>
 

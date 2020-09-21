@@ -158,6 +158,8 @@ namespace Backstage.Controllers
             var cMember = db.tMember.ToDictionary(x => x.fId, y => y.fName);
             foreach (var cm in cMember)
             {
+                if (cm.Key < 3)
+                    continue;
                 itemsMem.Add(new SelectListItem()
                 {
                     Text = cm.Value,
