@@ -8,78 +8,79 @@
     </h2>
 
 <table class="table table-borderless">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fActName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fCreatDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fActivityDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fMinLimit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fLabelName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fAttestName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fStatusName)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fActName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCreatDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fActivityDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fMinLimit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fLabelName)
-            </td>
-            @if (item.fId == ViewBag.fId)
-            {
-                <td>@Html.DropDownList("Dropdownlist_Att", (IEnumerable<SelectListItem>)ViewBag.AttDrop) </td>
-                <td>@Html.DropDownList("Dropdownlist_Act", (IEnumerable<SelectListItem>)ViewBag.ActDrop)</td>
-                <td>
-                    <input type="button" value="確定" onclick="SaveCh()" />
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.fAttestName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fStatusName)
-                </td>
+            <th>
+                @Html.DisplayNameFor(model => model.fId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fActName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fCreatDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fActivityDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fMinLimit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fLabelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fAttestName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fStatusName)
+            </th>
 
-                <td>
-                </td>
-            }
+            <th></th>
         </tr>
-    }
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fActName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCreatDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fActivityDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMinLimit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fLabelName)
+                </td>
+                @if (item.fId == ViewBag.fId)
+                {
+                    <td>@Html.DropDownList("Dropdownlist_Att", (IEnumerable<SelectListItem>)ViewBag.AttDrop) </td>
+                    <td>@Html.DropDownList("Dropdownlist_Act", (IEnumerable<SelectListItem>)ViewBag.ActDrop)</td>
+                    <td>
+                        <input type="button" value="確定" onclick="SaveCh()" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fAttestName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fStatusName)
+                    </td>
+
+                    <td>
+                    </td>
+                }
+            </tr>
+        }
 
 </table>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>

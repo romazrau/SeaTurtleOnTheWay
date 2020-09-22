@@ -4,7 +4,7 @@
     ViewBag.Title = "MemberTypeEdit";
 }
 
-<h2>帳號等級修改</h2>
+<h2 style="border-bottom:3px solid #31708E;width:10vw;margin-bottom:3rem;">帳號等級修改</h2>
 @functions{
     public string getImageName(string path)
     {
@@ -16,66 +16,67 @@
     }
 }
 
-<table class="table table-borderless">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-borderless  table-hover">
+    <thead class="thead-dark" style="background-color:#31708E;color:white;">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fAccount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fCoins)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fAccount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fCoins)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fPhotoPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().fAccountType)
+            </th>
 
-            <td>
-                @getImageName(item.fPhotoPath)
-            </td>
-            @if (item.fId == ViewBag.fId)
-            {
-
-                <td>
-                    @Html.DropDownList("AccountTypeDDL", (IEnumerable<SelectListItem>)ViewBag.cAccountType, new { @class = "dropdown-toggle-split" })
-                </td>
-                <td>
-                    <input type="button" onclick="AccountTypeEdit()" value="確認" class="btn btn-secondary" />
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.fAccountType)
-                </td>
-                <td>
-                </td>
-            }
-
-
-
+            <th></th>
         </tr>
-    }
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fAccount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fCoins)
+                </td>
+
+                <td>
+                    @getImageName(item.fPhotoPath)
+                </td>
+                @if (item.fId == ViewBag.fId)
+                {
+
+                    <td>
+                        @Html.DropDownList("AccountTypeDDL", (IEnumerable<SelectListItem>)ViewBag.cAccountType, new { @class = "dropdown-toggle-split" })
+                    </td>
+                    <td>
+                        <input type="button" onclick="AccountTypeEdit()" value="確認" class="btn btn-secondary" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fAccountType)
+                    </td>
+                    <td>
+                    </td>
+                }
+
+
+
+            </tr>
+        }
 
 </table>
 
