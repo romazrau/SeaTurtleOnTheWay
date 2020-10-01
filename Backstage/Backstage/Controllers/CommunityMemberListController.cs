@@ -11,7 +11,7 @@ namespace Backstage.Controllers
         // GET: CommunityMemberList
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("list");
         }
         SeaTurtleOnTheWayEntities db = new SeaTurtleOnTheWayEntities();
         public ActionResult list()
