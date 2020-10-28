@@ -259,7 +259,7 @@ CREATE TABLE Activity.tActivity
   fCoordinateY      NVARCHAR(100)    NULL,
   fActLabelId       INT           NOT NULL,
   fImgPath          NVARCHAR(200)    NOT NULL,
-  fInOut            NVARCHAR(20)     NOT NULL,
+  fInOut            NVARCHAR(20)     NULL,
   CONSTRAINT PK_Activity PRIMARY KEY(fId),
   CONSTRAINT FK_Activity_AttestType FOREIGN KEY(fActAttestId)  
     REFERENCES Activity.tAttestType(fId),
